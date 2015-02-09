@@ -1,0 +1,51 @@
+@font-face {
+  font-family:"barcode font";
+  src:url("barcode_font/BarcodeFont.eot?") format("eot"),
+  url("barcode_font/BarcodeFont.woff") format("woff"),
+  url("barcode_font/BarcodeFont.ttf") format("truetype"),
+  url("barcode_font/BarcodeFont.svg#barcodefont") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+ font-family:"Canterbury Regular";
+ src:url("Canterbury/Canterbury.eot?") format("eot"),
+ url("Canterbury/Canterbury.woff") format("woff"),
+ url("Canterbury/Canterbury.ttf") format("truetype"),
+ url("Canterbury/Canterbury.svg#Canterbury-Regular") format("svg");
+ font-weight:normal;
+ font-style:normal;
+}
+
+@font-face {
+  font-family:"old seals tfb";
+  src:url("old_seals/old_seals_tfb.eot?") format("eot"),
+  url("old_seals/old_seals_tfb.woff") format("woff"),
+  url("old_seals/old_seals_tfb.ttf") format("truetype"),
+  url("old_seals/old_seals_tfb.svg#oldsealstfb") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:"Goudy Bookletter 1911 TT";
+  src:url("GoudyBookletter1911TT.eot?") format("eot"),
+  url("GoudyBookletter1911TT.woff") format("woff"),
+  url("GoudyBookletter1911TT.ttf") format("truetype"),
+  url("GoudyBookletter1911TT.svg#GoudyBookletter1911TT") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+/*
+
+font-family: 'BarcodeFont',
+ url('/barcode_font/BarcodeFont.ttf') format('truetype'); 
+ 
+ font-family: 'Canterbury',
+ url('Canterbury/Canterbury.ttf') format('truetype');
+
+ font-family: 'fonts/old_seals_tfb',
+ url('fonts/old_seals_tfb.ttf') format('truetype');
+ */

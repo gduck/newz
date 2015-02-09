@@ -10,34 +10,43 @@
   border-bottom: 1px solid #d3d3d3;
 }
 
-.newspaper{
-  color: red;
-  font-family: 'barcode font';
+.article {
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.article-text {
+  font-family: 'Goudy Bookletter 1911 TT';
+}
+.article-heading {
+font-family: 'Goudy Bookletter 1911 TT';
+font-style: bold;
 }
 
 .divtest {
   color: green;
   font-family: 'Canterbury Regular';
-}
+/*  font-size: x-large;*/}
 
 .bordertest {
   border: 1px solid #000000;
 }
+
+.final_size {
+  width: 70%;
+  height: 100%;
+  padding: 10px;
+}
+
 
 .item { width: 25%; }
 .item.w2 { width: 50%; }
 
 
 
-
-/*
-
-font-family: 'BarcodeFont',
- url('/barcode_font/BarcodeFont.ttf') format('truetype'); 
- 
- font-family: 'Canterbury',
- url('Canterbury/Canterbury.ttf') format('truetype');
-
+<<<<<<< HEAD
  font-family: 'fonts/old_seals_tfb',
  url('fonts/old_seals_tfb.ttf') format('truetype');
  */
+=======
+>>>>>>> some divs, draggable

@@ -19,4 +19,5 @@
 //= require angular-ui-bootstrap-tpls
 //= require bootstrap
 //= require packery.pkgd
+//= require draggabilly.pkgd
 //= require_tree ./angular
