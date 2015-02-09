@@ -1,0 +1,13 @@
+
+.newspaper{
+  color: black;
+  font-family: 'Canterbury';
+}
+
+.item { width: 25%; }
+.item.w2 { width: 50%; }
+
+@font-face {
+ font-family: 'font/Canterbury',
+ url('font/Canterbury.ttf') format('truetype');
+}
