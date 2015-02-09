@@ -1,0 +1,8 @@
+// angular-config.js.erb
+
+var app = angular.module('newz', ['ngRoute']);
+
+app.config(['$routeProvider',function($routeProvider){
+  $routeProvider
+  .when('/', {templateUrl: "<%= asset_path('home.html') %>",         controller: 'HomeCtrl'})
+}]);
