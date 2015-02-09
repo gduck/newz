@@ -11,14 +11,33 @@
 }
 
 .newspaper{
-  color: black;
-  font-family: 'Canterbury';
+  color: red;
+  font-family: 'barcode font';
+}
+
+.divtest {
+  color: green;
+  font-family: 'Canterbury Regular';
+}
+
+.bordertest {
+  border: 1px solid #000000;
 }
 
 .item { width: 25%; }
 .item.w2 { width: 50%; }
 
-@font-face {
- font-family: 'font/Canterbury',
- url('font/Canterbury.ttf') format('truetype');
-}
+
+
+
+/*
+
+font-family: 'BarcodeFont',
+ url('/barcode_font/BarcodeFont.ttf') format('truetype'); 
+ 
+ font-family: 'Canterbury',
+ url('Canterbury/Canterbury.ttf') format('truetype');
+
+ font-family: 'fonts/old_seals_tfb',
+ url('fonts/old_seals_tfb.ttf') format('truetype');
+ */

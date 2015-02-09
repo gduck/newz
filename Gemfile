@@ -35,6 +35,7 @@ gem 'binding_of_caller', group: :development
 
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'packery-rails', '~> 1.3.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

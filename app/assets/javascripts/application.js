@@ -18,4 +18,5 @@
 //= require angular-route
 //= require angular-ui-bootstrap-tpls
 //= require bootstrap
+//= require packery.pkgd
 //= require_tree ./angular

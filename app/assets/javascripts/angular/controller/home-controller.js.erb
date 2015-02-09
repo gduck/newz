@@ -1,11 +1,19 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope ){
 
-  // var $container = $('#container');
-  // // init
-  // $container.packery({
-  //   itemSelector: '.item',
-  //   gutter: 10
-  // });
+  var $container = $('#container');
+  // init
+  $container.packery({
+    itemSelector: '.item',
+    gutter: 10,
+    columnWidth: 80,
+    rowHeight: 80
+  });
 
+  $container.find('.item').each( function( i, itemElem ) {
+    // make element draggable with Draggabilly
+    var draggie = new Draggabilly( itemElem );
+    // bind Draggabilly events to Packery
+    $container.packery( 'bindDraggabillyEvents', draggie );
+  });
 
 }])
