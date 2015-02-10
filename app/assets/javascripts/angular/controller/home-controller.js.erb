@@ -4,9 +4,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
   // init
   $container.packery({
     itemSelector: '.item',
-    gutter: 10,
-    columnWidth: 80,
-    rowHeight: 80
+    gutter: 5
+    // columnWidth: 80,
+    // rowHeight: 80
   });
 
   $container.find('.item').each( function( i, itemElem ) {
