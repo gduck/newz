@@ -1,10 +1,16 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope ){
 
+  $scope.feature = {
+    heading: "Your heading",
+    author: "author (you)",
+    article_text: "Put a birthday message here"
+  };
+
   var $container = $('#container');
   // init
   $container.packery({
     itemSelector: '.item',
-    gutter: 5
+    gutter: 0
     // columnWidth: 80,
     // rowHeight: 80
   });
