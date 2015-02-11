@@ -15,7 +15,7 @@
       <div class="input-group col-xs-offset-1 col-xs-11">
         <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
         <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
-        <textarea ng-model="feature.article_text" rows="3" type="text" class="form-control" placeholder="article text (message)"></textarea>
+        <textarea ng-model="feature.article_text" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
     <div class="newspaper">
       <div class="newspaper-header">
         <h1 class="divtest">The Alacritous Times</h1>
-        <h5 class="date-text">date example, Thursday 5th January 1999</h5>
+        <h5 class="date-text">{{card.date}}</h5>
       </div>
 
       <div id="container" class="final_size">
@@ -38,7 +38,7 @@
       </div>      
 
         <div class="item-container border item">
-          <div class="article-heading"><h3>This is a relevant heading</h3></div>
+          <div class="article-heading"><h3>Breaking News!</h3></div>
           <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
         </div>
 
