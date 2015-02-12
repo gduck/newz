@@ -6,24 +6,26 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     article_text: "Put a birthday message here"
   };
   $scope.card = {
-    date: new Date(),
-    day: $scope.card.date.prototype.getDay()
+    date: new Date()
   }
 
-  var $container = $('#container');
+  $scope.repack = function() {
+    $scope.$container.packery();
+  }
+
+  $scope.$container = $('#container');
   // init
-  $container.packery({
+  $scope.$container.packery({
     itemSelector: '.item',
-    gutter: 0
     // columnWidth: 80,
     // rowHeight: 80
   });
 
-  $container.find('.item').each( function( i, itemElem ) {
+  $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
     var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    $container.packery( 'bindDraggabillyEvents', draggie );
+    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
 }])

@@ -15,7 +15,7 @@
       <div class="input-group col-xs-offset-1 col-xs-11">
         <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
         <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
-        <textarea ng-model="feature.article_text" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
+        <textarea ng-model="feature.article_text" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
       </div>
     </div>
 
@@ -31,7 +31,7 @@
 
       <div id="container" class="final_size">
 
-      <div class="item-container border item w2 main-feature">
+      <div id="main-feature-article" class="item-container border item w2 main-feature">
         <div class="article-heading"><h2>{{feature.heading}}</h2></div>
         <div class="article-author"><h5>{{feature.author}}</h5></div>
         <div class="article-text article">{{feature.article_text}}</div>
