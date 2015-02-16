@@ -37,6 +37,7 @@ gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'packery-rails', '~> 1.3.2'
 gem 'draggabilly-rails'
+gem 'aws-sdk', '~> 1.5.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
