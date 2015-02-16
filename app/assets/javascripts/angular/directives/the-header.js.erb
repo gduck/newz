@@ -1,0 +1,7 @@
+app.directive('header', ['$http', function($http){
+  return {
+    restrict: 'E',
+    templateUrl: "<%= asset_path('the-header.html') %>",
+    controller: 'HomeCtrl'
+  };
+}]);
