@@ -1,20 +1,19 @@
 @font-face {
   font-family:"barcode font";
-  src:url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/BarcodeFont.eot?") format("eot"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/BarcodeFont.woff") format("woff"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/BarcodeFont.ttf") format("truetype"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/BarcodeFont.svg#barcodefont") format("svg");
-  /*src: url('newz-fonts.s3-website-us-west-2.amazonaws.com');*/
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/BarcodeFont.eot") format("eot"),
+  url("https://s3-us-west-2.amazonaws.com/newz-fonts/BarcodeFont.woff") format("woff"),
+  url("https://s3-us-west-2.amazonaws.com/newz-fonts/BarcodeFont.ttf") format("truetype"),
+  url("https://s3-us-west-2.amazonaws.com/newz-fonts/BarcodeFont.svg#barcodefont") format("svg");
   font-weight:normal;
   font-style:normal;
 }
 
 @font-face {
  font-family:"Canterbury Regular";
- src:url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.eot?") format("eot"),
- url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.woff") format("woff"),
- url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.ttf") format("truetype"),
- url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.svg#Canterbury-Regular") format("svg");
+ src:url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.eot?") format("eot"),
+ url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.woff") format("woff"),
+ url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.ttf") format("truetype"),
+ url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/Canterbury.svg#Canterbury-Regular") format("svg");
  /*src: url('newz-fonts.s3-website-us-west-2.amazonaws.com');*/
  font-weight:normal;
  font-style:normal;
@@ -22,10 +21,10 @@
 
 @font-face {
   font-family:"old seals tfb";
-  src:url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.eot?") format("eot"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.woff") format("woff"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.ttf") format("truetype"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.svg#oldsealstfb") format("svg");
+  src:url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.eot?") format("eot"),
+  url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.woff") format("woff"),
+  url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.ttf") format("truetype"),
+  url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/old_seals_tfb.svg#oldsealstfb") format("svg");
   /*src: url('newz-fonts.s3-website-us-west-2.amazonaws.com-fonts.s3-website-us-west-2.amazonaws.com');*/
   font-weight:normal;
   font-style:normal;
@@ -33,10 +32,10 @@
 
 @font-face {
   font-family:"Goudy Bookletter 1911 TT";
-  src:url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.eot?") format("eot"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.woff") format("woff"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.ttf") format("truetype"),
-  url("http://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.svg#GoudyBookletter1911TT") format("svg");
+  src:url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.eot?") format("eot"),
+  url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.woff") format("woff"),
+  url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.ttf") format("truetype"),
+  url("https://newz-fonts.s3-website-us-west-2.amazonaws.com/GoudyBookletter1911TT.svg#GoudyBookletter1911TT") format("svg");
   /*src: url('newz-fonts.s3-website-us-west-2.amazonaws.com');*/
   font-weight:normal;
   font-style:normal;
