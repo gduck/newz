@@ -30,7 +30,7 @@ namespace :scrape do
     require 'nokogiri'
     require 'date'
     
-    dayStr = "18"
+    dayStr = "17"
     monthStr = "July"
     yearStr = "1975"
     url = "http://en.wikipedia.org/wiki/" + monthStr + "_" + yearStr
@@ -53,11 +53,21 @@ namespace :scrape do
     # findDayOfWeek(dayStr, monthStr, yearStr);
     article_links = [];
     aString = monthStr + "_" + dayStr
-    html_doc.css("span[id*=#{aString}]").first.parent.next.next.children.each do |child|
-      article_links.push child.text
+    article = html_doc.css("span[id*=#{aString}]").first.parent.next
+    if article.next.name == "div" then
+      puts "saving the picture from the div!"
+      article = article.next.next
+      puts "article next is " + article.to_s
+    end
+
+    article.next.children.each do |child|
+      if (child.text != "\n") then
+        article_links.push child.text
+        puts "an article"
+      end
     end
   
-    puts article_links.inspect
+    puts article_links
     puts aString
     # number_articles = article_links.count
     # puts "number of article links " + number_articles.to_s
