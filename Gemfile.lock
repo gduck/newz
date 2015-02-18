@@ -161,6 +161,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
+<<<<<<< HEAD
     multi_xml (0.5.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -169,6 +170,10 @@ GEM
       mini_portile (~> 0.6.0)
     packery-rails (1.3.2)
       railties (>= 3.1.0)
+=======
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+>>>>>>> Huge effort to learn how to escape a string in a nokogiri search
     pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.3)
@@ -239,7 +244,11 @@ DEPENDENCIES
   draggabilly-rails
   jbuilder (~> 2.0)
   jquery-rails
+<<<<<<< HEAD
   packery-rails (~> 1.3.2)
+=======
+  nokogiri
+>>>>>>> Huge effort to learn how to escape a string in a nokogiri search
   pg
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
