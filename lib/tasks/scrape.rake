@@ -48,21 +48,13 @@ namespace :scrape do
 
     # jquery
     # $("span#July_18\\.2C_1975_\\.28Friday\\.29").parent().next()
-    
-    data_links = "div#mw-content-text"
-    links = html_doc.css(data_links)
-    # puts links
 
     # might be trouble to independently find which day of the week
     # findDayOfWeek(dayStr, monthStr, yearStr);
     # data_article_link = monthStr + "_" + dayStr + ".2C_" + yearStr + "_.28" + dayOfWeek + ".29"
-    # data_href_link = "/wiki/" + monthStr + "_" + dayStr
-    # aString = 'July_18.2C_1975_.28Friday.29'
     aString = monthStr + "_" + dayStr
-    # aString = concat(monthStr + '_' + dayStr)
     article_links = html_doc.xpath("//span[contains(@id, '#{aString}')]")
-    # article_links = html_doc.at_css(aString).parent
-    # # article_links = html_doc.css(data_href_link)
+  
     puts article_links
     puts aString
     # number_articles = article_links.count
