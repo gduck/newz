@@ -51,11 +51,13 @@ namespace :scrape do
 
     # might be trouble to independently find which day of the week
     # findDayOfWeek(dayStr, monthStr, yearStr);
-    # data_article_link = monthStr + "_" + dayStr + ".2C_" + yearStr + "_.28" + dayOfWeek + ".29"
+    article_links = [];
     aString = monthStr + "_" + dayStr
-    article_links = html_doc.xpath("//span[contains(@id, '#{aString}')]")
+    html_doc.css("span[id*=#{aString}]").first.parent.next.next.children.each do |child|
+      article_links.push child.text
+    end
   
-    puts article_links
+    puts article_links.inspect
     puts aString
     # number_articles = article_links.count
     # puts "number of article links " + number_articles.to_s
