@@ -1,11 +1,66 @@
 <header></header>
-<div>
-  <h1 class="newspaper">A Birthday Newspaper Website - OLD VERSION WAITING FOR MERGE</h1>
 
-  <div id="container" class="newspaper">
-    <div class="item">A div</div>
-    <div class="item w2">A div</div>
-    <div class="item">A div</div>
+<div class="row padded">
+  <div class="col-xs-4 form-column top-margin">
+
+    <div class="formcontrol border-bottom padded">
+      <h3 class="article-heading">Choose your date</h3>
+      <div class="input-group col-xs-offset-1 col-xs-11">
+      <input ng-model="card.date" type="date" class="form-control"></input>        
+      </div>
+    </div>
+
+    <div class="formcontrol border-bottom padded">
+      <h3 class="article-heading">Your article (birthday greeting)</h3>
+      <div class="input-group col-xs-offset-1 col-xs-11">
+        <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
+        <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
+        <textarea ng-model="feature.article_text" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
+      </div>
+    </div>
+
   </div>
 
+  <!-- main newspaper -->
+  <div class="col-xs-8">
+    <div class="newspaper">
+      <div class="newspaper-header">
+        <h1 class="divtest">The Alacritous Times</h1>
+        <h5 class="date-text">{{card.date}}</h5>
+      </div>
+
+      <div id="container" class="final_size">
+
+      <div id="main-feature-article" class="item-container border item w2 main-feature">
+        <div class="article-heading"><h2>{{feature.heading}}</h2></div>
+        <div class="article-author"><h5>{{feature.author}}</h5></div>
+        <div class="article-text article">{{feature.article_text}}</div>
+      </div>      
+
+        <div class="item-container border item">
+          <div class="article-heading"><h3>Breaking News!</h3></div>
+          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </div>
+
+        <div class="item-container border item w2">
+          <div class="article-heading"><h3>This is a relevant heading</h3></div>
+          <div class="article-text article">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </div>
+
+        <div class="item-container border item">
+          <div class="article-heading"><h3>This is a relevant heading</h3></div>
+          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+        </div>
+
+        <div class="border item">
+          <div class="barcode">DALEFOO.COM</div>
+        </div>
+
+        <div class="bordertest">
+          <div class="oldseal">C</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

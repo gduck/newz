@@ -1,11 +1,32 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope ){
 
-  // var $container = $('#container');
-  // // init
-  // $container.packery({
-  //   itemSelector: '.item',
-  //   gutter: 10
-  // });
+  $scope.feature = {
+    heading: "Your heading",
+    author: "author (you)",
+    article_text: "Put a birthday message here"
+  };
+  $scope.card = {
+    date: new Date()
+  }
 
+  $scope.repack = function() {
+    $scope.$container.packery();
+  }
+
+  $scope.$container = $('#container');
+  // init
+  $scope.$container.packery({
+    itemSelector: '.item',
+    // columnWidth: 80,
+    // rowHeight: 80
+  });
+
+  $scope.$container.find('.item').each( function( i, itemElem ) {
+    // make element draggable with Draggabilly
+    var draggie = new Draggabilly( itemElem );
+    // bind Draggabilly events to Packery
+    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+  });
 
 }])
+

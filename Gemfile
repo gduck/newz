@@ -35,6 +35,10 @@ gem 'binding_of_caller', group: :development
 
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'packery-rails', '~> 1.3.2'
+gem 'draggabilly-rails'
+gem 'aws-sdk', '~> 1.5.7'
+gem 'asset_sync'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
