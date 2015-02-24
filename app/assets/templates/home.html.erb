@@ -47,9 +47,9 @@
 
           <div class="article-heading">
           <img ng-src="<%= asset_path('movie.png') %>" class="image">
-            <h3>{{card.movie.bestMovie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
+            <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
           </div>
-          <div class="article-text"><p>{{card.movie.bestMovie}} <span ng-if="producersExist">({{card.movie.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.movie.nominees}}.</p>
+          <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
           <!-- <p>{{card.actor}} won Best Actor for {{card.actor.movie}} and {{card.actress}} took out the Best Actress for {{card.actress.movie}}</p> -->
           </div>
         </div>

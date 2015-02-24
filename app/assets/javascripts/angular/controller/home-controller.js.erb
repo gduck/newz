@@ -10,15 +10,12 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
   }
 
   $scope.selectDate = function(date) {
-    console.log("date has been selected");
-    console.log(date);
     year = moment(date).format('YYYY');
-    console.log(year);
     $http.get('movies/' + year + '.json').success(function(data){
-      console.log(data);
-      $scope.card.movie = data.movie[0];
-      $scope.card.producers = data.movie[1];
-      $scope.card.nominees = data.movie[2];
+      $scope.card.movie = data.movie[0]["bestMovie"];
+      $scope.card.producers = data.movie[0]["producers"];
+      $scope.card.nominees = data.movie[0]["nominees"];
+      $scope.card.producersExist = data.movie[0]["producersExist"];
     })
   }
 
