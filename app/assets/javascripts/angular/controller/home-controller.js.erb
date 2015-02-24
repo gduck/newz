@@ -9,6 +9,21 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     date: new Date()
   }
 
+  $scope.selectDate = function(date) {
+    year = moment(date).format('YYYY');
+    $http.get('movies/' + year + '.json').success(function(data){
+      $scope.card.movie = data.movie[0]["bestMovie"];
+      $scope.card.producers = data.movie[0]["producers"];
+      $scope.card.nominees = data.movie[0]["nominees"];
+      $scope.card.producersExist = data.movie[0]["producersExist"];
+      $scope.card.bestActor = data.movie[0]["bestActor"];
+      $scope.card.bestActress = data.movie[0]["bestActress"];
+      $scope.card.bestActorMovie = data.movie[0]["bestActorMovie"];
+      $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
+
+    })
+  }
+
   $scope.repack = function() {
     $scope.$container.packery();
   }
