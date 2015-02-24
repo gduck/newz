@@ -5,9 +5,10 @@
 
     <div class="formcontrol border-bottom padded">
       <h3 class="article-heading">Choose your date</h3>
-      <div class="input-group col-xs-offset-1 col-xs-11">
-      <input ng-model="card.date" type="date" class="form-control"></input>        
-      </div>
+      <span class="input-group col-xs-offset-1 col-xs-10">
+        <input ng-model="card.date" ng-change="selectDate(card.date)" type="date" class="form-control">       
+        </input> 
+      </span>
     </div>
 
     <div class="formcontrol border-bottom padded">
@@ -26,8 +27,9 @@
     <div class="newspaper">
       <div class="newspaper-header">
         <h1 class="divtest">The Alacritous Times</h1>
-        <h5 class="date-text">{{card.date}}</h5>
+        <h5 class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</h5>
       </div>
+<!-- <span>{{message.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span> -->
 
       <div id="container" class="final_size">
 
