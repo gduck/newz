@@ -29,7 +29,6 @@
         <h1 class="divtest">The Alacritous Times</h1>
         <h5 class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</h5>
       </div>
-<!-- <span>{{message.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span> -->
 
       <div id="container" class="final_size">
 
@@ -45,8 +44,9 @@
         </div>
 
         <div class="item-container border item w2">
-          <div class="article-heading"><h3>This is a relevant heading</h3></div>
-          <div class="article-text article">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          <div class="article-heading"><h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3></div>
+          <div class="article-text article"><p>{{card.movie}} <span ng-if="producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
+          <p>{{card.actor}} won Best Actor for {{card.actor.movie}} and {{card.actress}} took out the Best Actress for {{card.actress.movie}}</p></div>
         </div>
 
         <div class="item-container border item">
