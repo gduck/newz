@@ -138,8 +138,6 @@ namespace :scrape do
     puts article_links
     number_articles = article_links.count
     puts "number of article links " + number_articles.to_s
-
-
   end
 
 
