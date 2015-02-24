@@ -7,6 +7,11 @@ class CreateMovies < ActiveRecord::Migration
       t.text :producers
       t.text :nominees
 
+      t.string :bestActor
+      t.string :bestActorMovie
+      t.string :bestActress
+      t.string :bestActressMovie
+
       t.timestamps
     end
   add_index :movies, :year

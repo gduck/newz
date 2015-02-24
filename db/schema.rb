@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(version: 20150224051934) do
     t.string   "bestMovie"
     t.text     "producers"
     t.text     "nominees"
+    t.string   "bestActor"
+    t.string   "bestActorMovie"
+    t.string   "bestActress"
+    t.string   "bestActressMovie"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

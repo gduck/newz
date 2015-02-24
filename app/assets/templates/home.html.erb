@@ -33,7 +33,7 @@
       <div id="container" class="final_size">
 
       <div id="main-feature-article" class="item-container border item w2 main-feature">
-        <div class="article-heading"><h2>{{feature.heading}}</h2></div>
+        <div class="article-heading feature"><h2>{{feature.heading}}</h2></div>
         <div class="article-author"><h5>{{feature.author}}</h5></div>
         <div class="article-text article">{{feature.article_text}}</div>
       </div>      
@@ -50,7 +50,7 @@
             <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
           </div>
           <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
-          <!-- <p>{{card.actor}} won Best Actor for {{card.actor.movie}} and {{card.actress}} took out the Best Actress for {{card.actress.movie}}</p> -->
+          <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
           </div>
         </div>
 

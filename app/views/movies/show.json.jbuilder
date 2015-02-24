@@ -1,6 +1,10 @@
 json.movie [@movieEntry] do |movie| 
   json.bestMovie movie.bestMovie
   json.producers movie.producers
+  json.bestActor movie.bestActor
+  json.bestActorMovie movie.bestActorMovie
+  json.bestActress movie.bestActress
+  json.bestActressMovie movie.bestActressMovie
 
   nomineeString = ""
   count = movie.nominees.count
@@ -33,5 +37,6 @@ json.movie [@movieEntry] do |movie|
     end
   end
   json.producers producerString
+
 
 end

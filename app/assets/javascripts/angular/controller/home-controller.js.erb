@@ -16,6 +16,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.producers = data.movie[0]["producers"];
       $scope.card.nominees = data.movie[0]["nominees"];
       $scope.card.producersExist = data.movie[0]["producersExist"];
+      $scope.card.bestActor = data.movie[0]["bestActor"];
+      $scope.card.bestActress = data.movie[0]["bestActress"];
+      $scope.card.bestActorMovie = data.movie[0]["bestActorMovie"];
+      $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
+
     })
   }
 
