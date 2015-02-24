@@ -140,14 +140,5 @@ namespace :scrape do
     puts "number of article links " + number_articles.to_s
   end
 
-  desc "scrape movie of the year, store it"
-  task :movies => :environment do
-
-    require 'open-uri'
-    require 'nokogiri'
-
-    
-
-  end
 
 end

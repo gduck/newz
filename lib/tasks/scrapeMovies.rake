@@ -3,7 +3,7 @@ namespace :scrapeMovies do
   require "uri"
 
 
-  desc "scrape oscars.org for list of best movies"
+  desc "scrape imdb.com for list of best movies"
   task :movies => :environment do |t, args|
 
     require 'open-uri'
@@ -16,7 +16,7 @@ namespace :scrapeMovies do
 
     for year in 1940..2015 do
 
-      url = "http://www.imdb.com/event/ev0000003/" + year.to_s
+      url = "http://www.imdb.com/event/ev0000003/#{year}"
 
 
       begin
