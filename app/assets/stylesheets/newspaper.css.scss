@@ -17,6 +17,13 @@ div.article{
     /*column-rule: 3px outset #ff00ff;*/
 }
 
+.image {
+  width: 100%;
+}
+.avatar {
+  width: 100px;
+  /*float-wrap:square; */
+}
 
 div h3 {
   margin-top: 5px;
@@ -38,8 +45,8 @@ div h3 {
 .padded {
   padding: 20px;
 }
-.border-bottom {
-  border-bottom: 1px solid #d3d3d3;
+.border-top {
+  border-top: 1px solid #d3d3d3;
 }
 
 .article {

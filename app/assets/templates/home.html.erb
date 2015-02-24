@@ -32,21 +32,9 @@
 
       <div id="container" class="final_size">
 
-      <div id="main-feature-article" class="item-container border item w2 main-feature">
-        <div class="article-heading feature"><h2>{{feature.heading}}</h2></div>
-        <div class="article-author"><h5>{{feature.author}}</h5></div>
-        <div class="article-text article">{{feature.article_text}}</div>
-      </div>      
-
-        <div class="item-container border item w2">
-          <div class="article-heading"><h3>Breaking News!</h3></div>
-          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        </div>
-
         <div class="item-container border item">
-
           <div class="article-heading">
-          <img ng-src="<%= asset_path('movie.png') %>" class="image">
+          <img ng-src="<%= asset_path('movie.png') %>" class="image border-top">
             <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
           </div>
           <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
@@ -54,9 +42,31 @@
           </div>
         </div>
 
+        <div id="main-feature-article" class="item-container border item w2 main-feature">
+          <div class="article-heading feature"><h2>{{feature.heading}}</h2></div>
+          <div class="article-author"><h5>{{feature.author}}</h5></div>
+          <div class="article-text article">{{feature.article_text}}
+            <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar">
+          </div>
+        </div>      
+
+        <div class="item-container border item w2">
+          <div class="article-heading"><h3>Breaking News!</h3></div>
+          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </div>
+
         <div class="item-container border item">
-          <div class="article-heading"><h3>This is a relevant heading</h3></div>
-          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+          <div class="article-heading border-top"><h3>US Top 5!</h3></div>
+          <div class="article-text">
+            <ol>
+              <li>{{card.song1}}</li>
+              <li>{{card.song2}}</li>
+              <li>{{card.song3}}</li>
+              <li>{{card.song4}}</li>
+              <li>{{card.song5}}</li>
+            </ol>
+            <img ng-src="<%= asset_path('music.jpeg') %>" class="image">
+          </div>
         </div>
 
         <div class="border item">
