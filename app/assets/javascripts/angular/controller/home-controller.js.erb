@@ -66,9 +66,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    var draggie = new Draggabilly( itemElem );
+    // var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    // $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
   $scope.card = {};
