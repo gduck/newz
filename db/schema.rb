@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225004544) do
+ActiveRecord::Schema.define(version: 20150225071500) do
+
+  create_table "chinese_horoscopes", force: true do |t|
+    t.string   "animal"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chinese_horoscopes", ["animal"], name: "index_chinese_horoscopes_on_animal"
 
   create_table "movies", force: true do |t|
     t.string   "year"
@@ -36,5 +45,14 @@ ActiveRecord::Schema.define(version: 20150225004544) do
   end
 
   add_index "songlists", ["year"], name: "index_songlists_on_year"
+
+  create_table "zodiacs", force: true do |t|
+    t.string   "sign"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "zodiacs", ["sign"], name: "index_zodiacs_on_sign"
 
 end

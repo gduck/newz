@@ -1,0 +1,2 @@
+class ChineseHoroscopesController < ApplicationController
+end
