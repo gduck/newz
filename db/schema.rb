@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224051934) do
+ActiveRecord::Schema.define(version: 20150225004544) do
 
   create_table "movies", force: true do |t|
     t.string   "year"
@@ -27,5 +27,14 @@ ActiveRecord::Schema.define(version: 20150224051934) do
   end
 
   add_index "movies", ["year"], name: "index_movies_on_year"
+
+  create_table "songlists", force: true do |t|
+    t.string   "year"
+    t.text     "songs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "songlists", ["year"], name: "index_songlists_on_year"
 
 end

@@ -14,6 +14,6 @@ class CreateMovies < ActiveRecord::Migration
 
       t.timestamps
     end
-  add_index :movies, :year
+    add_index :movies, :year
   end
 end
