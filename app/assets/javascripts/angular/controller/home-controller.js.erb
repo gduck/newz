@@ -54,6 +54,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.songlist = data['songlist'];
       // console.log($scope.songs.songlist);
     })
+    scrapeStuff(date);
+  }
+
+  var scrapeStuff = function(date) {
+    console.log(date);
   }
 
   $scope.repack = function() {

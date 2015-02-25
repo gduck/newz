@@ -8,14 +8,13 @@
       <div class="row">
         <div class="col-xs-offset-1 col-xs-10">
           <p class="input-group">
-            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="card.date" is-open="opened" min-date="minDate" max-date="maxDate" init-date="card.date" ng-required="true" close-text="Close" ng-change="selectDate(card.date)" app-datetime>
+            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="card.date" is-open="opened" min-date="minDate" max-date="maxDate" init-date="card.date" ng-required="true" close-text="Close" ng-change="selectDate(card.date)" datepicker-popup>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </p>
         </div>
       </div>
-
 
       <!-- <span class="input-group col-xs-offset-1 col-xs-10">
         <input ng-model="card.date" ng-change="selectDate(card.date)" type="date" min="1946-01-01" class="form-control">       
@@ -65,6 +64,21 @@
         <div class="item-container border item w2">
           <div class="article-heading"><h3>Breaking News!</h3></div>
           <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </div>
+
+        <div class="item-container border item w3">
+
+          <div class="article-text col-xs-6">
+            <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar">
+            {{card.zodiac.description}}
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+          </div>
+
+          <div class="article-text col-xs-6">
+            {{card.chinese_horoscope}}    
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.     
+            <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar">  
+          </div>
         </div>
 
         <div class="item-container border item">
