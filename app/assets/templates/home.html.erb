@@ -59,11 +59,7 @@
           <div class="article-heading border-top"><h3>US Top 5!</h3></div>
           <div class="article-text">
             <ol>
-              <li>{{card.song1}}</li>
-              <li>{{card.song2}}</li>
-              <li>{{card.song3}}</li>
-              <li>{{card.song4}}</li>
-              <li>{{card.song5}}</li>
+              <li ng-repeat='song in songlist track by $index'>{{song}}</li>
             </ol>
             <img ng-src="<%= asset_path('music.jpeg') %>" class="image">
           </div>
