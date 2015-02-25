@@ -5,10 +5,22 @@
 
     <div class="formcontrol border-bottom padded">
       <h3 class="article-heading">Choose your date</h3>
-      <span class="input-group col-xs-offset-1 col-xs-10">
-        <input ng-model="card.date" ng-change="selectDate(card.date)" type="date" class="form-control">       
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-10">
+          <p class="input-group">
+            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="card.date" is-open="opened" min-date="minDate" max-date="maxDate" init-date="card.date" ng-required="true" close-text="Close" ng-change="selectDate(card.date)" app-datetime>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      </div>
+
+
+      <!-- <span class="input-group col-xs-offset-1 col-xs-10">
+        <input ng-model="card.date" ng-change="selectDate(card.date)" type="date" min="1946-01-01" class="form-control">       
         </input> 
-      </span>
+      </span> -->
     </div>
 
     <div class="formcontrol border-bottom padded">

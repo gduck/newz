@@ -5,11 +5,38 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     author: "author (you)",
     article_text: "Put a birthday message here"
   };
-  $scope.card = {
-    date: new Date()
-  }
+
+  $scope.card = {};
+  // $scope.card.date = moment().format('D-MMMM-YYYY');
+  $scope.card.date = new Date();
+
+  console.log($scope.card.date);
+
+  // $scope.today = function() {
+  //   $scope.card.date = moment().format('D-MMMM-YYYY');
+  // };
+
+  // $scope.today();
+
+  $scope.clear = function() {
+    $scope.card.date = null;
+  };
+  $scope.minDate = new Date("1946-01-01");
+  console.log("mindate is ", $scope.minDate);
+  $scope.maxDate = new Date();
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1
+  };
 
   $scope.selectDate = function(date) {
+    console.log("in selectDate");
     year = moment(date).format('YYYY');
     $http.get('movies/' + year + '.json').success(function(data){
       $scope.card.movie = data.movie[0]["bestMovie"];
@@ -22,6 +49,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
     })
     $http.get('songlists/' + year + '.json').success(function(data){
+      console.log(data);
       console.log(data['songlist']);
       $scope.card.songlist = data['songlist'];
       // console.log($scope.songs.songlist);
