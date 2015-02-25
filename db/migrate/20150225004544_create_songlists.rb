@@ -7,6 +7,6 @@ class CreateSonglists < ActiveRecord::Migration
 
       t.timestamps
     end
-  add_index :songlists, :year
+    add_index :songlists, :year
   end
 end
