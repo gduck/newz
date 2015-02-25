@@ -1,29 +1,20 @@
 class ZodiacsController < ApplicationController
 
   def find
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    @currentDate = params[:date]
-    
+    dateArray = params[:date].split('-')
+    @year = dateArray[0]
+    @month = dateArray[1]
+    @day = dateArray[2]
+
     sign = getZodiac
     thisZodiac = Zodiac.find_by_sign(sign)
     
     animal = getAnimal
     thisAnimal = ChineseHoroscope.find_by_animal(animal)
 
-    # @horoscopes = {
-    #   'zodiac' => zod.sign,
-    #   'animal' => ani.animal
-    # }
     @zodiac = thisZodiac
     @animal = thisAnimal
-    # puts "@zodiac >>>>> #{@zodiac}"
-    # puts "@animal >>>>> #{@animal}"
-
-    
-    # puts @data
-    # @data.zodiac = Zodiac.find_by_sign(sign)
-    # @data.animal = ChineseHoroscope.find_by_animal(animal)
-
+ 
     render 'find.json.jbuilder'
   end
 
@@ -31,7 +22,7 @@ class ZodiacsController < ApplicationController
     require 'open-uri'
     require 'nokogiri'
 
-    url = "http://www.chinesezodiac.com/signs.php"
+    url = "http://www.miniwebtool.com/what-is-my-chinese-zodiac-sign/?birthday_month=#{@month}&birthday_day=#{@day}&birthday_year=#{@year}"
     
     begin
       document = open(url).read
@@ -42,31 +33,29 @@ class ZodiacsController < ApplicationController
       return
     end
 
-    data_animals = "div > div > div.entry-content > p > a"
-    animals = html_doc.css(data_animals)
-
-    return "Rat"
+    data_animal = "body > div > div > div > b"
+    animal = html_doc.css(data_animal)
+    return animal.text
   end
 
   def getZodiac
     require 'open-uri'
     require 'nokogiri'
 
-    url = "http://www.chinesezodiac.com/signs.php"
+    url = "http://www.miniwebtool.com/what-is-my-zodiac-sign/?birthday_month=#{@month}&birthday_day=#{@day}&birthday_year=#{@year}"
     
     begin
       document = open(url).read
       html_doc = Nokogiri::HTML(document)
-      # puts html_doc.css('title').text
+      puts html_doc.css('title').text
     rescue OpenURI::HTTPError => ex
       puts "Missing URL"
       return
     end
 
-    data_animals = "div > div > div.entry-content > p > a"
-    animals = html_doc.css(data_animals)
-
-    return "Leo"
+    data_zodiac = "body > div > div > div > b"
+    zodiac = html_doc.css(data_zodiac)
+    return zodiac.text
 
   end
 end

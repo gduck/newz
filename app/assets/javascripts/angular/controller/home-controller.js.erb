@@ -12,7 +12,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     $scope.card.date = null;
   };
   $scope.minDate = new Date("1946-01-01");
-  console.log("mindate is ", $scope.minDate);
   $scope.maxDate = new Date();
   $scope.open = function($event) {
     $event.preventDefault();
@@ -26,7 +25,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
   };
 
   $scope.selectDate = function(date) {
-    console.log("in selectDate");
     year = moment(date).format('YYYY');
     $http.get('movies/' + year + '.json').success(function(data){
       $scope.card.movie = data.movie[0]["bestMovie"];
@@ -39,27 +37,16 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
     })
     $http.get('songlists/' + year + '.json').success(function(data){
-      console.log(data);
-      console.log(data['songlist']);
       $scope.card.songlist = data['songlist'];
-      // console.log($scope.songs.songlist);
     })
     getHoroscopes(date);
   }
-  var getZodiacData = function() {
-    console.log("here in zodiac data");
-  }
 
   var getHoroscopes = function(date) {
-    newDate = moment(date).format("YYYY-MMMM-DD");
-    console.log("the date is ", newDate);
-    // console.log("the year is ", moment(date).year();
-    // console.log("the month is ", moment(date).month();
-    // console.log("the day is ", moment(date).date();
+    newDate = moment(date).format("YYYY-M-DD");  
     $http.get('zodiac/' + newDate).success(function(data){
-      console.log("here in gethoroscopes data");
-      console.log(data);
-      getZodiacData(data);
+      $scope.card.zodiac = data.zodiacDesc;
+      $scope.card.chinese_horoscope = data.animalDesc;
     })
   }
 
