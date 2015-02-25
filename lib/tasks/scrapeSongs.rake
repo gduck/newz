@@ -9,7 +9,7 @@ namespace :scrapeSongs do
     # rake scrapeMovies:movies date="xx"
     # year = ENV['year']
 
-    for year in 1946..2015 do
+    for year in 1947..2015 do
       url = "http://www.bobborst.com/popculture/songoftheyear/#year#{year}"
 
       begin
@@ -27,11 +27,15 @@ namespace :scrapeSongs do
       # div:nth-child(30).cb > div:nth-child(2) > div:nth-child(2) > ol:nth-child(1).songofyear > li
       songs = html_doc.css(data_songs)
 
-      songlist = [];
+      songlist = []
       songs.each_with_index do |song, index|
+        #  must remove extra \n in last song
         songlist.push(song.children[0].text)
       end
       puts songlist
+      sl = Songlist.new(year: year, songs: songlist)
+      sl.save
+      puts sl.inspect
     end
   end
 end

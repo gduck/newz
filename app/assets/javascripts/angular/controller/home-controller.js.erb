@@ -20,7 +20,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.bestActress = data.movie[0]["bestActress"];
       $scope.card.bestActorMovie = data.movie[0]["bestActorMovie"];
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
-
+    })
+    $http.get('songs/' + year + '.json').success(function(data){
+      console.log(data.songs[0]['songlist']);
+      $scope.card.songlist = data.songs[0]['songlist'];
+      // console.log($scope.songs.songlist);
     })
   }
 
@@ -32,8 +36,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
   // init
   $scope.$container.packery({
     itemSelector: '.item',
-    // columnWidth: 80,
-    // rowHeight: 80
+    columnWidth: 100,
+    rowHeight: 50,
+    "stamp": ".stamp"
+
   });
 
   $scope.$container.find('.item').each( function( i, itemElem ) {

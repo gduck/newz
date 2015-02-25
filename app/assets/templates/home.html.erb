@@ -58,15 +58,15 @@
         <div class="item-container border item">
           <div class="article-heading border-top"><h3>US Top 5!</h3></div>
           <div class="article-text">
-            <ol>
-              <li ng-repeat='song in songlist track by $index'>{{song}}</li>
+            <ol class="songs">
+              <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
             </ol>
             <img ng-src="<%= asset_path('music.jpeg') %>" class="image">
           </div>
         </div>
 
-        <div class="border item">
-          <div class="barcode">DALEFOO.COM</div>
+        <div class="barcode-stamp">
+          <div class="barcode padded">DALEFOO.COM</div>
         </div>
 
         <div class="bordertest">

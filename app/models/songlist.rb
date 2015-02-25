@@ -1,7 +1,7 @@
 class Songlist < ActiveRecord::Base
 
   validates :year, uniqueness: true
-  validates :songlist, presence: true
+  validates :songs, presence: true
 
-  serialize :songlist, Array
+  serialize :songs, Array
 end
