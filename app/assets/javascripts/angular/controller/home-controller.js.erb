@@ -6,17 +6,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     article_text: "Put a birthday message here"
   };
 
-  $scope.card = {};
-  // $scope.card.date = moment().format('D-MMMM-YYYY');
-  $scope.card.date = new Date();
-
-  console.log($scope.card.date);
-
-  // $scope.today = function() {
-  //   $scope.card.date = moment().format('D-MMMM-YYYY');
-  // };
-
-  // $scope.today();
+  
 
   $scope.clear = function() {
     $scope.card.date = null;
@@ -54,11 +44,23 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.songlist = data['songlist'];
       // console.log($scope.songs.songlist);
     })
-    scrapeStuff(date);
+    getHoroscopes(date);
+  }
+  var getZodiacData = function() {
+    console.log("here in zodiac data");
   }
 
-  var scrapeStuff = function(date) {
-    console.log(date);
+  var getHoroscopes = function(date) {
+    newDate = moment(date).format("YYYY-MMMM-DD");
+    console.log("the date is ", newDate);
+    // console.log("the year is ", moment(date).year();
+    // console.log("the month is ", moment(date).month();
+    // console.log("the day is ", moment(date).date();
+    $http.get('zodiac/' + newDate).success(function(data){
+      console.log("here in gethoroscopes data");
+      console.log(data);
+      getZodiacData(data);
+    })
   }
 
   $scope.repack = function() {
@@ -81,6 +83,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     // bind Draggabilly events to Packery
     $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
+
+  $scope.card = {};
+  $scope.card.date = new Date("October 13, 1980 11:13:00");
+  $scope.selectDate($scope.card.date);
+  $scope.repack();
 
 }])
 

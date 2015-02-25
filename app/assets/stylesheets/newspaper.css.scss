@@ -56,11 +56,16 @@ div.article{
 }
 .item { 
   width: 160px; 
+  height: auto;
   /*border-left: 1px solid #d3d3d3;*/
   /*border-right: 1px solid #d3d3d3;*/
 }
-.item.w2 { width: 320px; }
-.item.w3 { width: 480px; }
+.item.w2 { 
+  width: 320px;
+}
+.item.w3 { 
+  width: 480px; 
+}
 
 
 /* IMAGES ----------*/
@@ -135,7 +140,9 @@ div.article{
 .top-margin {
   margin-top: 20px;
 }
-
+.margin {
+  margin: 10px;
+}
 ol.songs {
   margin-left: -10px;
 }
