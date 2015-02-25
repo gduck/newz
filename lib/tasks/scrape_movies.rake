@@ -1,4 +1,4 @@
-namespace :scrapeMovies do 
+namespace :scrape_movies do 
   require "net/http"
   require "uri"
 

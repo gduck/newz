@@ -1,4 +1,4 @@
-namespace :scrapeSongs do 
+namespace :scrape_songs do 
   desc "scrape top 5 songs for a given year"
   task :songs => :environment do 
 

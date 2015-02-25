@@ -22,8 +22,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
     })
     $http.get('songs/' + year + '.json').success(function(data){
-      console.log(data.songs[0]['songlist']);
-      $scope.card.songlist = data.songs[0]['songlist'];
+      console.log(data['songlist']);
+      $scope.card.songlist = data['songlist'];
       // console.log($scope.songs.songlist);
     })
   }
