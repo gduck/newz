@@ -4,10 +4,4 @@ class MoviesController < ApplicationController
     @movieEntry = Movie.find_by_year(params[:year])
   end
 
-
-  protected
-  def permitted_params 
-    params.require(:movie).permit(:year)
-  end
-
 end
