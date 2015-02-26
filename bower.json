@@ -1,0 +1,9 @@
+{
+  "name": "newz",
+  "version": "0.0.1",
+  "main": "",
+  "private": true,
+  "dependencies": {
+    "angular-images-loaded": "0.0.5"
+  }
+}

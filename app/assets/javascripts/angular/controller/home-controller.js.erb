@@ -24,7 +24,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     getMovies(year);
     getSongs(year);  
     getHoroscopes(date);
-    // $scope.repack();
+    $scope.repack();
   }
 
   var getSongs = function(year) {
@@ -76,9 +76,19 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     console.log("layout is complete");
   })
 
-  $scope.$container.imagesLoaded(function() {
-    $scope.repack();
-  })
+  $scope.repackTemp = function() {
+    console.log("images loaded");
+    $scope.$container.packery();
+    // $scope.$container.bindResize();
+  }
+
+  // $scope.$container.imagesLoaded(function() {
+  //   console.log("all images are loaded");
+  //   $scope.repack();
+  // })
+  var imgLoad = imagesLoaded(".image", $scope.repackTemp());
+
+
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
