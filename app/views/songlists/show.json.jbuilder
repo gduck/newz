@@ -1,1 +1,3 @@
-json.songlist @songlist.songs
+if @songlist 
+  json.songlist @songlist.songs
+end

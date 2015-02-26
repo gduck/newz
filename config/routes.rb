@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get 'movies/:year' => 'movies#show'
   get 'songlists/:year' => 'songlists#show'
 
+  get 'zodiac/:date' => 'zodiacs#find'
+
 
 end

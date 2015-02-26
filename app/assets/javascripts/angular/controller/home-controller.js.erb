@@ -5,12 +5,34 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     author: "author (you)",
     article_text: "Put a birthday message here"
   };
-  $scope.card = {
-    date: new Date()
-  }
+
+  $scope.minDate = new Date("1946-01-01");
+  $scope.maxDate = new Date();
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened = true;
+  };
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1
+  };
 
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
+    getMovies(year);
+    getSongs(year);  
+    getHoroscopes(date);
+  }
+
+  var getSongs = function(year) {
+    $http.get('songlists/' + year + '.json').success(function(data){
+      $scope.card.songlist = data['songlist'];
+    })
+  }
+
+  var getMovies = function(year) {
     $http.get('movies/' + year + '.json').success(function(data){
       $scope.card.movie = data.movie[0]["bestMovie"];
       $scope.card.producers = data.movie[0]["producers"];
@@ -21,10 +43,16 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.bestActorMovie = data.movie[0]["bestActorMovie"];
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
     })
-    $http.get('songlists/' + year + '.json').success(function(data){
-      console.log(data['songlist']);
-      $scope.card.songlist = data['songlist'];
-      // console.log($scope.songs.songlist);
+  }
+
+  var getHoroscopes = function(date) {
+    newDate = moment(date).format("YYYY-M-DD");  
+    $http.get('zodiac/' + newDate).success(function(data){
+      $scope.card.zodiac = data.zodiacDesc;
+      $scope.card.zodiacName = data.zodiacName;
+      $scope.card.chinese_horoscope = data.animalDesc;
+      $scope.card.animalName = data.animalName;
+
     })
   }
 
@@ -44,10 +72,15 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    var draggie = new Draggabilly( itemElem );
+    // var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    // $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
+
+  $scope.card = {};
+  $scope.card.date = new Date("October 13, 1980 11:13:00");
+  $scope.selectDate($scope.card.date);
+  $scope.repack();
 
 }])
 
