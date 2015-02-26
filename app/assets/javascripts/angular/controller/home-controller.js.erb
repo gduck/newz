@@ -24,7 +24,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     getMovies(year);
     getSongs(year);  
     getHoroscopes(date);
-    $scope.repack();
+    // $scope.repack();
   }
 
   var getSongs = function(year) {
@@ -53,7 +53,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.zodiacName = data.zodiacName;
       $scope.card.chinese_horoscope = data.animalDesc;
       $scope.card.animalName = data.animalName;
-
     })
   }
 
@@ -77,6 +76,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     console.log("layout is complete");
   })
 
+  $scope.$container.imagesLoaded(function() {
+    $scope.repack();
+  })
+
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
     // var draggie = new Draggabilly( itemElem );
@@ -87,7 +90,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
   $scope.card = {};
   $scope.card.date = new Date("October 13, 1980 11:13:00");
   $scope.selectDate($scope.card.date);
-  // $scope.repack();
 
 }])
 
