@@ -49,7 +49,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     newDate = moment(date).format("YYYY-M-DD");  
     $http.get('zodiac/' + newDate).success(function(data){
       $scope.card.zodiac = data.zodiacDesc;
+      $scope.card.zodiacName = data.zodiacName;
       $scope.card.chinese_horoscope = data.animalDesc;
+      $scope.card.animalName = data.animalName;
+
     })
   }
 
