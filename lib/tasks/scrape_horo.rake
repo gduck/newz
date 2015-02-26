@@ -44,7 +44,6 @@ namespace :scrape_horo do
     begin
       document = open(url).read
       html_doc = Nokogiri::HTML(document)
-      # puts html_doc.css('title').text
     rescue OpenURI::HTTPError => ex
       puts "Missing URL"
       return
@@ -58,10 +57,10 @@ namespace :scrape_horo do
   end
 
   def scrapePage(url, starSign) 
-   begin
+    
+    begin
       document = open(url).read
       html_doc = Nokogiri::HTML(document)
-      # puts html_doc.css('title').text
     rescue OpenURI::HTTPError => ex
       puts "Missing URL"
       return
@@ -69,8 +68,7 @@ namespace :scrape_horo do
 
     data_description = "body > div > div > div:nth-child(4) > p:nth-child(4)"
     description = html_doc.css(data_description)
-    # puts starSign
-    # puts description.text
+  
     newEntry = Zodiac.create(sign: starSign, description: description.text)
     puts newEntry.inspect
   end
