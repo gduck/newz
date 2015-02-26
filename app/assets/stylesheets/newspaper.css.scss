@@ -33,8 +33,10 @@
 
 /* ARTICLE STUFF ------------*/
 .article {
-  min-height: 100px;
-  min-width: 100px;
+  /*min-height: 100px;*/
+  /*min-width: 100px;*/
+  position: relative;
+  margin: auto;
 }
 /* HAVE ONLY WIDE ARTICLES 2 COLUMN */
 div.article{
@@ -47,6 +49,8 @@ div.article{
     /*-webkit-column-rule: 3px outset #ff00ff;*/ /* Chrome, Safari, Opera */
     /*-moz-column-rule: 3px outset #ff00ff;*/ /* Firefox */
     /*column-rule: 3px outset #ff00ff;*/
+}
+#container {
 }
 .item-container {
   padding-left: 10px;
@@ -61,10 +65,10 @@ div.article{
   /*border-right: 1px solid #d3d3d3;*/
 }
 .item.w2 { 
-  width: 320px;
+  width: 480px;
 }
 .item.w3 { 
-  width: 480px; 
+  width: 560px; 
 }
 
 
@@ -110,7 +114,9 @@ div.article{
 }
 .article-text {
   font-family: 'Goudy Bookletter 1911 TT';
-}
+  /*font-size: 1.2em;*/
+  line-height: 1.6em;
+ }
 .article-author {
   font-family: 'Goudy Bookletter 1911 TT';
   font-size: small;
@@ -146,18 +152,17 @@ div.article{
 ol.songs {
   margin-left: -10px;
 }
-
 div h3 {
   margin-top: 5px;
 }
-
 .border-bottom {
   border-bottom: 1px solid #d3d3d3;
 }
-
 .newspaper {
   border: 1px solid #d3d3d3;
   padding: 10px;
+  box-shadow: 0px 0px 10px #333;
+  height: auto;
 }
 .newspaper-header {
   border-bottom: 1px solid #d3d3d3;

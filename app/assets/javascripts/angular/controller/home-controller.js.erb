@@ -24,6 +24,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     getMovies(year);
     getSongs(year);  
     getHoroscopes(date);
+    $scope.repack();
   }
 
   var getSongs = function(year) {
@@ -58,17 +59,23 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
 
   $scope.repack = function() {
     $scope.$container.packery();
+    console.log("Just repacked");
+    // $scope.$container.bindResize();
   }
 
   $scope.$container = $('#container');
   // init
   $scope.$container.packery({
     itemSelector: '.item',
-    columnWidth: 100,
-    rowHeight: 50,
-    "stamp": ".stamp"
-
+    // "gutter": 10,
+    "columnWidth": ".grid-sizer",
+    "stamp": ".stamp",
+    isInitLayout: false
   });
+
+  $scope.$container.packery('on', 'layoutComplete', function() {
+    console.log("layout is complete");
+  })
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
@@ -80,7 +87,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
   $scope.card = {};
   $scope.card.date = new Date("October 13, 1980 11:13:00");
   $scope.selectDate($scope.card.date);
-  $scope.repack();
+  // $scope.repack();
 
 }])
 

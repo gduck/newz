@@ -43,7 +43,7 @@
 
       <div id="container" class="final_size">
 
-        <div class="item-container border item">
+        <div class="item-container border item grid-sizer">
           <div class="article-heading">
           <img ng-src="<%= asset_path('movie.png') %>" class="image border-top">
             <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
@@ -69,7 +69,7 @@
         <div class="item-container border item w3">
 
           <div class="article-text col-xs-6">
-            <img ng-src="<%= asset_path('assets/chinese_horoscope/{{card.animalName}}.jpg') %>" class="image avatar">
+            <img ng-src="<%= asset_path('assets/zodiacs/{{card.zodiacName}}.png') %>" class="image avatar">
             {{card.zodiac}} 
           </div>
 
