@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope ){
+app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', function($scope, $http, $rootScope, $timeout){
 
   $scope.feature = {
     heading: "Your heading",
@@ -72,29 +72,41 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     isInitLayout: false
   });
 
-  $scope.$container.packery('on', 'layoutComplete', function() {
-    console.log("layout is complete");
-  })
-
-  $scope.repackTemp = function() {
-    console.log("images loaded");
-    $scope.$container.packery();
-    // $scope.$container.bindResize();
+  $scope.imgLoadedEvents = {
+    always: function(instance) {
+            // Do stuff
+      // console.log("images always");
+      console.log("images all loaded");
+      $timeout(function(){
+        $scope.repack();
+      }, 500)
+    }
   }
+
+  // $scope.$container.packery('on', 'layoutComplete', function() {
+  //   console.log("layout is complete");
+  // })
+
+ // function repackTemp() {
+ //    console.log("images loaded");
+
+ //    $timeout(function(){
+ //      $scope.$container.packery();
+ //    }, 1000)
+ //    // $scope.$container.bindResize();
+ //  }
 
   // $scope.$container.imagesLoaded(function() {
   //   console.log("all images are loaded");
   //   $scope.repack();
   // })
-  var imgLoad = imagesLoaded(".image", $scope.repackTemp());
-
-
+  // var imgLoad = imagesLoaded(".image", repackTemp());
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    // var draggie = new Draggabilly( itemElem );
+    var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    // $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
   $scope.card = {};

@@ -15,15 +15,13 @@
 /* MAIN LAYOUT ----------*/
 .main-feature {
   /*font-size: 150%;*/
-  min-height: 150px;
-  height: auto;
+  /*min-height: 150px;*/
+  /*height: auto;*/
 }
 .border {
   border-left: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
 }
-
-
 .final_size {
   /*width: 70%;*/
   /*height: 100%;*/
@@ -59,16 +57,16 @@ div.article{
   border-right: 1px solid #d3d3d3;
 }
 .item { 
-  width: 160px; 
+  width: 150px; 
   height: auto;
   /*border-left: 1px solid #d3d3d3;*/
   /*border-right: 1px solid #d3d3d3;*/
 }
 .item.w2 { 
-  width: 480px;
+  width: 450px;
 }
 .item.w3 { 
-  width: 560px; 
+  width: 600px; 
 }
 
 
@@ -127,7 +125,7 @@ div.article{
   font-family: 'Goudy Bookletter 1911 TT';
   font-style: bold;
   text-align: center;
-  /*border-top: 1px solid #d3d3d3;*/
+  border-top: 1px solid #d3d3d3;
 }
 .article-heading.feature {
   text-transform: uppercase;
