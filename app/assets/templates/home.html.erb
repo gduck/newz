@@ -37,11 +37,13 @@
   <div class="col-xs-8">
     <div class="newspaper">
       <div class="newspaper-header">
-        <h1 class="divtest">The Alacritous Times</h1>
-        <h5 class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</h5>
+        <h1 class="newspaper-name">The Alacritous Times</h1>
+        <h5><span class="edition">Edition #{{card.edition}}</span>
+        <span class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</span></h5>
+        <div class="clear"></div>
       </div>
 
-      <div id="container" class="final_size">
+      <div id="container" class="">
 
         <div class="item-container border item grid-sizer">
           <div class="article-heading">
@@ -56,7 +58,7 @@
         <div id="main-feature-article" class="item-container border item w2 main-feature">
           <div class="article-heading feature"><h2>{{feature.heading}}</h2></div>
           <div class="article-author"><h5>{{feature.author}}</h5></div>
-          <div class="article-text article">{{feature.article_text}}
+          <div class="article-text article feature">{{feature.article_text}}
             <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar" images-loaded="imgLoadedEvents">
           </div>
         </div>      
@@ -67,19 +69,24 @@
             <ol class="songs">
               <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
             </ol>
-            <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin" images-loaded="imgLoadedEvents">
+            <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
           </div>
         </div>
 
-        <div class="item-container border item w2">
-          <div class="article-heading"><h3>Horoscope for {{card.date | amDateFormat:'dddd, MMMM Do'}}</h3></div>
-          <div class="article-text col-xs-6">
-            <img ng-src="<%= asset_path('assets/zodiacs/{{card.zodiacName}}.png') %>" class="image avatar" images-loaded="imgLoadedEvents">
-            {{card.zodiac}} 
+        <div class="item-container item w2">
+          <div class="article-heading horoscope">
+            <h3>Horoscope for {{card.date | amDateFormat:'dddd, MMMM Do'}}</h3>
           </div>
-          <div class="article-text col-xs-6">
-            {{card.chinese_horoscope}}   
-            <img ng-src="<%= asset_path('assets/chinese_horoscope/{{card.animalName}}.jpg') %>" class="image avatar" images-loaded="imgLoadedEvents">  
+          <div class="article-text col-xs-6 padded-top">
+          <!-- <div class="article"> -->
+            <span class="horoscope-name">{{card.zodiacName}}</span>
+            <img ng-src="<%= asset_path('assets/zodiacs/{{card.zodiacName}}.png') %>" class="image zodiac" images-loaded="imgLoadedEvents">
+            <p class="article-text">{{card.zodiac}} </p>
+          </div>
+          <div class="article-text col-xs-6 padded-top">
+            <span class="horoscope-name">{{card.animalName}}</span>
+            <img ng-src="<%= asset_path('assets/chinese_horoscope/{{card.animalName}}.jpg') %>" class="image animal" images-loaded="imgLoadedEvents">  
+            <p class="article-text">{{card.chinese_horoscope}}</p>   
           </div>
         </div>
         

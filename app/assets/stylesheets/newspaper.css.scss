@@ -22,12 +22,6 @@
   border-left: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
 }
-.final_size {
-  /*width: 70%;*/
-  /*height: 100%;*/
-  padding: 10px;
-}
-
 
 /* ARTICLE STUFF ------------*/
 .article {
@@ -57,13 +51,13 @@ div.article{
   border-right: 1px solid #d3d3d3;
 }
 .item { 
-  width: 150px; 
+  width: 20%; 
   height: auto;
   /*border-left: 1px solid #d3d3d3;*/
   /*border-right: 1px solid #d3d3d3;*/
 }
 .item.w2 { 
-  width: 450px;
+  width: 60%;
 }
 .item.w3 { 
   width: 600px; 
@@ -72,22 +66,43 @@ div.article{
 
 /* IMAGES ----------*/
 .image {
+  /*display: block;*/
   width: 80%;
+  overflow: hidden;
 }
 .avatar {
   width: 80px;
   /*float-wrap:square; */
 }
-
+.image.zodiac {
+  float: left;
+  width: 50%;
+  margin-right: 5px;
+}
+.image.animal {
+  float: right;
+  width: 40%;
+}
 
 /* FONTS -----------------*/
 .date-text {
   font-style: italic;
+  font-weight: bold;
   font-family: 'Goudy Bookletter 1911 TT';
-  text-align: right;
+  float: right;
+}
+.edition {
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'Goudy Bookletter 1911 TT';
+  float: left;
+}
+.clear {
+  clear: both;
+  margin-bottom: 5px;
 }
 
-.divtest {
+.newspaper-name {
   font-family: 'Canterbury Regular';
   text-align: center;
   font-weight: bold;
@@ -113,11 +128,14 @@ div.article{
 .article-text {
   font-family: 'Goudy Bookletter 1911 TT';
   /*font-size: 1.2em;*/
-  line-height: 1.6em;
+  /*line-height: 1.6em;*/
+ }
+ .article-text.feature {
+  font-size: large;
  }
 .article-author {
   font-family: 'Goudy Bookletter 1911 TT';
-  font-size: small;
+  /*font-size: small;*/
   font-style: italic;
   text-align: right;
 }
@@ -127,14 +145,30 @@ div.article{
   text-align: center;
   border-top: 1px solid #d3d3d3;
 }
-.article-heading.feature {
+.article-heading.feature h2 {
+  font-family: 'Heavyweight';
   text-transform: uppercase;
-  font-size: 150%;
+  font-size: 4em;
+}
+.article-heading.horoscope {
+  font-family: 'Display Italic';
+  font-style: bold;
+  text-align: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+.horoscope-name {
+  font-family: 'Subway Novella';
+  text-align: center;
+  font-size: 120%;
 }
 /* BORDERS & PADDING -----------*/
 .padded {
   padding: 20px;
 }
+.padded-top {
+  padding-top: 10px;
+}
+
 .border-top {
   border-top: 1px solid #d3d3d3;
 }
@@ -144,11 +178,12 @@ div.article{
 .top-margin {
   margin-top: 20px;
 }
-.margin {
+.margin-left {
   margin: 10px;
 }
 ol.songs {
   margin-left: -10px;
+  margin-bottom: 0;
 }
 div h3 {
   margin-top: 5px;
@@ -164,4 +199,5 @@ div h3 {
 }
 .newspaper-header {
   border-bottom: 1px solid #d3d3d3;
+  margin-bottom: 10px;
 }

@@ -69,6 +69,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     // "gutter": 10,
     "columnWidth": ".grid-sizer",
     "stamp": ".stamp",
+    // "gutter": 1,
     isInitLayout: false
   });
 
@@ -79,28 +80,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       console.log("images all loaded");
       $timeout(function(){
         $scope.repack();
-      }, 500)
+      }, 1000)
     }
   }
-
-  // $scope.$container.packery('on', 'layoutComplete', function() {
-  //   console.log("layout is complete");
-  // })
-
- // function repackTemp() {
- //    console.log("images loaded");
-
- //    $timeout(function(){
- //      $scope.$container.packery();
- //    }, 1000)
- //    // $scope.$container.bindResize();
- //  }
-
-  // $scope.$container.imagesLoaded(function() {
-  //   console.log("all images are loaded");
-  //   $scope.repack();
-  // })
-  // var imgLoad = imagesLoaded(".image", repackTemp());
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
@@ -111,6 +93,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   $scope.card = {};
   $scope.card.date = new Date("October 13, 1980 11:13:00");
+  // edition is current year - 2015 + 1
+  yearInt = parseInt(moment($scope.maxDate).format("YYYY"));
+  $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
 
 }])

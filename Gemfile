@@ -41,6 +41,7 @@ gem 'aws-sdk', '~> 1.5.7'
 gem 'nokogiri'
 gem 'wikipedia-client'
 gem 'bower'
+gem 'rails_12factor'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
