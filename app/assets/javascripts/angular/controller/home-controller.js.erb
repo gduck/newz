@@ -21,9 +21,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
+    getFacts(date);
+    getHoroscopes(date);
     getMovies(year);
     getSongs(year);  
-    getHoroscopes(date);
     $scope.repack();
   }
 
@@ -43,6 +44,18 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       $scope.card.bestActress = data.movie[0]["bestActress"];
       $scope.card.bestActorMovie = data.movie[0]["bestActorMovie"];
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
+    })
+  }
+
+  var getFacts = function(date) {
+    newDate = moment(date).format("YYYY-M-DD");  
+    $http.get('facts/' + newDate).success(function(data){
+      $scope.card.gold = data.gold;
+      $scope.card.dowjones = data.dowjones;
+      $scope.card.homeprice = data.homeprice;
+      $scope.card.bread = data.bread;
+      $scope.card.gas = data.gas;
+      $scope.card.population = data.population;
     })
   }
 

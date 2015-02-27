@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'songlists/:year' => 'songlists#show'
 
   get 'zodiac/:date' => 'zodiacs#find'
+  get 'facts/:date' => 'random_facts#find'
 
 
 end

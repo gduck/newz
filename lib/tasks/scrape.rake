@@ -13,9 +13,12 @@ namespace :scrape do
     theXml = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><FetchFacts xmlns="http://www.mybirthdayfacts.com"><dayStr>18</dayStr><monthStr>7</monthStr><yearStr>1975</yearStr></FetchFacts></soap:Body></soap:Envelope>'
     
     response = post_xml(url, theXml)
-    #puts response
     # part of the response to be parsed
     # <go>164.34</go><dj>852.97</dj><hp>38600</hp><cr>5396</cr><br>0.35</br><gs>0.57</gs><wp>4,108,166,111</wp>
+    # <br> tag messes with the nokogiri css search, lets replace it
+    response.gsub! '<br>', '<bread>'
+    response.gsub! '</br>', '</bread>'
+
     xml_doc = Nokogiri::HTML(response)
     # puts xml_doc
 
@@ -31,10 +34,8 @@ namespace :scrape do
     data_newcar = "cr"
     newcar = xml_doc.css(data_newcar)
 
-    data_bread = "br"
-    # doc.xpath("/html/body//h1").first
+    data_bread = "bread"
     bread = xml_doc.css(data_bread)
-    # bread = xml_doc.xpath(data_bread)
 
     data_gas = "gs"
     gas = xml_doc.css(data_gas)
@@ -42,7 +43,7 @@ namespace :scrape do
     data_pop = "wp"
     population = xml_doc.css(data_pop)
 
-    puts gold + dowjones + homeprice + newcar + bread.inspect + gas + population
+    puts gold + dowjones + homeprice + newcar + bread + gas + population
 
   end
 
