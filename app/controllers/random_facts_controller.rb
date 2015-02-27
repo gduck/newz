@@ -57,12 +57,4 @@ class RandomFactsController < ApplicationController
     return resp.body
   end
 
-  def getFacts
-    
-
-  
-
-  end
-
-
 end
