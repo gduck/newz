@@ -1,6 +1,7 @@
 class RandomFactsController < ApplicationController
   require 'net/http'
   require 'uri'
+  require 'resolv-replace'
 
   def post_xml(path, xml)
     host = "http://www.mybirthdayfacts.com"
