@@ -19,6 +19,29 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     'starting-day': 1
   };
 
+  $scope.print = function() {
+    // var printContents = document.getElementById("newspaper").innerHTML;
+    // var originalContents = document.body.innerHTML;
+    // var $stamp = $container.find('.item')
+
+    // $container.packery( 'stamp', $stamp )
+    // $scope.repack();
+    // $('body .site-container').css({display:'none'});
+    // var content = $("#newspaper").clone();
+    // $('body .site-container').before(content);
+    // $('.col-xs-3.form-column.top-margin')
+    window.print();
+    // $("#newspaper").first().remove();
+    // $('body .site-container').css({display:''});
+    // $container.packery( 'unstamp', $stamp )
+    // document.body.innerHTML = printContents;
+    // window.print();
+    // window.close();
+    // // window.onfocus=function(){ window.close();}
+    // document.body.innerHTML = originalContents;
+    // setTimeout(function(){window.close();}, 1);
+  }
+
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
     getNews(year);
@@ -94,8 +117,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     // "gutter": 10,
     "columnWidth": ".grid-sizer",
     "stamp": ".stamp",
-    // "gutter": 1,
-    isInitLayout: false
+    "columnHeight": ".grid-sizer"
+    // "gutter": ".gutter-sizer",
+    // isInitLayout: false
   });
 
   $scope.imgLoadedEvents = {
@@ -111,9 +135,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    var draggie = new Draggabilly( itemElem );
+    //var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    //$scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
   $scope.card = {};

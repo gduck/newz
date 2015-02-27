@@ -1,0 +1,22 @@
+/*#newspaper {
+  max-width: 1200px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border: 1px solid #d3d3d3;
+  padding: 20px;
+  box-shadow: 0px 0px 10px #333;
+  height: auto;
+}*/
+@page {
+    size: A4;
+    /*margin: 0.5cm;*/
+}
+@media print {
+/*  .print-panel{
+    display: none;
+  }*/
+}
+
