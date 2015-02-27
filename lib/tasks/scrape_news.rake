@@ -2,6 +2,29 @@ namespace :scrape_news do
   require "net/http"
   require "uri"
 
+  def cullArticles(articlesArray)
+    arrayLength = articlesArray.count
+    puts arrayLength
+    # want 4 headlines only
+    # more or less
+    # so skip (length div 4)
+    skipNumber = (arrayLength / 4)
+    if (skipNumber < 0) then 
+      skipNumber = 0
+    end
+    puts skipNumber
+
+    newArray = []
+    countArticles = 0
+    counter = 0
+    until countArticles == 4 do
+      newArray.push(articlesArray[counter])
+      countArticles = countArticles + 1
+      counter = counter + skipNumber
+    end
+    newArray    
+  
+  end
 
   desc "scrape infoplease for news and sports"
   task :news => :environment do |t, args|
@@ -9,7 +32,7 @@ namespace :scrape_news do
     require 'open-uri'
     require 'nokogiri'
 
-    for year in 2000..2012 do
+    for year in 1980..1990 do
     # for year in 1990..2015 do
 
       url = "http://www.infoplease.com/year/#{year}.html"
@@ -33,7 +56,12 @@ namespace :scrape_news do
         #   return
         # end
       end
-      # puts newsArray
+
+      # lets cull te number of news articles 
+      if newsArray.length > 5 then
+        newsArray = cullArticles(newsArray)
+      end
+      puts newsArray
 
       # sports is plain text - no css!!!
       # data_sports = "table > tbody > tr > td"
@@ -49,11 +77,9 @@ namespace :scrape_news do
       # puts sports;
 
       news = NewsArticle.create(year: year, news: newsArray)
-
-      # puts news.inspect
-
-
     end
+
+    
 
   end
 
