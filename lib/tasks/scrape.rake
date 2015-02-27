@@ -4,15 +4,46 @@ namespace :scrape do
 
 
   desc "scraping mybirthdayfacts.com"
-  # must send by soap 
+  # must send by SOAP xml 
   task :bdfacts => :environment do
 
+    require 'nokogiri'
     url = "http://www.mybirthdayfacts.com/MBFService.asmx"
 
     theXml = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><FetchFacts xmlns="http://www.mybirthdayfacts.com"><dayStr>18</dayStr><monthStr>7</monthStr><yearStr>1975</yearStr></FetchFacts></soap:Body></soap:Envelope>'
     
     response = post_xml(url, theXml)
-    puts response
+    #puts response
+    # part of the response to be parsed
+    # <go>164.34</go><dj>852.97</dj><hp>38600</hp><cr>5396</cr><br>0.35</br><gs>0.57</gs><wp>4,108,166,111</wp>
+    xml_doc = Nokogiri::HTML(response)
+    # puts xml_doc
+
+    data_gold = "go"
+    gold = xml_doc.css(data_gold)
+
+    data_dowjones = "dj"
+    dowjones = xml_doc.css(data_dowjones)
+
+    data_homeprice = "hp"
+    homeprice = xml_doc.css(data_homeprice)
+
+    data_newcar = "cr"
+    newcar = xml_doc.css(data_newcar)
+
+    data_bread = "br"
+    # doc.xpath("/html/body//h1").first
+    bread = xml_doc.css(data_bread)
+    # bread = xml_doc.xpath(data_bread)
+
+    data_gas = "gs"
+    gas = xml_doc.css(data_gas)
+
+    data_pop = "wp"
+    population = xml_doc.css(data_pop)
+
+    puts gold + dowjones + homeprice + newcar + bread.inspect + gas + population
+
   end
 
   def post_xml(path, xml)
@@ -21,6 +52,9 @@ namespace :scrape do
     resp = http.post(path, xml, { 'Content-Type' => 'text/xml; charset=utf-8' })
     return resp.body
   end
+
+# <FetchFacts xmlns="http://www.mybirthdayfacts.com"><dayStr>18</dayStr><monthStr>7</monthStr><yearStr>1975</yearStr></FetchFacts>
+# <FetchDayHeadlines xmlns="http://www.mybirthdayfacts.com"><dayStr>18</dayStr><monthStr>7</monthStr><yearStr>1975</yearStr><getCountry>"US"</getCountry></FetchDayHeadlines>
 
   desc "scrape wiki using the gem wikipedia-client"
   task :wikiclient => :environment do

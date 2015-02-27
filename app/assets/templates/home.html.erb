@@ -35,7 +35,7 @@
 
   <!-- main newspaper -->
   <div class="col-xs-8">
-    <div class="newspaper" ng-change="repack()">
+    <div class="newspaper">
       <div class="newspaper-header">
         <h1 class="newspaper-name">The Alacritous Times</h1>
         <h5><span class="edition">Edition #{{card.edition}}</span>
@@ -80,12 +80,12 @@
           <div class="article-text col-xs-6 padded-top">
           <!-- <div class="article"> -->
             <span class="horoscope-name">{{card.zodiacName}}</span>
-            <img ng-src="<%= asset_path('assets/zodiacs/{{card.zodiacName}}.png') %>" class="image zodiac" images-loaded="imgLoadedEvents">
+            <img ng-src="http://newz-images.s3.amazonaws.com/zodiacs/{{card.zodiacName}}.png" class="image zodiac" images-loaded="imgLoadedEvents">
             <p class="article-text">{{card.zodiac}} </p>
           </div>
           <div class="article-text col-xs-6 padded-top">
             <span class="horoscope-name">{{card.animalName}}</span>
-            <img ng-src="<%= asset_path('assets/chinese_horoscope/{{card.animalName}}.jpg') %>" class="image animal" images-loaded="imgLoadedEvents">  
+            <img src="http://newz-images.s3.amazonaws.com/chinese_horoscope/{{card.animalName}}.jpg" class="image animal" images-loaded="imgLoadedEvents">  
             <p class="article-text">{{card.chinese_horoscope}}</p>   
           </div>
         </div>
