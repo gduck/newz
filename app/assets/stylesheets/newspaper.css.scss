@@ -199,8 +199,8 @@ div h3 {
   border-bottom: 1px solid #d3d3d3;
 }
 #newspaper {
-  /*max-width: 1200px;*/
-  /*position: absolute;*/
+/*  width: 790px;
+*/  /*position: absolute;*/
   position: relative;
   /*top: 0;*/
   /*bottom: 0;*/
@@ -220,16 +220,17 @@ div h3 {
 }
 .wrapper {
   /*width: 100%;*/
+  width: 850px;
   /* whatever width you want */
   /*display: inline-block;*/
   display: block;
   position: relative;
 }
 .wrapper:after {
-  padding-top: 125%;
+  padding-top: 1100;
   display: block;
   content: '';
 }
-.print-panel{
+/*#header, .print-panel{
   display: none;
-}
+}*/
