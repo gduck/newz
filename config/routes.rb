@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get 'movies/:year' => 'movies#show'
   get 'songlists/:year' => 'songlists#show'
+  get 'news/:year' => 'news_articles#show'
 
   get 'zodiac/:date' => 'zodiacs#find'
   get 'facts/:date' => 'random_facts#find'

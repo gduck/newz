@@ -21,6 +21,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
+    getNews(year);
     getFacts(date);
     getHoroscopes(date);
     getMovies(year);
@@ -44,6 +45,16 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       $scope.card.bestActress = data.movie[0]["bestActress"];
       $scope.card.bestActorMovie = data.movie[0]["bestActorMovie"];
       $scope.card.bestActressMovie = data.movie[0]["bestActressMovie"];
+    })
+  }
+
+  var getNews = function(year) {
+    $http.get('news/' + year + '.json').success(function(data){
+      console.log(data);
+      // an array like producers
+      $scope.card.news = data.newsarticles["news"];
+      // $scope.card.sports = data.result[0]["sports"];
+      // $scope.card.other = data.result[0]["other"];
     })
   }
 
