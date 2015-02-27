@@ -1,5 +1,6 @@
 class RandomFactsController < ApplicationController
-
+  require 'net/http'
+  
   def post_xml(path, xml)
     host = "http://www.mybirthdayfacts.com"
     http = Net::HTTP.new(host)
