@@ -20,4 +20,6 @@
 //= require bootstrap
 //= require packery.pkgd
 //= require draggabilly.pkgd
+//= require imagesloaded/imagesloaded.pkgd
+//= require angular-images-loaded/angular-images-loaded
 //= require_tree ./angular

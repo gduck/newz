@@ -1,4 +1,4 @@
-<header></header>
+<!-- <header></header> -->
 
 <div class="row padded">
   <div class="col-xs-4 form-column top-margin">
@@ -35,17 +35,19 @@
 
   <!-- main newspaper -->
   <div class="col-xs-8">
-    <div class="newspaper">
+    <div class="newspaper" ng-change="repack()">
       <div class="newspaper-header">
-        <h1 class="divtest">The Alacritous Times</h1>
-        <h5 class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</h5>
+        <h1 class="newspaper-name">The Alacritous Times</h1>
+        <h5><span class="edition">Edition #{{card.edition}}</span>
+        <span class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</span></h5>
+        <div class="clear"></div>
       </div>
 
-      <div id="container" class="final_size">
+      <div id="container" class="">
 
-        <div class="item-container border item">
+        <div class="item-container border item grid-sizer">
           <div class="article-heading">
-          <img ng-src="<%= asset_path('movie.png') %>" class="image border-top">
+          <img ng-src="<%= asset_path('movie.png') %>" class="image border-top" images-loaded="imgLoadedEvents">
             <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
           </div>
           <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
@@ -56,28 +58,10 @@
         <div id="main-feature-article" class="item-container border item w2 main-feature">
           <div class="article-heading feature"><h2>{{feature.heading}}</h2></div>
           <div class="article-author"><h5>{{feature.author}}</h5></div>
-          <div class="article-text article">{{feature.article_text}}
-            <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar">
+          <div class="article-text article feature">{{feature.article_text}}
+            <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar" images-loaded="imgLoadedEvents">
           </div>
         </div>      
-
-        <div class="item-container border item w2">
-          <div class="article-heading"><h3>Breaking News!</h3></div>
-          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        </div>
-
-        <div class="item-container border item w3">
-
-          <div class="article-text col-xs-6">
-            <img ng-src="<%= asset_path('assets/chinese_horoscope/{{card.animalName}}.jpg') %>" class="image avatar">
-            {{card.zodiac}} 
-          </div>
-
-          <div class="article-text col-xs-6">
-            {{card.chinese_horoscope}}   
-            <img ng-src="<%= asset_path('assets/chinese_horoscope/{{card.animalName}}.jpg') %>" class="image avatar">  
-          </div>
-        </div>
 
         <div class="item-container border item">
           <div class="article-heading border-top"><h3>US Top 5!</h3></div>
@@ -85,8 +69,31 @@
             <ol class="songs">
               <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
             </ol>
-            <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin">
+            <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
           </div>
+        </div>
+
+        <div class="item-container item w2">
+          <div class="article-heading horoscope">
+            <h3>Horoscope for {{card.date | amDateFormat:'dddd, MMMM Do'}}</h3>
+          </div>
+          <div class="article-text col-xs-6 padded-top">
+          <!-- <div class="article"> -->
+            <span class="horoscope-name">{{card.zodiacName}}</span>
+            <img ng-src="http://newz-images.s3.amazonaws.com/zodiacs/{{card.zodiacName}}.png" class="image zodiac" images-loaded="imgLoadedEvents">
+            <p class="article-text">{{card.zodiac}} </p>
+          </div>
+          <div class="article-text col-xs-6 padded-top">
+            <span class="horoscope-name">{{card.animalName}}</span>
+            <img src="http://newz-images.s3.amazonaws.com/chinese_horoscope/{{card.animalName}}.jpg" class="image animal" images-loaded="imgLoadedEvents">  
+            <p class="article-text">{{card.chinese_horoscope}}</p>   
+          </div>
+        </div>
+        </div>
+        
+        <div class="item-container border item w2">
+          <div class="article-heading"><h3>Breaking News!</h3></div>
+          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
         </div>
 
         <div class="barcode-stamp">
@@ -96,6 +103,7 @@
         <div class="bordertest">
           <div class="oldseal">C</div>
         </div>
+
       </div>
     </div>
 

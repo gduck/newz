@@ -1,4 +1,18 @@
 @font-face {
+  font-family:"Subway Novella";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/SubwayNovella.ttf") format("truetype")
+}
+@font-face {
+  font-family:"Display Italic";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/PlayfairDisplaySC-BoldItalic.ttf") format("truetype")
+}
+
+@font-face {
+  font-family:"Heavyweight";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/HEAVYWEI.TTF") format("truetype")
+}
+
+@font-face {
   font-family:"barcode font";
   src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/BarcodeFont.eot") format("eot"),
   url("https://s3-us-west-2.amazonaws.com/newz-fonts/BarcodeFont.woff") format("woff"),
@@ -42,14 +56,3 @@
   font-style:normal;
 }
 
-/*
-
-font-family: 'BarcodeFont',
- url('/barcode_font/BarcodeFont.ttf') format('truetype'); 
- 
- font-family: 'Canterbury',
- url('Canterbury/Canterbury.ttf') format('truetype');
-
- font-family: 'fonts/old_seals_tfb',
- url('fonts/old_seals_tfb.ttf') format('truetype');
- */

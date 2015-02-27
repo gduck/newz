@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope ){
+app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', function($scope, $http, $rootScope, $timeout){
 
   $scope.feature = {
     heading: "Your heading",
@@ -24,6 +24,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
     getMovies(year);
     getSongs(year);  
     getHoroscopes(date);
+    $scope.repack();
   }
 
   var getSongs = function(year) {
@@ -52,35 +53,50 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', function($scope, $h
       $scope.card.zodiacName = data.zodiacName;
       $scope.card.chinese_horoscope = data.animalDesc;
       $scope.card.animalName = data.animalName;
-
     })
   }
 
   $scope.repack = function() {
     $scope.$container.packery();
+    console.log("Just repacked");
+    // $scope.$container.bindResize();
   }
 
   $scope.$container = $('#container');
   // init
   $scope.$container.packery({
     itemSelector: '.item',
-    columnWidth: 100,
-    rowHeight: 50,
-    "stamp": ".stamp"
-
+    // "gutter": 10,
+    "columnWidth": ".grid-sizer",
+    "stamp": ".stamp",
+    // "gutter": 1,
+    isInitLayout: false
   });
+
+  $scope.imgLoadedEvents = {
+    always: function(instance) {
+            // Do stuff
+      // console.log("images always");
+      console.log("images all loaded");
+      $timeout(function(){
+        $scope.repack();
+      }, 1500)
+    }
+  }
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    // var draggie = new Draggabilly( itemElem );
+    var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    // $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
   $scope.card = {};
   $scope.card.date = new Date("October 13, 1980 11:13:00");
+  // edition is current year - 2015 + 1
+  yearInt = parseInt(moment($scope.maxDate).format("YYYY"));
+  $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
-  $scope.repack();
 
 }])
 
