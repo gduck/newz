@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225071500) do
+ActiveRecord::Schema.define(version: 20150227042016) do
 
   create_table "chinese_horoscopes", force: true do |t|
     t.string   "animal"
@@ -36,6 +36,31 @@ ActiveRecord::Schema.define(version: 20150225071500) do
   end
 
   add_index "movies", ["year"], name: "index_movies_on_year"
+
+  create_table "news_articles", force: true do |t|
+    t.string   "year"
+    t.text     "news"
+    t.text     "sports"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news_articles", ["year"], name: "index_news_articles_on_year"
+
+  create_table "random_facts", force: true do |t|
+    t.date     "date"
+    t.string   "gold"
+    t.string   "dowjones"
+    t.string   "homeprice"
+    t.string   "newcar"
+    t.string   "bread"
+    t.string   "gas"
+    t.string   "population"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "random_facts", ["date"], name: "index_random_facts_on_date"
 
   create_table "songlists", force: true do |t|
     t.string   "year"

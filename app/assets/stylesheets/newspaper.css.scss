@@ -8,7 +8,7 @@
 .barcode-stamp {
   position: absolute;
   bottom: 0;
-  right: 20px;
+  left: 20px;
 }
 
 
@@ -47,8 +47,10 @@ div.article{
 .item-container {
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 10px; 
   border-left: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
+  border-top: 1px solid #d3d3d3;
 }
 .item { 
   width: 20%; 
@@ -143,18 +145,18 @@ div.article{
   font-family: 'Goudy Bookletter 1911 TT';
   font-style: bold;
   text-align: center;
-  border-top: 1px solid #d3d3d3;
+  /*border-top: 1px solid #d3d3d3;*/
 }
 .article-heading.feature h2 {
   font-family: 'Heavyweight';
   text-transform: uppercase;
   font-size: 4em;
 }
-.article-heading.horoscope {
+.news, .article-heading.horoscope {
   font-family: 'Display Italic';
   font-style: bold;
   text-align: center;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #e4e4e4;
 }
 .horoscope-name {
   font-family: 'Subway Novella';
@@ -179,11 +181,16 @@ div.article{
   margin-top: 20px;
 }
 .margin-left {
-  margin: 10px;
+  margin-left: 10px;
 }
 ol.songs {
   margin-left: -10px;
   margin-bottom: 0;
+  padding-bottom: 10px;
+}
+ul.facts {
+  list-style-type: none;
+  margin-left: -2em;
 }
 div h3 {
   margin-top: 5px;

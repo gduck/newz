@@ -35,7 +35,7 @@
 
   <!-- main newspaper -->
   <div class="col-xs-8">
-    <div class="newspaper" ng-change="repack()">
+    <div class="newspaper">
       <div class="newspaper-header">
         <h1 class="newspaper-name">The Alacritous Times</h1>
         <h5><span class="edition">Edition #{{card.edition}}</span>
@@ -47,11 +47,32 @@
 
         <div class="item-container border item grid-sizer">
           <div class="article-heading">
-          <img ng-src="<%= asset_path('movie.png') %>" class="image border-top" images-loaded="imgLoadedEvents">
+          <img ng-src="<%= asset_path('movie.png') %>" class="image" images-loaded="imgLoadedEvents">
             <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
           </div>
           <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
           <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
+          </div>
+        </div>
+
+        <div class="item-container border item w2">
+          <div class="article-heading news">
+            <h3>Headline News</h3>
+          </div>
+          <div class="article-text article">
+            <!-- <ul> -->
+              <p ng-repeat='article in card.news'>{{article}}</p>
+            <!-- </ul> -->
+          </div>
+        </div>  
+
+        <div class="item-container border item border-top">
+          <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
+          <div class="article-heading"><h3>US Top 5!</h3></div>
+          <div class="article-text">
+            <ol class="songs">
+              <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
+            </ol>
           </div>
         </div>
 
@@ -61,17 +82,7 @@
           <div class="article-text article feature">{{feature.article_text}}
             <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar" images-loaded="imgLoadedEvents">
           </div>
-        </div>      
-
-        <div class="item-container border item">
-          <div class="article-heading border-top"><h3>US Top 5!</h3></div>
-          <div class="article-text">
-            <ol class="songs">
-              <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
-            </ol>
-            <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
-          </div>
-        </div>
+        </div>    
 
         <div class="item-container item w2">
           <div class="article-heading horoscope">
@@ -91,9 +102,24 @@
         </div>
         </div>
         
-        <div class="item-container border item w2">
-          <div class="article-heading"><h3>Breaking News!</h3></div>
-          <div class="article-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+
+        <div class="item-container border item">
+          <img ng-src="<%= asset_path('money.gif') %>" class="image" images-loaded="imgLoadedEvents">
+          <div class="article-heading">
+            <h3>Cost of Living</h3>
+          </div>
+          <div class="article-text">
+            <ul class="facts">
+              <li>Gold: ${{card.gold}} (oz)</li>
+              <li>Dowjones {{card.dowjones}}</li>
+              <li>Average Home ${{card.homeprice}}</li>
+              <li>Average Car ${{card.newcar}}</li>
+              <li>Bread Loaf ${{card.bread}}</li>
+              <li>Gas ${{card.gas}} (gallon)</li>
+              <li>World Population: {{card.population}}</li>
+            </ul>
+          </div>
         </div>
 
         <div class="barcode-stamp">
