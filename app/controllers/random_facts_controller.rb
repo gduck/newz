@@ -1,5 +1,12 @@
 class RandomFactsController < ApplicationController
 
+  def post_xml(path, xml)
+    host = "http://www.mybirthdayfacts.com"
+    http = Net::HTTP.new(host)
+    resp = http.post(path, xml, { 'Content-Type' => 'text/xml; charset=utf-8' })
+    return resp.body
+  end
+
   def find
     require 'nokogiri'
 
@@ -50,11 +57,6 @@ class RandomFactsController < ApplicationController
     render 'find.json.jbuilder'
   end
 
-  def post_xml(path, xml)
-    host = "http://www.mybirthdayfacts.com"
-    http = Net::HTTP.new(host)
-    resp = http.post(path, xml, { 'Content-Type' => 'text/xml; charset=utf-8' })
-    return resp.body
-  end
+ 
 
 end
