@@ -18,7 +18,15 @@ namespace :scrape_news do
     countArticles = 0
     counter = 0
     until countArticles == 4 do
-      newArray.push(articlesArray[counter])
+      aString = articlesArray[counter].to_s
+      aString.gsub!("\n", "")
+
+      truncatedString = ""
+      for i in 0..3 do
+        truncatedString = truncatedString + aString.split('.')[i].to_s + "."
+      end
+      # puts truncatedString
+      newArray.push(truncatedString)
       countArticles = countArticles + 1
       counter = counter + skipNumber
     end
@@ -32,7 +40,7 @@ namespace :scrape_news do
     require 'open-uri'
     require 'nokogiri'
 
-    for year in 1980..1990 do
+    for year in 1946..2012 do
     # for year in 1990..2015 do
 
       url = "http://www.infoplease.com/year/#{year}.html"
@@ -63,6 +71,7 @@ namespace :scrape_news do
       end
       puts newsArray
 
+      # MAY REVISIT THIS LATER
       # sports is plain text - no css!!!
       # data_sports = "table > tbody > tr > td"
       # xpath = "//*[@id='Pg']/text()"
@@ -76,6 +85,7 @@ namespace :scrape_news do
       # sports.reject! { |s| s.empty? }
       # puts sports;
 
+      # 
       news = NewsArticle.create(year: year, news: newsArray)
     end
 
