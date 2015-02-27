@@ -1,10 +1,14 @@
 class RandomFactsController < ApplicationController
   require 'net/http'
-  
+  require 'uri'
+
   def post_xml(path, xml)
     host = "http://www.mybirthdayfacts.com"
     http = Net::HTTP.new(host)
+    puts ">>>>>>>>>>>>>>>>>>"
+    puts http
     resp = http.post(path, xml, { 'Content-Type' => 'text/xml; charset=utf-8' })
+    puts resp
     return resp.body
   end
 
