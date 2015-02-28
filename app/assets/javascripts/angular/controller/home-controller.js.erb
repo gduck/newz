@@ -136,14 +136,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       // var canvas = html2canvas.Renderer(queue,{elements:{length:1}});
       // var img = canvas.toDataURL();
       // window.open(img);
-      
-      // html2canvas($('#newspaper'), {
-      //   onrendered: function(canvas) {
-      //     document.body.appendChild(canvas);
-      //   },
-      //   width: 300,
-      //   height: 300
-      // });
 
       // html2canvas($('#newspaper'), {
       //    onrendered: function(canvas) {
@@ -151,20 +143,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       //       //var img = canvas.toDataURL()
       //       //window.open(img);
       //   }
-      // });
-
-      // html2canvas($('#newspaper')).then(function(canvas) {
-      //     document.body.appendChild(canvas);
-      // });
-
-
-      // {
-      //     onrendered: function (canvas) {
-      //         //Set hidden field's value to image data (base-64 string)
-      //         $('#img_val').val(canvas.toDataURL("image/png"));
-      //         //Submit the form manually
-      //         document.getElementById("myForm").submit();
-      //     }
       // });
       
       // only jpeg is supported by jsPDF
@@ -183,7 +161,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
   // init
   $scope.$container.packery({
     itemSelector: '.item',
-    // "gutter": 10,
+    "gutter": 5,
     "columnWidth": ".grid-sizer",
     "stamp": ".stamp",
     "columnHeight": ".grid-sizer",
