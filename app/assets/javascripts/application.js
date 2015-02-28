@@ -22,6 +22,6 @@
 //= require draggabilly.pkgd
 //= require imagesloaded/imagesloaded.pkgd
 //= require angular-images-loaded/angular-images-loaded
-//= require html2canvas/html2canvas
-//= require html2canvas/jquery.plugin.html2canvas
+//= require html2canvas/build/html2canvas
+//= require html2canvas/build/html2canvas.min
 //= require_tree ./angular
