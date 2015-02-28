@@ -117,12 +117,25 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   $scope.capture = function() {
       
+      html2canvas($("#newspaper"), {
+        onrendered: function (canvas) {
+          var myImage = canvas.toDataURL("image/png");
+          var tWindow = window.open("");
+          // console.log(tWindow); 
+          // console.log(myImage); 
+          // console.log(tWindow); 
+          $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
+              tWindow.focus();
+              tWindow.print();
+          });
+        }
+      });
 
-      $('#newspaper').html2canvas();
-      var queue = html2canvas.Parse();
-      var canvas = html2canvas.Renderer(queue,{elements:{length:1}});
-      var img = canvas.toDataURL();
-      window.open(img);
+      // $('#newspaper').html2canvas();
+      // var queue = html2canvas.Parse();
+      // var canvas = html2canvas.Renderer(queue,{elements:{length:1}});
+      // var img = canvas.toDataURL();
+      // window.open(img);
       
       // html2canvas($('#newspaper'), {
       //   onrendered: function(canvas) {
@@ -131,7 +144,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       //   width: 300,
       //   height: 300
       // });
-      
+
       // html2canvas($('#newspaper'), {
       //    onrendered: function(canvas) {
       //       document.body.appendChild(canvas);
@@ -153,6 +166,14 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       //         document.getElementById("myForm").submit();
       //     }
       // });
+      
+      // only jpeg is supported by jsPDF
+      // var imgData = canvas.toDataURL("image/jpeg", 1.0);
+      // var pdf = new jsPDF();
+
+      // pdf.addImage(imgData, 'JPEG', 0, 0);
+      // pdf.save("download.pdf");
+
   }
 
   // $('body').html2canvas();

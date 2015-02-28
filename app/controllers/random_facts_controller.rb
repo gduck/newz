@@ -23,10 +23,10 @@ class RandomFactsController < ApplicationController
 
     url = "http://www.mybirthdayfacts.com/MBFService.asmx"
 
-    theXml = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><FetchFacts xmlns="http://www.mybirthdayfacts.com"><dayStr>18</dayStr><monthStr>7</monthStr><yearStr>1975</yearStr></FetchFacts></soap:Body></soap:Envelope>'
-    
+    theXml = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><FetchFacts xmlns="http://www.mybirthdayfacts.com"><dayStr>'+@day+'</dayStr><monthStr>'+@month+'</monthStr><yearStr>'+@year+'</yearStr></FetchFacts></soap:Body></soap:Envelope>'
+    puts theXml
     response = post_xml(url, theXml)
-
+    puts response
     # part of the response to be parsed
     # <go>164.34</go><dj>852.97</dj><hp>38600</hp><cr>5396</cr><br>0.35</br><gs>0.57</gs><wp>4,108,166,111</wp>
     # <br> tag messes with the nokogiri css search, lets replace it
