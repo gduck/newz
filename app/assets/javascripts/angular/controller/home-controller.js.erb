@@ -115,6 +115,49 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     // $scope.$container.bindResize();
   }
 
+  $scope.capture = function() {
+      
+
+      $('#newspaper').html2canvas();
+      var queue = html2canvas.Parse();
+      var canvas = html2canvas.Renderer(queue,{elements:{length:1}});
+      var img = canvas.toDataURL();
+      window.open(img);
+      
+      // html2canvas($('#newspaper'), {
+      //   onrendered: function(canvas) {
+      //     document.body.appendChild(canvas);
+      //   },
+      //   width: 300,
+      //   height: 300
+      // });
+      
+      // html2canvas($('#newspaper'), {
+      //    onrendered: function(canvas) {
+      //       document.body.appendChild(canvas);
+      //       //var img = canvas.toDataURL()
+      //       //window.open(img);
+      //   }
+      // });
+
+      // html2canvas($('#newspaper')).then(function(canvas) {
+      //     document.body.appendChild(canvas);
+      // });
+
+
+      // {
+      //     onrendered: function (canvas) {
+      //         //Set hidden field's value to image data (base-64 string)
+      //         $('#img_val').val(canvas.toDataURL("image/png"));
+      //         //Submit the form manually
+      //         document.getElementById("myForm").submit();
+      //     }
+      // });
+  }
+
+  // $('body').html2canvas();
+
+
   $scope.$container = $('#container');
   // init
   $scope.$container.packery({
