@@ -23,6 +23,11 @@
           <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
           <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
           <textarea ng-model="feature.article_text" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
+          <input type="file" id="fileUpload" ng-show="true" upload-image />
+          <img ng-src="{{userImageLink}}" ng-click="openFileWindow()" ng-class="{ hidden: !userImageLink}" >
+          <div class="drop-box" ng-click="openFileWindow()" ng-class=" {hidden: userImageLink}">
+              Click to add an image.
+          </div>
         </div>
       </div>
 
