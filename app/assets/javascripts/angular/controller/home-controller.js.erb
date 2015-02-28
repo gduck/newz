@@ -50,7 +50,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   var getNews = function(year) {
     $http.get('news/' + year + '.json').success(function(data){
-      console.log(data);
       // an array like producers
       $scope.card.news = data.newsarticles["news"];
       // $scope.card.sports = data.result[0]["sports"];
@@ -102,9 +101,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
         onrendered: function (canvas) {
           var myImage = canvas.toDataURL("image/png");
           var tWindow = window.open("");
-          // console.log(tWindow); 
-          // console.log(myImage); 
-          // console.log(tWindow); 
           $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
               tWindow.focus();
               tWindow.print();
@@ -151,9 +147,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
   $scope.imgLoadedEvents = {
     always: function(instance) {
-            // Do stuff
-      // console.log("images always");
-      console.log("images all loaded");
+      // console.log("images all loaded");
       $timeout(function(){
         $scope.repack();
       }, 1500)
