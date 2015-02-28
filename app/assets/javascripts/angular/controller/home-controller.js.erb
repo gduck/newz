@@ -19,34 +19,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     'starting-day': 1
   };
 
-  $scope.print = function() {
-    // var printContents = document.getElementById("newspaper").innerHTML;
-    // var originalContents = document.body.innerHTML;
-    // var $stamp = $container.find('.item')
-
-    // $container.packery( 'stamp', $stamp )
-    // $scope.repack();
-    // $('body .site-container').css({display:'none'});
-    // var content = $("#newspaper").clone();
-    // $('body .site-container').before(content);
-    // $('.col-xs-3.form-column.top-margin')
-
-    $('#header').css({display:'none'});
-    $('.print-panel').css({display:'none'});
-    window.print();
-    $('#header').css({display:''});
-    $('.print-panel').css({display:''});
-    // $("#newspaper").first().remove();
-    // $('body .site-container').css({display:''});
-    // $container.packery( 'unstamp', $stamp )
-    // document.body.innerHTML = printContents;
-    // window.print();
-    // window.close();
-    // // window.onfocus=function(){ window.close();}
-    // document.body.innerHTML = originalContents;
-    // setTimeout(function(){window.close();}, 1);
-  }
-
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
     getNews(year);
@@ -115,6 +87,15 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     // $scope.$container.bindResize();
   }
 
+  $scope.print = function() {
+
+    $('#header').css({display:'none'});
+    $('.print-panel').css({display:'none'});
+    window.print();
+    $('#header').css({display:''});
+    $('.print-panel').css({display:''});
+  }
+
   $scope.capture = function() {
       
       html2canvas($("#newspaper"), {
@@ -130,6 +111,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
           });
         }
       });
+      // VARIOUS OPTIONS I'VE TRIED
+      // I WOULD LIKE TO KEEP THEM FOR REFERENCE
+      // FOR NOW 
 
       // $('#newspaper').html2canvas();
       // var queue = html2canvas.Parse();
@@ -151,11 +135,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
 
       // pdf.addImage(imgData, 'JPEG', 0, 0);
       // pdf.save("download.pdf");
-
   }
-
-  // $('body').html2canvas();
-
 
   $scope.$container = $('#container');
   // init
