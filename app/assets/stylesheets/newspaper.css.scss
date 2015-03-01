@@ -13,9 +13,7 @@
 
 
 /* MAIN LAYOUT ----------*/
-#header, .site-container {
-  display: "";
-}
+
 .main-feature {
   /*font-size: 150%;*/
   /*min-height: 150px;*/
@@ -166,6 +164,11 @@ div.article{
   border-bottom: 1px solid #e4e4e4;
 }
 .horoscope-name {
+  font-family: 'Subway Novella';
+  text-align: center;
+  font-size: 120%;
+}
+.birth-announcement {
   font-family: 'Subway Novella';
   text-align: center;
   font-size: 120%;

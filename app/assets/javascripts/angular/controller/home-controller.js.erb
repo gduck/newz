@@ -1,9 +1,9 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', function($scope, $http, $rootScope, $timeout){
 
   $scope.feature = {
-    heading: "Your heading",
-    author: "author (you)",
-    article_text: "Put a birthday message here"
+    // heading: "Your heading",
+    // author: "author (you)",
+    // article_text: "Put a birthday message here"
   };
 
   $scope.minDate = new Date("1946-01-01");
@@ -26,7 +26,15 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     getHoroscopes(date);
     getMovies(year);
     getSongs(year);  
+    numberDays(date);
     $scope.repack();
+  }
+
+  var numberDays = function(date) {
+    var difference = moment($scope.maxDate).diff(moment(date));
+
+    $scope.daysOld = Math.floor(moment.duration(difference).asDays());
+
   }
 
   var getSongs = function(year) {
@@ -84,15 +92,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     $scope.$container.packery();
     console.log("Just repacked");
     // $scope.$container.bindResize();
-  }
-
-  $scope.print = function() {
-
-    $('#header').css({display:'none'});
-    $('.print-panel').css({display:'none'});
-    window.print();
-    $('#header').css({display:''});
-    $('.print-panel').css({display:''});
   }
 
   $scope.capture = function() {
@@ -162,11 +161,17 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
   });
 
   $scope.card = {};
-  $scope.card.date = new Date("October 13, 1980 11:13:00");
+  // make new random date
+  var range = $scope.maxDate.getTime() - $scope.minDate.getTime();
+  console.log(range);
+  console.log($scope.maxDate.getTime());
+  $scope.card.date = new Date($scope.minDate.getTime() + (Math.random() * range));
+  console.log($scope.card.date);
   // edition is current year - 2015 + 1
   yearInt = parseInt(moment($scope.maxDate).format("YYYY"));
   $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
 
+  
 }])
 
