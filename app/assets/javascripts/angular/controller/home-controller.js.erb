@@ -161,7 +161,12 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
   });
 
   $scope.card = {};
-  $scope.card.date = new Date("October 13, 1980 11:13:00");
+  // make new random date
+  var range = $scope.maxDate.getTime() - $scope.minDate.getTime();
+  console.log(range);
+  console.log($scope.maxDate.getTime());
+  $scope.card.date = new Date($scope.minDate.getTime() + (Math.random() * range));
+  console.log($scope.card.date);
   // edition is current year - 2015 + 1
   yearInt = parseInt(moment($scope.maxDate).format("YYYY"));
   $scope.card.edition  = yearInt - 2014;
