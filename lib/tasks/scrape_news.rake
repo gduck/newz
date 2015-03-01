@@ -29,19 +29,37 @@ namespace :scrape_news do
         truncatedString = ""
         while finishTruncate == false do
           truncatedString = truncatedString + aString.split('.')[sentenceCounter].to_s + "."
+
+          # if no space after the "." then this is not a full stop
+          # ie maybe a decimal point & we need the rest of the sentence
+          # complicated, I know
+          # if there is a space FOLLOWED BY A NUMBER then it's a date 
+          # and we want to keep it together & not truncate yet
+          puts ">>>>>>>>>> CHECKING FOR SPACE"
+          nextSentence = aString.split('.')[sentenceCounter + 1]
+          # puts nextSentence[1].to_i.to_s
+          # puts (nextSentence[1].to_i.to_s == nextSentence[1])
+          if (nextSentence) &&
+            (nextSentence[0] != " " || (nextSentence[1].to_i.to_s == nextSentence[1])) then
+            truncatedString = truncatedString + aString.split('.')[sentenceCounter + 1].to_s + "."
+            sentenceCounter = sentenceCounter + 1
+            puts ">>>>>>>>>>> DID TRICKY SENTENCE THING HERE"
+          end
           if truncatedString.length > 100 then
             finishTruncate = true
           else
             sentenceCounter = sentenceCounter + 1
           end
         end
-        # puts truncatedString
+        puts ">>>>>>>>>>>>>>>>>MODIFIED"
+        puts truncatedString
+        puts truncatedString.length
         newArray.push(truncatedString)
       else
-        # puts aString
+        puts ">>>>>>>>>>>>>>>>> NOT MODIFIED"
+        puts aString
         newArray.push(aString)
       end
- 
 
       countArticles = countArticles + 1
       whichArticle = whichArticle + skipNumber

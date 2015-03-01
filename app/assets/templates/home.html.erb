@@ -47,13 +47,24 @@
 
           <div id="container" class="newspaper-body">
 
-            <div class="item-container item grid-sizer">
-              <div class="article-heading">
-              <img ng-src="<%= asset_path('movie.png') %>" class="image" images-loaded="imgLoadedEvents">
-                <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
+            <div class="item grid-sizer">
+              <div class="item-container">
+                <div class="article-heading">
+                <img ng-src="<%= asset_path('movie.png') %>" class="image" images-loaded="imgLoadedEvents">
+                  <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
+                </div>
+                <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
+                <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
+                </div>
               </div>
-              <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
-              <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
+              <div class="item-container">
+                <div class="birth-announcement">
+                  BIRTH ANNOUNCEMENT
+                </div>
+                <div class="article-text">
+                  <p>{{feature.name || "A very important person"}} was born today.</p>
+                  <p>On {{maxDate | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
+                </div>
               </div>
             </div>
 
@@ -68,14 +79,34 @@
               </div>
             </div>  
 
-            <div class="item-container item border-top">
-              <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
-              <div class="article-heading"><h3>US Top 5!</h3></div>
-              <div class="article-text">
-                <ol class="songs">
-                  <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
-                </ol>
+            <div class="item border-top">
+              <div class="item-container">
+                <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
+                <div class="article-heading"><h3>US Top 5!</h3></div>
+                <div class="article-text">
+                  <ol class="songs">
+                    <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
+                  </ol>
+                </div>
               </div>
+              <div class="item-container">
+                <img ng-src="<%= asset_path('money.gif') %>" class="image" images-loaded="imgLoadedEvents">
+                <div class="article-heading">
+                  <h3>Cost of Living</h3>
+                </div>
+                <div class="article-text">
+                  <ul class="facts">
+                    <li>Gold: ${{card.gold}} (oz)</li>
+                    <li>Dowjones {{card.dowjones}}</li>
+                    <li>Average Home ${{card.homeprice}}</li>
+                    <li>Average Car ${{card.newcar}}</li>
+                    <li>Bread Loaf ${{card.bread}}</li>
+                    <li>Gas ${{card.gas}} (gallon)</li>
+                    <li>World Population: {{card.population}}</li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
 
             <div id="main-feature-article" class="item-container item w2 main-feature">
@@ -102,33 +133,8 @@
               </div>
             </div>        
 
-            <div class="item-container item">
-              <img ng-src="<%= asset_path('money.gif') %>" class="image" images-loaded="imgLoadedEvents">
-              <div class="article-heading">
-                <h3>Cost of Living</h3>
-              </div>
-              <div class="article-text">
-                <ul class="facts">
-                  <li>Gold: ${{card.gold}} (oz)</li>
-                  <li>Dowjones {{card.dowjones}}</li>
-                  <li>Average Home ${{card.homeprice}}</li>
-                  <li>Average Car ${{card.newcar}}</li>
-                  <li>Bread Loaf ${{card.bread}}</li>
-                  <li>Gas ${{card.gas}} (gallon)</li>
-                  <li>World Population: {{card.population}}</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="item-container item">
-              <div class="birth-announcement">
-                BIRTH ANNOUNCEMENT
-              </div>
-              <div class="article-text">
-                <p>{{feature.name || "A very important person"}} was born today.</p>
-                <p>On {{maxDate | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
-              </div>
-            </div>
+            
+            
 
             <div class="barcode-stamp">
               <div class="barcode padded">DALEFOO.COM</div>
