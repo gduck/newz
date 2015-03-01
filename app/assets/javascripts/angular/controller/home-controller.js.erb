@@ -94,15 +94,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     // $scope.$container.bindResize();
   }
 
-  $scope.print = function() {
-
-    $('#header').css({display:'none'});
-    $('.print-panel').css({display:'none'});
-    window.print();
-    $('#header').css({display:''});
-    $('.print-panel').css({display:''});
-  }
-
   $scope.capture = function() {
       
       html2canvas($("#newspaper"), {
