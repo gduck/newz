@@ -110,9 +110,9 @@
             </div>
 
             <div id="main-feature-article" class="item-container item w2 main-feature">
-              <div class="article-heading feature"><h2>{{feature.heading}}</h2></div>
-              <div class="article-author"><h5>{{feature.author}}</h5></div>
-              <div class="article-text article feature">{{feature.article_text}}
+              <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
+              <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
+              <div class="article-text article feature">{{feature.article_text || "Your birthday message"}}
                 <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar" images-loaded="imgLoadedEvents">
               </div>
             </div>    
