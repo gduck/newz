@@ -26,7 +26,15 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     getHoroscopes(date);
     getMovies(year);
     getSongs(year);  
+    numberDays(date);
     $scope.repack();
+  }
+
+  var numberDays = function(date) {
+    var difference = moment($scope.maxDate).diff(moment(date));
+
+    $scope.daysOld = Math.floor(moment.duration(difference).asDays());
+
   }
 
   var getSongs = function(year) {
@@ -168,5 +176,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
   $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
 
+  
 }])
 
