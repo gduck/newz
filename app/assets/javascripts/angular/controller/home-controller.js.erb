@@ -1,14 +1,12 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', function($scope, $http, $rootScope, $timeout){
+app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$upload', function($scope, $http, $rootScope, $timeout, $upload){
 
-  $scope.feature = {
-    // heading: "Your heading",
-    // author: "author (you)",
-    // article_text: "Put a birthday message here"
-  };
+  $scope.feature = {};
+  $scope.card = {};
 
   $scope.minDate = new Date("1946-01-01");
   $scope.maxDate = new Date();
 
+  // FOR DATEPICKER
   $scope.open = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -19,6 +17,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     'starting-day': 1
   };
 
+  // ON DATE SELECT GET THINGS STARTED
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
     getNews(year);
@@ -26,15 +25,14 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     getHoroscopes(date);
     getMovies(year);
     getSongs(year);  
-    numberDays(date);
+    numberDaysOld(date);
     $scope.repack();
   }
 
-  var numberDays = function(date) {
+  var numberDaysOld = function(date) {
     var difference = moment($scope.maxDate).diff(moment(date));
 
     $scope.daysOld = Math.floor(moment.duration(difference).asDays());
-
   }
 
   var getSongs = function(year) {
@@ -88,14 +86,32 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     })
   }
 
+  // select file for image upload
+  $scope.$on("fileSelected", function (event, args) {
+    $scope.$apply(function () {
+      $scope.card.image = args.file;
+    });
+  })
+
+  // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
+  $scope.upload = $upload.upload({
+    url: 'http://newz-user-images.s3.amazonaws.com/',
+    method: 'POST',
+    file: $scope.card.image,
+    fileFormDataName: 'myEntity[image]',//myEntity is the name of the entity in which image is saved and image is the name of the attachment
+    fields: {}
+  }).success(function(data, status, headers, config) {
+    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+  });
+
+
   $scope.repack = function() {
     $scope.$container.packery();
     console.log("Just repacked");
     // $scope.$container.bindResize();
   }
 
-  $scope.capture = function() {
-      
+  $scope.capture = function() {  
       html2canvas($("#newspaper"), {
         onrendered: function (canvas) {
           var myImage = canvas.toDataURL("image/png");
@@ -160,7 +176,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
-  $scope.card = {};
+  
   // make new random date
   var range = $scope.maxDate.getTime() - $scope.minDate.getTime();
   console.log(range);

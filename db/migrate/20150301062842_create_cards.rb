@@ -3,7 +3,6 @@ class CreateCards < ActiveRecord::Migration
     create_table :cards do |t|
 
       t.date :date
-      t.attachment :avatar
       t.string :name
       t.string :feature_heading
       t.string :feature_article

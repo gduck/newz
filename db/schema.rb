@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227042016) do
+ActiveRecord::Schema.define(version: 20150301070802) do
+
+  create_table "cards", force: true do |t|
+    t.date     "date"
+    t.string   "name"
+    t.string   "feature_heading"
+    t.string   "feature_article"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chinese_horoscopes", force: true do |t|
     t.string   "animal"

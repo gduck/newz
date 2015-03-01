@@ -17,6 +17,8 @@
 //= require angular-resource
 //= require angular-route
 //= require angular-ui-bootstrap-tpls
+//= require ng-file-upload
+//= require ng-file-upload-shim
 //= require bootstrap
 //= require packery.pkgd
 //= require draggabilly.pkgd
