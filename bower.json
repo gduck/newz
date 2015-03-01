@@ -4,6 +4,7 @@
   "main": "",
   "private": true,
   "dependencies": {
-    "angular-images-loaded": "0.0.5"
+    "angular-images-loaded": "0.0.5",
+    "html2canvas": "0.4.1"
   }
 }
