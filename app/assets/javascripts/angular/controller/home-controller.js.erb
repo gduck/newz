@@ -86,23 +86,46 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     })
   }
 
+  // *****************************
+  // WHAT I'M WORKING ON RIGHT NOW
   // select file for image upload
-  $scope.$on("fileSelected", function (event, args) {
-    $scope.$apply(function () {
-      $scope.card.image = args.file;
-    });
-  })
-
   // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
   $scope.upload = $upload.upload({
-    url: 'http://newz-user-images.s3.amazonaws.com/',
+    // url: '/card/new',
+    url: 'https://s3.amazonaws.com/newz-user-images',
     method: 'POST',
     file: $scope.card.image,
-    fileFormDataName: 'myEntity[image]',//myEntity is the name of the entity in which image is saved and image is the name of the attachment
+    key: $scope.card.image,
+    AWSAccessKeyId: "AKIAJACNEVDWYZCMXGSQ",
+    acl: $scope.policy,
+    signature: $scope.signature,
+    // "Content-Type": file.type != '' ? file.type : 'application/octet-stream', 
+    // fileFormDataName: 'Card['+$scope.card.image+']',
+    //myEntity is the name of the entity in which image is saved and image is the name of the attachment
     fields: {}
   }).success(function(data, status, headers, config) {
     console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+  }).error(function(data) {
+    console.log(data)
   });
+
+  $scope.$watch('card.image', function() {
+    console.log($scope.card.image);
+    $scope.upload;
+  });
+
+
+
+  // $scope.$on("fileSelected", function (event, args) {
+  //   $scope.$apply(function () {
+  //     $scope.card.image = args.file;
+  //     console.log("About to upload");
+  //     $scope.upload();
+  //     console.log("Just did upload");
+  //     console.log(args.file);
+  //   });
+  // })
+
 
 
   $scope.repack = function() {

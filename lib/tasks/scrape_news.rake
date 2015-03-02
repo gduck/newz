@@ -80,7 +80,7 @@ namespace :scrape_news do
     require 'open-uri'
     require 'nokogiri'
 
-    for year in 1946..2012 do
+    for year in 2013..2015 do
     # for year in 1990..2015 do
 
       url = "http://www.infoplease.com/year/#{year}.html"

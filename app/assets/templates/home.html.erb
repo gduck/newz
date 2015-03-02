@@ -23,13 +23,17 @@
           <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
           <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
           <textarea ng-model="feature.article_text" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
+          
+          <!-- ***************************** -->
+          <!-- STUFF IM WORKING ON RIGHT NOW -->
           <form enctype="multipart/form-data">
-            <input type="file" id="fileUpload" ng-file-select />
-            <img ng-src="{{userImageLink}}" ng-click="openFileWindow()" ng-class="{ hidden: !userImageLink}" >
-            <div class="drop-box" ng-click="openFileWindow()" ng-class=" {hidden: userImageLink}">
+            <input type="file" id="fileUpload" ng-model="card.image" ng-file-select />
+            <img ng-src="card.image" ng-click="openFileWindow()" ng-class="{ hidden: !card.image}" >
+            <div class="drop-box" ng-click="openFileWindow()" ng-class=" {hidden: card.image}">
                 Click to add an image.
             </div>
           </form>
+
         </div>
       </div>
 
@@ -116,6 +120,8 @@
 
             </div>
 
+            <!-- ********************************** -->
+            <!-- MAIN ARTICLE -->
             <div id="main-feature-article" class="item-container item w2 main-feature">
               <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
               <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
@@ -123,6 +129,7 @@
                 <img ng-src="{{card.image}}" class="image avatar" images-loaded="imgLoadedEvents">
               </div>
             </div>    
+            <!-- ********************************** -->
 
             <div class="item-container item w2">
               <div class="article-heading horoscope">

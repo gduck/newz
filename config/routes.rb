@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get 'zodiac/:date' => 'zodiacs#find'
   get 'facts/:date' => 'random_facts#find'
 
+  post 'card/new' => 'card#new'
+
 
 end
