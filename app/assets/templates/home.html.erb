@@ -148,14 +148,14 @@
               <!-- <div class="article"> -->
                 <span class="horoscope-name">{{card.zodiacName}}</span>
                 <span id="zodiac_img_container">
-                  <img id="zodiac_name" ng-src="{{zodiac_img_src}}" class="image zodiac" images-loaded="imgLoadedEvents">
+                  <img id="zodiac_name" ng-src="{{zodiac_img_src || '//:0' }}" class="image zodiac" images-loaded="imgLoadedEvents">
                 </span>
                 <p class="article-text">{{card.zodiac}} </p>
               </div>
               <div class="article-text col-xs-6 padded-top">
                 <span class="horoscope-name">{{card.animalName}}</span>
                 <span id="animal_img_container">
-                  <img id="animal_name" class="image animal" images-loaded="imgLoadedEvents" ng-src="{{animal_img_src}}"> 
+                  <img id="animal_name" class="image animal" images-loaded="imgLoadedEvents" ng-src="{{animal_img_src || '//:0' }}"> 
                 </span> 
                 <p class="article-text">{{card.chinese_horoscope}}</p>   
               </div>
