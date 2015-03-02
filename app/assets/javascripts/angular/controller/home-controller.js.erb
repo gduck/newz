@@ -101,17 +101,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
       $scope.card.zodiacName = data.zodiacName;
       $scope.card.chinese_horoscope = data.animalDesc;
       $scope.card.animalName = data.animalName;
-      //$("#animal_img").attr('crossOrigin', '');
-      // $scope.animal_name_src = 'https://newz-images.s3.amazonaws.com/chinese_horoscope/' + $scope.card.animalName + '.jpg';
-      // /assets/chinese_horoscope/Rat.jpg
       $scope.animal_img_src = '/assets/chinese_horoscope/' + $scope.card.animalName + '.jpg';
       console.log($scope.animal_img_src);
       $scope.zodiac_img_src = '/assets/zodiac/' + $scope.card.zodiacName + '.png';
-
-
-      // console.log("just got animal name");
-      // $("#animal_img").attr('src', 'https://newz-images.s3.amazonaws.com/chinese_horoscope/' + $scope.card.animalName + '.jpg');
-      
       $scope.apply;
       
     })
@@ -183,19 +175,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.capture = function() {  
 
-    // html2canvas($("#newspaper"), {
-    //   logging: true,
-    //   useCORS: true,
-    //   allowTaint: true,
-    //   onrendered: function( canvas ) {
-    //     // $("#newspaper").append(canvas);
-    //     var img = canvas.toDataURL()
-    //     window.open(img);
-    //   }
-    // });
-
-
-
       html2canvas($("#newspaper"), {
         allowTaint: true,
         useCORS: true,
@@ -211,30 +190,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
           });
         }
       });
-      // VARIOUS OPTIONS I'VE TRIED
-      // I WOULD LIKE TO KEEP THEM FOR REFERENCE
-      // FOR NOW 
-
-      // $('#newspaper').html2canvas();
-      // var queue = html2canvas.Parse();
-      // var canvas = html2canvas.Renderer(queue,{elements:{length:1}});
-      // var img = canvas.toDataURL();
-      // window.open(img);
-
-      // html2canvas($('#newspaper'), {
-      //    onrendered: function(canvas) {
-      //       document.body.appendChild(canvas);
-      //       //var img = canvas.toDataURL()
-      //       //window.open(img);
-      //   }
-      // });
-      
-      // only jpeg is supported by jsPDF
-      // var imgData = canvas.toDataURL("image/jpeg", 1.0);
-      // var pdf = new jsPDF();
-
-      // pdf.addImage(imgData, 'JPEG', 0, 0);
-      // pdf.save("download.pdf");
   }
 
   $scope.$container = $('#container');
