@@ -79,7 +79,7 @@
                 <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
                 </div>
               </div>
-              <div class="item-container">
+              <div class="item-container padded-top">
                 <div class="birth-announcement">
                   BIRTH ANNOUNCEMENT
                 </div>
@@ -116,16 +116,24 @@
                 <div class="article-heading">
                   <h3>Cost of Living</h3>
                 </div>
-                <div class="article-text">
-                  <ul class="facts">
-                    <li>Gold: ${{card.gold}} (oz)</li>
-                    <li>Dowjones {{card.dowjones}}</li>
-                    <li>Average Home ${{card.homeprice}}</li>
-                    <li>Average Car ${{card.newcar}}</li>
-                    <li>Bread Loaf ${{card.bread}}</li>
-                    <li>Gas ${{card.gas}} (gallon)</li>
-                    <li>World Population: {{card.population}}</li>
-                  </ul>
+                <table class="article-text table">
+                  <tr class="facts">
+                    <td>Gold:</td><td>${{card.gold}} (oz)</td>
+                  </tr><tr>
+                    <td>Dowjones</td><td>{{card.dowjones}}</td>
+                  </tr><tr>
+                    <td>Av. Home</td><td>${{card.homeprice}}</td>
+                  </tr><tr>
+                    <td>Av. Car</td><td>${{card.newcar}}</td>
+                  </tr><tr>
+                    <td>Bread Loaf</td><td>${{card.bread}}</td>
+                  </tr><tr>
+                    <td>Gas</td><td>${{card.gas}} (gallon)</td>
+                  </tr>
+                </table>
+                <div class="article-heading">
+                  <h3 class="">World Population:</h3>
+                  <h4 class="">{{card.population}}</h4>
                 </div>
               </div>
 
