@@ -85,7 +85,7 @@
                 </div>
                 <div class="article-text">
                   <p>{{feature.name || "A very important person"}} was born today.</p>
-                  <p>On {{maxDate | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
+                  <p>On {{today | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@
               </div>
             </div>  
 
-            <div class="item border-top">
+            <div class="item">
               <div class="item-container">
                 <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
                 <div class="article-heading"><h3>US Top 5!</h3></div>
