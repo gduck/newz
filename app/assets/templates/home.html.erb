@@ -135,7 +135,7 @@
               <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
               <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
               <div class="article-text article feature">{{feature.article_text || "Your birthday message"}}
-                <img ng-src="https://s3.amazonaws.com/birthday-newz/{{card.img}}" class="image desaturate main" images-loaded="imgLoadedEvents">
+                <!-- <img ng-src="https://s3.amazonaws.com/birthday-newz/{{card.img}}" class="image desaturate main" images-loaded="imgLoadedEvents"> -->
               </div>
             </div>    
             <!-- ********************************** -->
@@ -147,12 +147,16 @@
               <div class="article-text col-xs-6 padded-top">
               <!-- <div class="article"> -->
                 <span class="horoscope-name">{{card.zodiacName}}</span>
-                <img ng-src="https://newz-images.s3.amazonaws.com/zodiacs/{{card.zodiacName}}.png" class="image zodiac" images-loaded="imgLoadedEvents">
+                <span id="zodiac_img_container">
+                  <img id="zodiac_name" ng-src="{{zodiac_img_src}}" class="image zodiac" images-loaded="imgLoadedEvents">
+                </span>
                 <p class="article-text">{{card.zodiac}} </p>
               </div>
               <div class="article-text col-xs-6 padded-top">
                 <span class="horoscope-name">{{card.animalName}}</span>
-                <img ng-src="https://newz-images.s3.amazonaws.com/chinese_horoscope/{{card.animalName}}.jpg" class="image animal" images-loaded="imgLoadedEvents">  
+                <span id="animal_img_container">
+                  <img id="animal_name" class="image animal" images-loaded="imgLoadedEvents" ng-src="{{animal_img_src}}"> 
+                </span> 
                 <p class="article-text">{{card.chinese_horoscope}}</p>   
               </div>
             </div>        

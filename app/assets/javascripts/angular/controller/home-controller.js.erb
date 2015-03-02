@@ -101,6 +101,19 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
       $scope.card.zodiacName = data.zodiacName;
       $scope.card.chinese_horoscope = data.animalDesc;
       $scope.card.animalName = data.animalName;
+      //$("#animal_img").attr('crossOrigin', '');
+      // $scope.animal_name_src = 'https://newz-images.s3.amazonaws.com/chinese_horoscope/' + $scope.card.animalName + '.jpg';
+      // /assets/chinese_horoscope/Rat.jpg
+      $scope.animal_img_src = '/assets/chinese_horoscope/' + $scope.card.animalName + '.jpg';
+      console.log($scope.animal_img_src);
+      $scope.zodiac_img_src = '/assets/zodiac/' + $scope.card.zodiacName + '.png';
+
+
+      // console.log("just got animal name");
+      // $("#animal_img").attr('src', 'https://newz-images.s3.amazonaws.com/chinese_horoscope/' + $scope.card.animalName + '.jpg');
+      
+      $scope.apply;
+      
     })
   }
 
@@ -170,34 +183,34 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.capture = function() {  
 
-    html2canvas($("#newspaper"), {
-      logging: true,
-      useCORS: true,
-      allowTaint: true,
-      onrendered: function( canvas ) {
-        // $("#newspaper").append(canvas);
-        var img = canvas.toDataURL()
-        window.open(img);
-      }
-    });
+    // html2canvas($("#newspaper"), {
+    //   logging: true,
+    //   useCORS: true,
+    //   allowTaint: true,
+    //   onrendered: function( canvas ) {
+    //     // $("#newspaper").append(canvas);
+    //     var img = canvas.toDataURL()
+    //     window.open(img);
+    //   }
+    // });
 
 
 
-      // html2canvas($("#newspaper"), {
-      //   allowTaint: true,
-      //   useCORS: true,
-      //   // taintTest: false,
-      //   // proxy: '/img/get',
-      //   logging: true,
-      //   onrendered: function (canvas) {
-      //     var myImage = canvas.toDataURL("image/jpg");
-      //     var tWindow = window.open("");
-      //     $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
-      //         tWindow.focus();
-      //         tWindow.print();
-      //     });
-      //   }
-      // });
+      html2canvas($("#newspaper"), {
+        allowTaint: true,
+        useCORS: true,
+        // taintTest: false,
+        // proxy: '/img/get',
+        logging: true,
+        onrendered: function (canvas) {
+          var myImage = canvas.toDataURL("image/jpg");
+          var tWindow = window.open("");
+          $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
+              tWindow.focus();
+              tWindow.print();
+          });
+        }
+      });
       // VARIOUS OPTIONS I'VE TRIED
       // I WOULD LIKE TO KEEP THEM FOR REFERENCE
       // FOR NOW 
