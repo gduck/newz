@@ -64,10 +64,11 @@ div.article{
 .image {
   /*display: block;*/
   width: 80%;
+  max-width: 200px;
   overflow: hidden;
 }
 .avatar {
-  width: 80px;
+  width: 100px;
   /*float-wrap:square; */
 }
 .image.zodiac {
@@ -78,6 +79,10 @@ div.article{
 .image.animal {
   float: right;
   width: 40%;
+}
+.image.main {
+  max-width: 200px;
+  float: right;
 }
 
 img.desaturate { 

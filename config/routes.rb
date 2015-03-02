@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'facts/:date' => 'random_facts#find'
 
   post 'card/new' => 'card#new'
+  get 'img/get' => 'card#get'
 
 
 end
