@@ -26,14 +26,29 @@
           
           <!-- ***************************** -->
           <!-- STUFF IM WORKING ON RIGHT NOW -->
-          <form enctype="multipart/form-data">
+          <!-- <form enctype="multipart/form-data"> -->
             <input type="file" id="fileUpload" ng-model="card.image" ng-file-select />
             <img ng-src="card.image" ng-click="openFileWindow()" ng-class="{ hidden: !card.image}" >
             <div class="drop-box" ng-click="openFileWindow()" ng-class=" {hidden: card.image}">
-                Click to add an image.
+                <!-- Click to add an image. -->
             </div>
-          </form>
+            <!-- <input type='file' onchange="readURL(this)" />
+            <img id="blah" src="#" alt="your image" /> -->
+          <!-- </form> -->
 
+          <!-- something new from http://plnkr.co/edit/y5n16v?p=preview -->
+          <!-- http://stackoverflow.com/questions/18754943/preview-image-before-uploading-angularjs -->
+          <form>
+                  <input type="file" ng-file-select="onFileSelect($files)" >
+           <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+            
+          </form>
+          <b>Preview:</b><br />
+          <i ng-hide="imageSrc">No image chosen</i>
+          <img ng-src="{{imageSrc}}" /><br/>
+          <b>Progress:</b>
+          <progress value="{{progress}}"></progress>
+              
         </div>
       </div>
 
@@ -126,7 +141,7 @@
               <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
               <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
               <div class="article-text article feature">{{feature.article_text || "Your birthday message"}}
-                <img ng-src="{{card.image}}" class="image avatar" images-loaded="imgLoadedEvents">
+                <img ng-src="{{imageSrc}}" class="image avatar" images-loaded="imgLoadedEvents">
               </div>
             </div>    
             <!-- ********************************** -->

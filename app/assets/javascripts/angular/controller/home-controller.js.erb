@@ -1,4 +1,19 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$upload', function($scope, $http, $rootScope, $timeout, $upload){
+app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$upload', 'fileReader', function($scope, $http, $rootScope, $timeout, $upload, fileReader){
+
+  console.log(fileReader);
+  console.log("*************");
+
+  $scope.getFile = function () {
+          $scope.progress = 0;
+          fileReader.readAsDataUrl($scope.file, $scope)
+                        .then(function(result) {
+                            $scope.imageSrc = result;
+                        });
+      };
+   
+      $scope.$on("fileProgress", function(e, progress) {
+          $scope.progress = progress.loaded / progress.total;
+      });
 
   $scope.feature = {};
   $scope.card = {};
@@ -92,29 +107,46 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
   // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
   $scope.upload = $upload.upload({
     // url: '/card/new',
-    url: 'https://s3.amazonaws.com/newz-user-images',
+    url: 'https://s3.amazonaws.com/newz-images/',
     method: 'POST',
     file: $scope.card.image,
-    key: $scope.card.image,
+    // key: $scope.card.image,
     AWSAccessKeyId: "AKIAJACNEVDWYZCMXGSQ",
-    acl: $scope.policy,
-    signature: $scope.signature,
+    // acl: $scope.policy,
+    // signature: $scope.signature,
     // "Content-Type": file.type != '' ? file.type : 'application/octet-stream', 
     // fileFormDataName: 'Card['+$scope.card.image+']',
     //myEntity is the name of the entity in which image is saved and image is the name of the attachment
     fields: {}
   }).success(function(data, status, headers, config) {
     console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-  }).error(function(data) {
-    console.log(data)
+    console.log("SOME SUCCESS HERE");
+  }).error(function(response) {
+    console.log(response);
+    console.log("ANOTHER FN ERROR");
   });
 
-  $scope.$watch('card.image', function() {
-    console.log($scope.card.image);
-    $scope.upload;
-  });
+  // $scope.$watch('card.image', function() {
+  //   console.log("WATCH TRIGGERED");
+  //   console.log($scope.card.image);
+  //   console.log($scope.card.image[0]);
+  //   $scope.upload;
+  // });
 
+  // function readURL(input) {
+  //         if (input.files && input.files[0]) {
+  //             var reader = new FileReader();
 
+  //             reader.onload = function (e) {
+  //                 $('#blah')
+  //                     .attr('src', e.target.result)
+  //                     .width(150)
+  //                     .height(200);
+  //             };
+
+  //             reader.readAsDataURL(input.files[0]);
+  //         }
+  //     }
 
   // $scope.$on("fileSelected", function (event, args) {
   //   $scope.$apply(function () {
@@ -211,6 +243,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
   $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
 
-  
+
+
 }])
 
