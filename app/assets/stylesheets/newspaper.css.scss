@@ -10,16 +10,7 @@
   bottom: 0;
   left: 20px;
 }
-/* FACEBOOK */
-button.fb {
-  width: 50px;
-  height: 50px;
-  padding: 0;
-  border: 0;
-}
-img.fb {
-  width: 100%;
-}
+
 
 /* MAIN LAYOUT ----------*/
 
@@ -32,6 +23,7 @@ img.fb {
   border-left: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
 }
+
 
 /* ARTICLE STUFF ------------*/
 .article {
@@ -108,8 +100,21 @@ img.desaturate {
   top:50%; 
   left:50%;*/
   margin-top: 10px;
-  border-radius: 10px;
+  border-radius: 16px;
   box-shadow: 2px 2px 2px #888888
+}
+.inputs > .form-control {
+  border-radius: 5px;
+}
+/* FACEBOOK */
+button.fb {
+  width: 50px;
+  /*height: 50px;*/
+  padding: 0;
+  border: 0;
+}
+img.fb {
+  width: 100%;
 }
 
 /* FONTS -----------------*/
@@ -142,7 +147,7 @@ img.desaturate {
   padding: 20px;
 }
 .header-left {
-  padding-left: 5%;
+  padding-left: 0;
 }
 .barcode {
   font-family: 'barcode font';
