@@ -6,7 +6,6 @@
   <%= javascript_include_tag 'application' %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/angular.moment/0.9.0/angular-moment.min.js"></script>
-  <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body ng-view>
@@ -21,7 +20,8 @@
     };
 
     (function() {
-      var e = document.createElement('script'); e.async = true;
+      var e = document.createElement('script'); 
+      e.async = true;
       e.src = document.location.protocol +
       '//connect.facebook.net/en_US/all.js';
       document.getElementById('fb-root').appendChild(e);
@@ -32,6 +32,4 @@
 
 </body>
 </html>
-
-<div id="fb-root"></div>
 

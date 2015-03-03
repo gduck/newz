@@ -2,32 +2,32 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
 
   // $scope.post = [{id:1,title:"title1",content:"content1",caption:"caption1"},{id:2,title:"title2",content:"content2",caption:"caption2"}];
 
-  $scope.share = function(post){
-    console.log("shared from fbcontroller");
-  //   FB.ui(
-  //   {
-  //       method: 'feed',
-  //       name: 'Birthday Newz',
-  //       link: 'https://birthday-newz.herokuapp.com/#/',
-  //       picture: 'pic.png',
-  //       caption: 'Birthday Newz for {{card.name}}',
-  //       description: '',
-  //       message: ''
-  //   });
-  // }
+  var sendToFB = function(picture_link){
+    console.log("in FB send");
+    FB.ui({
+        method: 'feed',
+        name: 'Birthday Newz',
+        link: picture_link,
+        picture: picture_link,
+        caption: 'Birthday Newz',
+        description: '',
+        message: ''
+    });
   };
 
   // *****************************
   // AWS S3 UPLOAD STUFF
-
   $scope.share = function() {  
+    
+    var bucket = 'birthday-newz';
+    var url = 'https://s3.amazonaws.com/' + bucket + '/';
+
     html2canvas($("#newspaper"), {
       allowTaint: true,
       useCORS: true,
       // taintTest: false,
       logging: true,
       onrendered: function (canvas) {
-        var bucket = 'birthday-newz';
         var randomID = Math.floor(Math.random() * 100000000);
 
         var img = canvas.toDataURL('image/png');
@@ -42,11 +42,13 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
         // xhr.addEventListener("error", uploadFailed, false);
         // xhr.addEventListener("abort", uploadCanceled, false);
 
-        xhr.open('POST', 'https://s3.amazonaws.com/' + bucket + '/', true); 
+        xhr.open('POST', url, true); 
 
         xhr.send(formData); 
-        console.log(randomID);
 
+        var card_url = url + randomID;
+        console.log(card_url);
+        sendToFB(card_url);
 
         // var img = new Image();
         // img.src = canvas.toDataURL('image/jpg');
@@ -60,7 +62,6 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
       }
     });
   }
-
 
   var doForm = function(blob, filename) {
     var accessKey = 'AKIAJ7UNHWBS5OZKZG7A';
@@ -80,7 +81,6 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
 
     return fd;
   }
-
 
   var upload = function(file, filename) {
     var uploadUrl = 'https://birthday-newz.s3.amazonaws.com/';
@@ -125,9 +125,10 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
       for (var i = 0; i < byteString.length; i++) {
           ia[i] = byteString.charCodeAt(i);
       }
-
       return new Blob([ia], {type:mimeString});
   }
+
+}])
 
   // select file for image upload
   // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
@@ -155,5 +156,3 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
   // $scope.$watch('files', function () {
   //   $scope.upload($scope.files);
   // });
-
-}])
