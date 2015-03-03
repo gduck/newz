@@ -1,0 +1,17 @@
+app.controller("fbCtrl",function($scope){
+
+  // $scope.post = [{id:1,title:"title1",content:"content1",caption:"caption1"},{id:2,title:"title2",content:"content2",caption:"caption2"}];
+
+  $scope.share = function(post){
+    FB.ui(
+    {
+        method: 'feed',
+        name: 'Birthday Newz',
+        link: 'https://birthday-newz.herokuapp.com/#/',
+        picture: 'pic.png',
+        caption: 'Birthday Newz for {{card.name}}',
+        description: '',
+        message: ''
+    });
+  }
+});
