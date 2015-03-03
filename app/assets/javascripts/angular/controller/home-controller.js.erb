@@ -9,7 +9,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
   };
   
   $scope.$watch('imageSrc', function() {
-    console.log("WATCH TRIGGERED");
+    console.log("WATCH TRIGGERED in $watch, homectr");
     $scope.repack();
   });
 
@@ -102,68 +102,13 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
       $scope.card.chinese_horoscope = data.animalDesc;
       $scope.card.animalName = data.animalName;
       $scope.animal_img_src = '/assets/chinese_horoscope/' + $scope.card.animalName + '.jpg';
-      console.log($scope.animal_img_src);
+
+      console.log("in getHoroscopes " + $scope.animal_img_src);
       $scope.zodiac_img_src = '/assets/zodiac/' + $scope.card.zodiacName + '.png';
       $scope.apply;
       
     })
   }
-
-  // *****************************
-  // WHAT I'M WORKING ON RIGHT NOW
-  // select file for image upload
-  // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
-  // $scope.upload = $upload.upload({
-  //   // url: '/card/new',
-  //   url: 'https://s3.amazonaws.com/newz-images/',
-  //   method: 'POST',
-  //   file: $scope.card.image,
-  //   // key: $scope.card.image,
-  //   AWSAccessKeyId: "AKIAJACNEVDWYZCMXGSQ",
-  //   // acl: $scope.policy,
-  //   // signature: $scope.signature,
-  //   // "Content-Type": file.type != '' ? file.type : 'application/octet-stream', 
-  //   // fileFormDataName: 'Card['+$scope.card.image+']',
-  //   //myEntity is the name of the entity in which image is saved and image is the name of the attachment
-  //   fields: {}
-  // }).success(function(data, status, headers, config) {
-  //   console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-  //   console.log("SOME SUCCESS HERE");
-  // }).error(function(response) {
-  //   console.log(response);
-  //   console.log("ANOTHER FN ERROR");
-  // });
-
-  $scope.$watch('files', function () {
-          $scope.upload($scope.files);
-      });
-
-      $scope.upload = function (files) {
-          if (files && files.length) {
-              for (var i = 0; i < files.length; i++) {
-                  var file = files[i];
-                  $upload.upload({
-                      url: 'https://birthday-newz.s3.amazonaws.com/',
-                      fields: {
-                        AWSAccessKeyId: 'AKIAJ7UNHWBS5OZKZG7A',
-                        key: file.name,
-                        filename: file.name,
-                        acl: 'private',
-                        'Content-Type': '',
-                        policy: 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImJpcnRoZGF5LW5ld3oifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICIiXSwKICAgIHsiYWNsIjogInByaXZhdGUifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=',
-                        signature: 'Q+xxfE8tkHNfoPgNu1v5+5uUtFc='
-                      },                      
-                      file: file
-                  }).progress(function (evt) {
-                      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                      console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                  }).success(function (data, status, headers, config) {
-                      console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                      $scope.card.img = config.file.name;
-                  });
-              }
-          }
-      };
 
   $scope.repack = function() {
     $scope.$container.packery();
@@ -171,25 +116,21 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     // $scope.$container.bindResize();
   }
 
-  
-
-  $scope.capture = function() {  
-
-      html2canvas($("#newspaper"), {
-        allowTaint: true,
-        useCORS: true,
-        // taintTest: false,
-        // proxy: '/img/get',
-        logging: true,
-        onrendered: function (canvas) {
-          var myImage = canvas.toDataURL("image/jpg");
-          var tWindow = window.open("");
-          $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
-              tWindow.focus();
-              tWindow.print();
-          });
-        }
-      });
+  $scope.print = function() {  
+    html2canvas($("#newspaper"), {
+      allowTaint: true,
+      useCORS: true,
+      // taintTest: false,
+      logging: true,
+      onrendered: function (canvas) {
+        var myImage = canvas.toDataURL("image/jpg");
+        var tWindow = window.open("");
+        $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
+            tWindow.focus();
+            tWindow.print();
+        });
+      }
+    });
   }
 
   $scope.$container = $('#container');
@@ -206,7 +147,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.imgLoadedEvents = {
     always: function(instance) {
-      // console.log("images all loaded");
       $timeout(function(){
         $scope.repack();
       }, 1500)
@@ -219,32 +159,15 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     // bind Draggabilly events to Packery
     $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
-
   
   // make new random date
   var range = $scope.today.getTime() - $scope.minDate.getTime();
-  console.log(range);
-  console.log($scope.today.getTime());
   $scope.card.date = new Date($scope.minDate.getTime() + (Math.random() * range));
-  console.log($scope.card.date);
+
   // edition is current year - 2015 + 1
   yearInt = parseInt(moment($scope.today).format("YYYY"));
   $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
 
-  $(document).ready(function(){
-    $('#share_button').click(function(e){
-      e.preventDefault();
-      FB.ui({
-        method: 'feed',
-        name: 'Birthday Newz',
-        link: $scope.card.img_src,
-        caption: 'Birthday Newz for You',
-        description: '',
-        message: ''
-      });
-    });
-  });
-  
 }])
 
