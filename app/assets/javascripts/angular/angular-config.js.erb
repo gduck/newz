@@ -4,4 +4,5 @@ var app = angular.module('newz', ['ngRoute', 'angularMoment', 'ui.bootstrap', 'a
 app.config(['$routeProvider',function($routeProvider){
   $routeProvider
   .when('/', {templateUrl: "<%= asset_path('home.html') %>", controller: 'HomeCtrl'})
+  .when('/close', {templateUrl: "<%= asset_path('close.html')%>", controller: 'CloseCtrl'})
 }]);

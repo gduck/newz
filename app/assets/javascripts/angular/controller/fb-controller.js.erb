@@ -3,17 +3,21 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
   var sendToFB = function(picture_link){
     console.log("in FB send");
     console.log(picture_link);
+    // description = "Make and share a Birthday Newzpaper for friends and family";
+    // urlForFB = "https://www.facebook.com/dialog/feed?app_id=675037362618881&link=https://birthday-newz.herokuapp.com/&picture="+picture_link+"&name=Birthday%20Newz&caption=&description="+description+"&redirect_uri=https://birthday-newz.herokuapp.com/#/close.html";
+
+    //   window.open(urlForFB, 'feedDialog', 'toolbar=0,status=0,width=626,height=436');
 
     FB.ui({
-        method: 'send',
-        // app_id: 675037362618881,
-        // name: 'Birthday Newz',
-        link: picture_link
-        // redirect_uri: 'https://birthday-newz.herokuapp.com/#/',
-        // picture: picture_link,
-        // caption: 'Birthday Newz',
-        // description: 'Make and share a birthday newspaper for your friends and family, customised to your birth date',
-        // message: ''
+        method: 'feed',
+        // app_id: '675037362618881',
+        name: 'Birthday Newz',
+        picture: picture_link,
+        redirect_uri: 'https://www.facebook.com/',
+        link: picture_link,
+        caption: 'Birthday Newz',
+        description: 'Send a Birthday Newzpaper to friends and family',
+        message: 'tag your birthday friend'
     });
   };
 
@@ -43,8 +47,9 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
         xhr.send(formData); 
 
         $scope.card_url = url + randomID;
-        console.log($scope.card_url);
+        // console.log($scope.card_url);
         sendToFB($scope.card_url);
+
       }
     });
   }
@@ -115,3 +120,5 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
   }
 
 }])
+
+
