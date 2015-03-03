@@ -64,10 +64,11 @@ div.article{
 .image {
   /*display: block;*/
   width: 80%;
+  max-width: 200px;
   overflow: hidden;
 }
 .avatar {
-  width: 80px;
+  width: 100px;
   /*float-wrap:square; */
 }
 .image.zodiac {
@@ -79,12 +80,16 @@ div.article{
   float: right;
   width: 40%;
 }
-.print-btn {
-  /*text-align: center;*/
-  /*margin: -20px -50px; */
-  /*position:relative;
-  top:50%; 
-  left:50%;*/
+.image.main {
+  max-width: 200px;
+  float: right;
+}
+
+img.desaturate { 
+  -webkit-filter: grayscale(100%);
+  -webkit-filter: grayscale(1);
+  filter: grayscale(100%); 
+  filter: gray;
 }
 
 /* FONTS -----------------*/
@@ -178,7 +183,7 @@ div.article{
   padding: 20px;
 }
 .padded-top {
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 .border-top {

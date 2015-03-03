@@ -1,14 +1,30 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', function($scope, $http, $rootScope, $timeout){
+app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$upload', 'fileReader', function($scope, $http, $rootScope, $timeout, $upload, fileReader){
 
-  $scope.feature = {
-    // heading: "Your heading",
-    // author: "author (you)",
-    // article_text: "Put a birthday message here"
+  $scope.getFile = function () {
+    $scope.progress = 0;
+    fileReader.readAsDataUrl($scope.file, $scope)
+    .then(function(result) {
+        $scope.imageSrc = result;
+    });
   };
+  
+  $scope.$watch('imageSrc', function() {
+    console.log("WATCH TRIGGERED");
+    $scope.repack();
+  });
+
+  $scope.$on("fileProgress", function(e, progress) {
+    $scope.progress = progress.loaded / progress.total;
+  });
+
+  $scope.feature = {};
+  $scope.card = {};
 
   $scope.minDate = new Date("1946-01-01");
-  $scope.maxDate = new Date();
+  $scope.maxDate = new Date("2012-12-31");
+  $scope.today = new Date();
 
+  // FOR DATEPICKER
   $scope.open = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -19,6 +35,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     'starting-day': 1
   };
 
+  // ON DATE SELECT GET THINGS STARTED
   $scope.selectDate = function(date) {
     year = moment(date).format('YYYY');
     getNews(year);
@@ -26,15 +43,14 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     getHoroscopes(date);
     getMovies(year);
     getSongs(year);  
-    numberDays(date);
+    numberDaysOld(date);
     $scope.repack();
   }
 
-  var numberDays = function(date) {
-    var difference = moment($scope.maxDate).diff(moment(date));
+  var numberDaysOld = function(date) {
+    var difference = moment($scope.today).diff(moment(date));
 
     $scope.daysOld = Math.floor(moment.duration(difference).asDays());
-
   }
 
   var getSongs = function(year) {
@@ -85,8 +101,69 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
       $scope.card.zodiacName = data.zodiacName;
       $scope.card.chinese_horoscope = data.animalDesc;
       $scope.card.animalName = data.animalName;
+      $scope.animal_img_src = '/assets/chinese_horoscope/' + $scope.card.animalName + '.jpg';
+      console.log($scope.animal_img_src);
+      $scope.zodiac_img_src = '/assets/zodiac/' + $scope.card.zodiacName + '.png';
+      $scope.apply;
+      
     })
   }
+
+  // *****************************
+  // WHAT I'M WORKING ON RIGHT NOW
+  // select file for image upload
+  // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
+  // $scope.upload = $upload.upload({
+  //   // url: '/card/new',
+  //   url: 'https://s3.amazonaws.com/newz-images/',
+  //   method: 'POST',
+  //   file: $scope.card.image,
+  //   // key: $scope.card.image,
+  //   AWSAccessKeyId: "AKIAJACNEVDWYZCMXGSQ",
+  //   // acl: $scope.policy,
+  //   // signature: $scope.signature,
+  //   // "Content-Type": file.type != '' ? file.type : 'application/octet-stream', 
+  //   // fileFormDataName: 'Card['+$scope.card.image+']',
+  //   //myEntity is the name of the entity in which image is saved and image is the name of the attachment
+  //   fields: {}
+  // }).success(function(data, status, headers, config) {
+  //   console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+  //   console.log("SOME SUCCESS HERE");
+  // }).error(function(response) {
+  //   console.log(response);
+  //   console.log("ANOTHER FN ERROR");
+  // });
+
+  $scope.$watch('files', function () {
+          $scope.upload($scope.files);
+      });
+
+      $scope.upload = function (files) {
+          if (files && files.length) {
+              for (var i = 0; i < files.length; i++) {
+                  var file = files[i];
+                  $upload.upload({
+                      url: 'https://birthday-newz.s3.amazonaws.com/',
+                      fields: {
+                        AWSAccessKeyId: 'AKIAJ7UNHWBS5OZKZG7A',
+                        key: file.name,
+                        filename: file.name,
+                        acl: 'private',
+                        'Content-Type': '',
+                        policy: 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImJpcnRoZGF5LW5ld3oifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICIiXSwKICAgIHsiYWNsIjogInByaXZhdGUifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=',
+                        signature: 'Q+xxfE8tkHNfoPgNu1v5+5uUtFc='
+                      },                      
+                      file: file
+                  }).progress(function (evt) {
+                      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                      console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                  }).success(function (data, status, headers, config) {
+                      console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                      $scope.card.img = config.file.name;
+                  });
+              }
+          }
+      };
 
   $scope.repack = function() {
     $scope.$container.packery();
@@ -94,11 +171,18 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     // $scope.$container.bindResize();
   }
 
-  $scope.capture = function() {
-      
+  
+
+  $scope.capture = function() {  
+
       html2canvas($("#newspaper"), {
+        allowTaint: true,
+        useCORS: true,
+        // taintTest: false,
+        // proxy: '/img/get',
+        logging: true,
         onrendered: function (canvas) {
-          var myImage = canvas.toDataURL("image/png");
+          var myImage = canvas.toDataURL("image/jpg");
           var tWindow = window.open("");
           $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
               tWindow.focus();
@@ -106,30 +190,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
           });
         }
       });
-      // VARIOUS OPTIONS I'VE TRIED
-      // I WOULD LIKE TO KEEP THEM FOR REFERENCE
-      // FOR NOW 
-
-      // $('#newspaper').html2canvas();
-      // var queue = html2canvas.Parse();
-      // var canvas = html2canvas.Renderer(queue,{elements:{length:1}});
-      // var img = canvas.toDataURL();
-      // window.open(img);
-
-      // html2canvas($('#newspaper'), {
-      //    onrendered: function(canvas) {
-      //       document.body.appendChild(canvas);
-      //       //var img = canvas.toDataURL()
-      //       //window.open(img);
-      //   }
-      // });
-      
-      // only jpeg is supported by jsPDF
-      // var imgData = canvas.toDataURL("image/jpeg", 1.0);
-      // var pdf = new jsPDF();
-
-      // pdf.addImage(imgData, 'JPEG', 0, 0);
-      // pdf.save("download.pdf");
   }
 
   $scope.$container = $('#container');
@@ -160,18 +220,19 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', functio
     $scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
 
-  $scope.card = {};
+  
   // make new random date
-  var range = $scope.maxDate.getTime() - $scope.minDate.getTime();
+  var range = $scope.today.getTime() - $scope.minDate.getTime();
   console.log(range);
-  console.log($scope.maxDate.getTime());
+  console.log($scope.today.getTime());
   $scope.card.date = new Date($scope.minDate.getTime() + (Math.random() * range));
   console.log($scope.card.date);
   // edition is current year - 2015 + 1
-  yearInt = parseInt(moment($scope.maxDate).format("YYYY"));
+  yearInt = parseInt(moment($scope.today).format("YYYY"));
   $scope.card.edition  = yearInt - 2014;
   $scope.selectDate($scope.card.date);
 
-  
+
+
 }])
 

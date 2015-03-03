@@ -17,12 +17,34 @@
         </div>
       </div>
       <div class="formcontrol border-bottom padded">
-        <h3 class="article-heading">Your article (birthday greeting)</h3>
-        <div class="input-group col-xs-offset-1 col-xs-11">
+        <h3 class="article-heading">Your article <br>(birthday greeting)</h3>
+        <div class="input-group col-xs-offset-1 col-xs-10">
           <input ng-model="feature.name" type="text" class="form-control" placeholder="Who is this card for?">
           <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
           <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
           <textarea ng-model="feature.article_text" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
+          
+          <!-- ***************************** -->
+          <!-- STUFF IM WORKING ON RIGHT NOW -->   
+          <form>
+            <input type="file" ng-file-select="onFileSelect($files)" >            
+          </form>
+          <b>Preview:</b><br />
+          <i ng-hide="imageSrc">No image chosen</i>
+          <img ng-src="{{imageSrc}}" class="image"/><br/>
+          <!-- <b>Progress:</b>
+          <progress value="{{progress}}"></progress> -->
+              
+          <!-- THIS IS THE S3 UPLOAD STUFF -->
+          <!-- UNLESS WE CAN GET IT TO PRINT, WE CAN'T USE IT -->
+          <!-- <div class="button" ng-file-select ng-model="files">Upload using model $watch</div>
+          <div class="button" ng-file-select ng-file-change="upload($files)">Upload on file change</div>
+          Drop File:
+          <div ng-file-drop ng-model="files" class="drop-box" 
+              drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+              accept=".jpg,.png,.pdf">Drop Images or PDFs files here</div>
+          <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div> -->
+
         </div>
       </div>
 
@@ -57,13 +79,13 @@
                 <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
                 </div>
               </div>
-              <div class="item-container">
+              <div class="item-container padded-top">
                 <div class="birth-announcement">
                   BIRTH ANNOUNCEMENT
                 </div>
                 <div class="article-text">
                   <p>{{feature.name || "A very important person"}} was born today.</p>
-                  <p>On {{maxDate | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
+                  <p>On {{today | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
                 </div>
               </div>
             </div>
@@ -79,7 +101,7 @@
               </div>
             </div>  
 
-            <div class="item border-top">
+            <div class="item">
               <div class="item-container">
                 <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
                 <div class="article-heading"><h3>US Top 5!</h3></div>
@@ -94,42 +116,57 @@
                 <div class="article-heading">
                   <h3>Cost of Living</h3>
                 </div>
-                <div class="article-text">
-                  <ul class="facts">
-                    <li>Gold: ${{card.gold}} (oz)</li>
-                    <li>Dowjones {{card.dowjones}}</li>
-                    <li>Average Home ${{card.homeprice}}</li>
-                    <li>Average Car ${{card.newcar}}</li>
-                    <li>Bread Loaf ${{card.bread}}</li>
-                    <li>Gas ${{card.gas}} (gallon)</li>
-                    <li>World Population: {{card.population}}</li>
-                  </ul>
+                <table class="article-text table">
+                  <tr class="facts">
+                    <td>Gold:</td><td>${{card.gold}} (oz)</td>
+                  </tr><tr>
+                    <td>Dowjones</td><td>{{card.dowjones}}</td>
+                  </tr><tr>
+                    <td>Av. Home</td><td>${{card.homeprice}}</td>
+                  </tr><tr>
+                    <td>Av. Car</td><td>${{card.newcar}}</td>
+                  </tr><tr>
+                    <td>Bread Loaf</td><td>${{card.bread}}</td>
+                  </tr><tr>
+                    <td>Gas</td><td>${{card.gas}} (gallon)</td>
+                  </tr>
+                </table>
+                <div class="article-heading">
+                  <h3 class="">World Population:</h3>
+                  <h4 class="">{{card.population}}</h4>
                 </div>
               </div>
 
             </div>
 
+            <!-- ********************************** -->
+            <!-- MAIN ARTICLE -->
             <div id="main-feature-article" class="item-container item w2 main-feature">
               <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
               <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
-              <div class="article-text article feature">{{feature.article_text || "Your birthday message"}}
-                <img ng-src="<%= asset_path('avatar.ico') %>" class="image avatar" images-loaded="imgLoadedEvents">
+              <div class="article-text feature">
+                <img ng-src="{{imageSrc}}" class="image desaturate main" images-loaded="imgLoadedEvents">
+                {{feature.article_text || "Your birthday message"}}
               </div>
             </div>    
+            <!-- ********************************** -->
 
             <div class="item-container item w2">
               <div class="article-heading horoscope">
                 <h3>Horoscope for {{card.date | amDateFormat:'dddd, MMMM Do'}}</h3>
               </div>
               <div class="article-text col-xs-6 padded-top">
-              <!-- <div class="article"> -->
                 <span class="horoscope-name">{{card.zodiacName}}</span>
-                <img ng-src="http://newz-images.s3.amazonaws.com/zodiacs/{{card.zodiacName}}.png" class="image zodiac" images-loaded="imgLoadedEvents">
+                <span id="zodiac_img_container">
+                  <img id="zodiac_name" ng-src="{{zodiac_img_src || '//:0' }}" class="image zodiac" images-loaded="imgLoadedEvents">
+                </span>
                 <p class="article-text">{{card.zodiac}} </p>
               </div>
               <div class="article-text col-xs-6 padded-top">
                 <span class="horoscope-name">{{card.animalName}}</span>
-                <img ng-src="http://newz-images.s3.amazonaws.com/chinese_horoscope/{{card.animalName}}.jpg" class="image animal" images-loaded="imgLoadedEvents">  
+                <span id="animal_img_container">
+                  <img id="animal_name" class="image animal" images-loaded="imgLoadedEvents" ng-src="{{animal_img_src || '//:0' }}"> 
+                </span> 
                 <p class="article-text">{{card.chinese_horoscope}}</p>   
               </div>
             </div>        
