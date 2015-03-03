@@ -1,17 +1,19 @@
 app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $upload, fileReader){
 
-  // $scope.post = [{id:1,title:"title1",content:"content1",caption:"caption1"},{id:2,title:"title2",content:"content2",caption:"caption2"}];
-
   var sendToFB = function(picture_link){
     console.log("in FB send");
+    console.log(picture_link);
+
     FB.ui({
-        method: 'feed',
-        name: 'Birthday Newz',
-        link: picture_link,
-        picture: picture_link,
-        caption: 'Birthday Newz',
-        description: '',
-        message: ''
+        method: 'send',
+        app_id: 675037362618881,
+        // name: 'Birthday Newz',
+        link: picture_link
+        // redirect_uri: 'https://birthday-newz.herokuapp.com/#/',
+        // picture: picture_link,
+        // caption: 'Birthday Newz',
+        // description: 'Make and share a birthday newspaper for your friends and family, customised to your birth date',
+        // message: ''
     });
   };
 
@@ -37,28 +39,12 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
         var formData = doForm(blob, randomID);
         var xhr = new XMLHttpRequest();
 
-        //xhr.upload.addEventListener("progress", uploadProgress, false);
-        //xhr.addEventListener("load", uploadComplete, false);
-        // xhr.addEventListener("error", uploadFailed, false);
-        // xhr.addEventListener("abort", uploadCanceled, false);
-
         xhr.open('POST', url, true); 
-
         xhr.send(formData); 
 
-        var card_url = url + randomID;
-        console.log(card_url);
-        sendToFB(card_url);
-
-        // var img = new Image();
-        // img.src = canvas.toDataURL('image/jpg');
-        // var imgName = randomID + ".jpg";
-
-        // console.log("name is "+imgName);
-
-        // $scope.card_url = upload(fd, imgName);
-        // console.log("return is "+ $scope.card_url);
-
+        $scope.card_url = url + randomID;
+        console.log($scope.card_url);
+        sendToFB($scope.card_url);
       }
     });
   }
@@ -129,30 +115,3 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
   }
 
 }])
-
-  // select file for image upload
-  // github.com/danialfarid/angular-file-upload/wiki/Rails-Example
-  // $scope.upload = $upload.upload({
-  //   // url: '/card/new',
-  //   url: 'https://s3.amazonaws.com/newz-images/',
-  //   method: 'POST',
-  //   file: $scope.card.image,
-  //   // key: $scope.card.image,
-  //   AWSAccessKeyId: "AKIAJACNEVDWYZCMXGSQ",
-  //   // acl: $scope.policy,
-  //   // signature: $scope.signature,
-  //   // "Content-Type": file.type != '' ? file.type : 'application/octet-stream', 
-  //   // fileFormDataName: 'Card['+$scope.card.image+']',
-  //   //myEntity is the name of the entity in which image is saved and image is the name of the attachment
-  //   fields: {}
-  // }).success(function(data, status, headers, config) {
-  //   console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-  //   console.log("SOME SUCCESS HERE");
-  // }).error(function(response) {
-  //   console.log(response);
-  //   console.log("ANOTHER FN ERROR");
-  // });
-
-  // $scope.$watch('files', function () {
-  //   $scope.upload($scope.files);
-  // });

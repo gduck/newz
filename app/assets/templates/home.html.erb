@@ -46,9 +46,11 @@
           </div>
           <div class="row">
             <span ng-controller="fbCtrl" class="col-xs-1">
-              <button ng-click="share(post)" class="btn fb">
+              <button ng-click="share()" class="btn fb">
                 <img class="fb" src="<%= asset_path('fb.jpg') %>">
               </button>
+              <div class="fb-send" data-href="https://birthday-newz.herokuapp.com/#/" data-colorscheme="light"></div>
+              <!-- <img id="card_img" ng-src="card_url" class="hidden"> -->
             </span>
 
             <!-- <span>
@@ -185,7 +187,7 @@
             
 
             <div class="barcode-stamp">
-              <div class="barcode padded">DALEFOO.COM</div>
+              <span>©</span><span class="barcode padded">DALEFOO.COM</span>
             </div>
 
             <div class="bordertest">
