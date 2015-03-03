@@ -1,4 +1,14 @@
 @font-face {
+  font-family: "LatinModern";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/lmmono10-regular.otf") format("opentype")
+}
+
+@font-face {
+  font-family: "USIS";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/USIS1949.ttf") format("truetype")
+}
+
+@font-face {
   font-family:"Subway Novella";
   src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/SubwayNovella.ttf") format("truetype")
 }
