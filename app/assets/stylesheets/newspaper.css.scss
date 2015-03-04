@@ -23,7 +23,12 @@
   border-left: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
 }
-
+.message {
+  font-family: 'Display Italic';
+  font-style: bold;
+  text-align: center;
+  border-bottom: 1px solid #e4e4e4;
+}
 
 /* ARTICLE STUFF ------------*/
 .article {
