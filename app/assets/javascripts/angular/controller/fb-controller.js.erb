@@ -1,6 +1,7 @@
 app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $upload, fileReader){
 
   var sendToFB = function(picture_link){
+    $scope.repack();
     console.log("in FB send");
     console.log(picture_link);
 
@@ -11,7 +12,7 @@ app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $u
         picture: picture_link,
         link: picture_link,
         caption: 'Birthday Newz',
-        description: 'Create a Birthday Newzpaper & tag your birthday friend (@name) to post to their timeline',
+        description: 'Create a Birthday Newzpaper & tag your birthday friend (@name) to post to their timeline. Visit birthday-newz.herokuapp.com',
         message: ''
     });
   };

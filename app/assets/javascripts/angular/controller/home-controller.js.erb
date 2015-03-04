@@ -3,6 +3,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
   $scope.feature = {};
   $scope.card = {};
   $scope.message = "";
+  // $scope.teslaShow = true;
 
   $scope.minDate = new Date("1946-01-01");
   $scope.maxDate = new Date("2012-12-31");
@@ -22,6 +23,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     console.log("WATCH TRIGGERED in $watch, homectr");
     if ($scope.card.imageSrc) {
       $scope.card.image_bw = desaturate($scope.card.imageSrc);
+      if (!$scope.card.image_bw) {
+        $scope.card.image_bw = $scope.card.imageSrc;
+      }
       $scope.message = "";
       $scope.repack();
     }
@@ -87,6 +91,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     var difference = moment($scope.today).diff(moment(date));
 
     $scope.daysOld = Math.floor(moment.duration(difference).asDays());
+
+    $scope.tesla = moment(new Date("2009-03-26"));
+    var difference = moment(date).diff($scope.tesla);
+    $scope.daysToGo = Math.floor(moment.duration(difference).asDays());
   }
 
   var getSongs = function(year) {
@@ -151,6 +159,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
   }
 
   $scope.print = function() {  
+    $scope.repack();
     html2canvas($("#newspaper"), {
       allowTaint: true,
       useCORS: true,

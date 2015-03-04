@@ -1,7 +1,7 @@
 <div class="site-container">
   <header></header>
 
-  <div class="row padded">
+  <div id="inputs" class="row padded">
     <div class="col-xs-12 col-md-3 form-column top-margin print-panel">
       <div class="row">
         <div class="col-xs-11 formcontrol border-bottom padded">
@@ -26,21 +26,24 @@
             <!-- ***************************** -->
             <!-- STUFF IM WORKING ON RIGHT NOW -->   
             <!-- <form> -->
-              <input id="file-upload" type="file" class="" ng-file-select="onFileSelect($files)">
+           <h3 class="article-heading">Choose a picture</h3> 
+            <input id="file-upload" type="file" class="" ng-file-select="onFileSelect($files)">
             <!-- </form> -->
             <b>Preview:</b><br />
             <i ng-hide="card.imageSrc">No image chosen</i>
             <img ng-src="{{card.imageSrc}}" class="image"/><br/>   
           </div>
           <div class="row">
-            <span ng-controller="fbCtrl" class="col-xs-1">
-              <button ng-click="share()" class="btn fb">
-                <img class="fb" src="<%= asset_path('fb.jpg') %>">
-              </button>
-            </span>
-            <span class="input-group col-xs-offset-4 col-xs-5">
+            <div ng-controller="fbCtrl" class="col-xs-4">
+              <div class="row">
+                <button ng-click="share()" class="btn fb">
+                  <img class="fb" src="<%= asset_path('fb.jpg') %>">
+                </button>
+              </div>
+            </div>
+            <div class="input-group col-xs-6">
               <input id="print-btn" class="form-control" type="submit" value="Print" ng-click="print()" />
-            </span>
+            </div>
           </div>
           <span class="message">{{message}}</span>
 
@@ -57,7 +60,10 @@
             <div class="oldseal oldseal2">V</div>
             <div class="oldseal oldseal1">z</div>
             <div class="oldseal oldseal3">d</div>
-
+            <div class="tesla">
+              <img ng-src="<%= asset_path('tesla.png') %>" id="tesla-img" class="image cost" images-loaded="imgLoadedEvents">
+              <span id="tesla-txt">Only {{daysToGo}} days...</span>
+            </div>
             <div class="newspaper-header">
               <h1 class="newspaper-name">The {{feature.name}} Times</h1>
               <div class="subline">
@@ -65,9 +71,9 @@
               </div>
               <div class="info">
                 <h5>
-                  <span class="edition col-xs-2">Edition #{{card.edition}}</span>
-                  <span class="date-text col-xs-8">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</span>
-                  <span class="price col-xs-2">Hong Kong</span>
+                  <span class="edition col-xs-4">Edition #{{card.edition}} Hong Kong</span>
+                  <span class="price col-xs-4">birthday-newz.herokuapp.com</span>
+                  <span class="date-text col-xs-4">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</span>
                 </h5>
                 <div class="clear"></div>
               </div>
@@ -182,6 +188,7 @@
                 <span>©</span><span class="barcode padded">DALEFOO.COM</span>
               </div>
 
+              
  
             </div>
           </div>

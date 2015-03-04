@@ -10,7 +10,7 @@
   bottom: 0;
   left: 20px;
 }
-
+html { overflow-y: scroll; }
 
 /* MAIN LAYOUT ----------*/
 
@@ -117,17 +117,20 @@ img.desaturate {
   border-radius: 5px;
 }
 /* FACEBOOK */
-button.fb {
-  width: 50px;
+.btn.fb {
+  width: 100%;
+  /*width: 100px;*/
   /*height: 50px;*/
   padding: 0;
   border: 0;
+  background: white;
 }
 img.fb {
   width: 100%;
+  max-width: 100px;
 }
 #file-upload {
-  padding: 20px;
+  padding: 10px;
 }
 
 /* FONTS -----------------*/
@@ -135,8 +138,9 @@ img.fb {
   font-style: italic;
   font-weight: bold;
   font-family: 'Display Italic';
-  text-align: center;
   overflow: auto;
+  float: right;
+  text-align: right;
 }
 .edition {
   font-style: italic;
@@ -149,7 +153,7 @@ img.fb {
   font-style: italic;
   font-weight: bold;
   font-family: 'Display Italic';
-  float: right;
+  text-align: center;
   overflow: auto;
 }
 .clear {
@@ -205,7 +209,7 @@ img.fb {
   right: 15px;
 }
 .oldseal.oldseal3 {
-  right: 150px;
+  right: 350px;
   bottom: 150px;
 }
 .dropdown-menu, .dropdown-menu2 {
@@ -216,13 +220,31 @@ img.fb {
   padding-bottom: 10px;
   /*font-size: 1.2em;*/
   /*line-height: 1.6em;*/
- }
- .article-news {
+}
+.article-news {
   padding-top: 10px;
- }
- .article-text.feature {
+}
+.article-text.feature {
   font-size: large;
- }
+}
+#tesla-img {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+}
+#tesla-txt {
+  /*float: right;*/
+  font-size: 2em;
+}
+.tesla {
+  /*border: none;*/
+  width: 200px;
+  position: absolute;
+  top: 33px;
+  left: 30px;
+  font-family: 'PressStyle';
+  text-align: center;
+}
 .article-author {
   font-family: 'Goudy Bookletter 1911 TT';
   /*font-size: small;*/
@@ -269,6 +291,9 @@ img.fb {
 }
 .padded {
   padding: 20px;
+}
+#inputs {
+  margin: 0;
 }
 .top-margin {
   margin-top: 20px;
@@ -319,7 +344,7 @@ div h3 {
 }
 .wrapper {
   /*width: 100%;*/
-  min-width: 800px;
+  min-width: 850px;
   /* whatever width you want */
   /*display: inline-block;*/
   display: block;
