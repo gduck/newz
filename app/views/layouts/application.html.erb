@@ -9,8 +9,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body ng-view>
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '675037362618881',
+        xfbml      : true,
+        version    : 'v2.2'
+      });
+    };
+
+    (function() {
+      var e = document.createElement('script'); 
+      e.async = true;
+      e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+      document.getElementById('fb-root').appendChild(e);
+    }());
+  </script>
 
   <%= yield %>
 
 </body>
 </html>
+

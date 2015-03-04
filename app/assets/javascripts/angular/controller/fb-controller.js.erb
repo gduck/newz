@@ -1,0 +1,127 @@
+app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $upload, fileReader){
+
+  var sendToFB = function(picture_link){
+    console.log("in FB send");
+    console.log(picture_link);
+
+
+    FB.ui({
+        method: 'feed',
+        name: 'Birthday Newz',
+        picture: picture_link,
+        link: picture_link,
+        caption: 'Birthday Newz',
+        description: 'Create a Birthday Newzpaper & tag your birthday friend (@name) to post to their timeline',
+        message: ''
+    });
+  };
+
+  // *****************************
+  // AWS S3 UPLOAD STUFF
+  $scope.share = function() {  
+    $scope.message = "Please wait while we prepare your newz....."
+    var bucket = 'birthday-newz';
+    var url = 'https://s3.amazonaws.com/' + bucket + '/';
+
+    html2canvas($("#newspaper"), {
+      allowTaint: true,
+      useCORS: true,
+      // taintTest: false,
+      logging: true,
+      onrendered: function (canvas) {
+        var randomID = Math.floor(Math.random() * 100000000);
+
+        var img = canvas.toDataURL('image/png', 0.5);
+        var blob = dataURItoBlob(img);
+
+        // try sending a formdata object to s3
+        var formData = doForm(blob, randomID);
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', url, true); 
+        xhr.send(formData); 
+
+        $scope.card_url = url + randomID;
+        // console.log($scope.card_url);
+        xhr.onreadystatechange = function() {
+          console.log(xhr.readyState);
+          console.log(xhr.status);
+          if (xhr.readyState==4 && xhr.status==204) {
+            $scope.message = ""
+            sendToFB($scope.card_url);
+          } else {
+            $scope.message = "Message change!"
+          }
+        }
+      }
+    });
+  }
+
+  var doForm = function(blob, filename) {
+    var accessKey = 'AKIAJ7UNHWBS5OZKZG7A';
+    var policy = 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImJpcnRoZGF5LW5ld3oifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICIiXSwKICAgIHsiYWNsIjogInByaXZhdGUifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=';
+    var signature = 'Q+xxfE8tkHNfoPgNu1v5+5uUtFc=';
+
+    var fd = new FormData();
+
+    fd.append('AWSAccessKeyId', accessKey);
+    fd.append('key', filename);
+    fd.append('filename', filename + ".png");
+    fd.append('acl', 'private');
+    fd.append('Content-Type', "image/jpeg");
+    fd.append('policy', policy);
+    fd.append('signature', signature);          
+    fd.append('file',  blob);
+
+    return fd;
+  }
+
+  var upload = function(file, filename) {
+    var uploadUrl = 'https://birthday-newz.s3.amazonaws.com/';
+    if (file) {
+      $upload.upload({
+        url: uploadUrl,
+        fields: {
+          AWSAccessKeyId: 'AKIAJ7UNHWBS5OZKZG7A',
+          key: filename,
+          filename: filename,
+          acl: 'private',
+          'Content-Type': '',
+          policy: 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImJpcnRoZGF5LW5ld3oifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICIiXSwKICAgIHsiYWNsIjogInByaXZhdGUifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=',
+          signature: 'Q+xxfE8tkHNfoPgNu1v5+5uUtFc='
+        },                      
+        file: file
+      }).progress(function (evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        $scope.progress = progressPercentage;
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+      }).success(function (data, status, headers, config) {
+        console.log(config);
+        console.log('file ' + config.fields.filename + 'uploaded. Response: ' + status + data);
+        uploadUrl + config.fields.filename;
+      });
+    }
+  };
+
+  function dataURItoBlob(dataURI) {
+      // convert base64/URLEncoded data component to raw binary data held in a string
+      var byteString;
+      if (dataURI.split(',')[0].indexOf('base64') >= 0)
+          byteString = atob(dataURI.split(',')[1]);
+      else
+          byteString = unescape(dataURI.split(',')[1]);
+
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+      // write the bytes of the string to a typed array
+      var ia = new Uint8Array(byteString.length);
+      for (var i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+      }
+      return new Blob([ia], {type:mimeString});
+  }
+
+}])
+
+

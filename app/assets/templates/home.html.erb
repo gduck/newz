@@ -3,58 +3,50 @@
 
   <div class="row padded">
     <div class="col-xs-3 form-column top-margin print-panel">
-      <div class="formcontrol border-bottom padded">
-        <h3 class="article-heading">Choose your date</h3>
-        <div class="row">
-          <div class="col-xs-offset-1 col-xs-10">
-            <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="card.date" is-open="opened" min-date="minDate" max-date="maxDate" init-date="card.date" ng-required="true" close-text="Close" ng-change="selectDate(card.date)" datepicker-popup>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
+      <div class="row">
+        <div class="col-xs-11 formcontrol border-bottom padded">
+          <h3 class="article-heading">Choose your date</h3>
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="card.date" is-open="opened" min-date="minDate" max-date="maxDate" init-date="card.date" ng-required="true" close-text="Close" ng-change="selectDate(card.date)" datepicker-popup>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
           </div>
         </div>
       </div>
-      <div class="formcontrol border-bottom padded">
-        <h3 class="article-heading">Your article <br>(birthday greeting)</h3>
-        <div class="input-group col-xs-offset-1 col-xs-10">
-          <input ng-model="feature.name" type="text" class="form-control" placeholder="Who is this card for?">
-          <input ng-model="feature.heading" type="text" class="form-control" placeholder="Your heading">
-          <input ng-model="feature.author" type="text" class="form-control" placeholder="author (who is this card from?)">
-          <textarea ng-model="feature.article_text" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
-          
-          <!-- ***************************** -->
-          <!-- STUFF IM WORKING ON RIGHT NOW -->   
-          <form>
-            <input type="file" ng-file-select="onFileSelect($files)" >            
-          </form>
-          <b>Preview:</b><br />
-          <i ng-hide="imageSrc">No image chosen</i>
-          <img ng-src="{{imageSrc}}" class="image"/><br/>
-          <!-- <b>Progress:</b>
-          <progress value="{{progress}}"></progress> -->
-              
-          <!-- THIS IS THE S3 UPLOAD STUFF -->
-          <!-- UNLESS WE CAN GET IT TO PRINT, WE CAN'T USE IT -->
-          <!-- <div class="button" ng-file-select ng-model="files">Upload using model $watch</div>
-          <div class="button" ng-file-select ng-file-change="upload($files)">Upload on file change</div>
-          Drop File:
-          <div ng-file-drop ng-model="files" class="drop-box" 
-              drag-over-class="dragover" ng-multiple="true" allow-dir="true"
-              accept=".jpg,.png,.pdf">Drop Images or PDFs files here</div>
-          <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div> -->
-
+      <div class="row">
+        <div class="col-xs-11 formcontrol border-bottom padded">
+          <h3 class="article-heading">Your article <br>(birthday greeting)</h3>
+          <div class="">
+            <input ng-model="feature.name" id="name" type="text" class="form-control" placeholder="Who is this card for?">
+            <input ng-model="feature.heading" id="heading" type="text" class="form-control" placeholder="Your heading">
+            <input ng-model="feature.author" id="author" type="text" class="form-control" placeholder="author (who is this card from?)">
+            <textarea ng-model="feature.article_text" id="main-article" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
+            
+            <!-- ***************************** -->
+            <!-- STUFF IM WORKING ON RIGHT NOW -->   
+            <!-- <form> -->
+              <input id="file-upload" type="file" class="" ng-file-select="onFileSelect($files)" value="Choose a picture">
+            <!-- </form> -->
+            <b>Preview:</b><br />
+            <i ng-hide="imageSrc">No image chosen</i>
+            <img ng-src="{{imageSrc}}" class="image"/><br/>   
+          </div>
+          <!-- <span>{{message}}</span> -->
+          <div class="row">
+            <span ng-controller="fbCtrl" class="col-xs-1">
+              <button ng-click="share()" class="btn fb">
+                <img class="fb" src="<%= asset_path('fb.jpg') %>">
+              </button>
+            </span>
+            <span class="input-group col-xs-offset-4 col-xs-5">
+              <input id="print-btn" class="form-control" type="submit" value="Print" ng-click="print()" />
+            </span>
+          </div>
         </div>
       </div>
-
-      <div class="formcontrol border-bottom padded">
-        <div class="input-group col-xs-offset-3 col-xs-6">
-          <input class="form-control print-btn" type="submit" value="Print" ng-click="capture()" />
-        </div>
-      </div>
-      
     </div>
+
 
     <!-- main newspaper -->
     <div class="col-xs-9">
@@ -170,12 +162,9 @@
                 <p class="article-text">{{card.chinese_horoscope}}</p>   
               </div>
             </div>        
-
             
-            
-
             <div class="barcode-stamp">
-              <div class="barcode padded">DALEFOO.COM</div>
+              <span>©</span><span class="barcode padded">DALEFOO.COM</span>
             </div>
 
             <div class="bordertest">
