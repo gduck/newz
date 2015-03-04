@@ -4,6 +4,7 @@
   <div id="inputs" class="row padded">
     <div class="col-xs-12 col-md-3 form-column top-margin print-panel">
       <div class="row">
+        <h2 id="page-title">Birthday Newz</h2>
         <div class="col-xs-11 formcontrol border-bottom padded">
           <h3 class="article-heading">When is the birthday?</h3>
           <div class="input-group">
@@ -24,30 +25,37 @@
             <textarea ng-model="feature.article_text" id="main-article" ng-keyup="repack()" rows="5" type="text" class="form-control" placeholder="article text (message)"></textarea>
             
             <!-- ***************************** -->
-            <!-- FILE SELECT BOXES -->   
-           <h3 class="article-heading">Choose a picture</h3> 
-            <div class="file-upload">
-              <input type="file" class="" ng-file-select="onFileSelect($files)">
-            </div>
-            <div div class="file-upload">
-              <div>Preview:</div>
-              <i ng-hide="card.imgChosen">No image chosen</i>
-              <span class="message">{{card.loadingMessage}}</span>
-              <img ng-src="{{card.imageSrc}}" class="image"/><br/>   
+            <!-- FILE SELECT BOXES -->
+            <div class="top-margin">
+              <h3 class="article-heading">Choose a picture</h3> 
+              <div class="file-upload">
+                <input type="file" class="" ng-file-select="onFileSelect($files)">
+              </div>
+              <div class="file-upload">
+                <div>
+                  <div class="preview">Preview: </div>
+                  <i ng-hide="card.imgChosen">No image chosen</i>
+                  <span class="message">{{card.loadingMessage}}</span>
+                  <img ng-src="{{card.imageSrc}}" class="image"/>
+                </div>  
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div ng-controller="fbCtrl" class="col-xs-4">
-              <div class="row">
+          <div class="col-xs-6">
+            <div class="row print">
+              <input id="print-btn" class="form-control" type="submit" value="Print" ng-click="print()" />
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="row">
+              <div ng-controller="fbCtrl" class="row fb">
                 <button ng-click="share()" class="btn fb">
                   <img class="fb" src="<%= asset_path('fb.jpg') %>">
                 </button>
               </div>
             </div>
-            <div class="input-group col-xs-6">
-              <input id="print-btn" class="form-control" type="submit" value="Print" ng-click="print()" />
-            </div>
           </div>
+
           <span class="message">{{card.loadingMessage}}</span>
 
         </div>

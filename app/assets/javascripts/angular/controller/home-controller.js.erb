@@ -95,7 +95,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     $scope.daysOld = Math.floor(moment.duration(difference).asDays());
 
     $scope.tesla = moment(new Date("2009-03-26"));
-    var difference = moment(date).diff($scope.tesla);
+    var difference = moment($scope.tesla).diff(date);
     $scope.daysToGo = Math.floor(moment.duration(difference).asDays());
   }
 

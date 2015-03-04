@@ -13,7 +13,20 @@
 html { overflow-y: scroll; }
 
 /* MAIN LAYOUT ----------*/
-
+#logo {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+#logo > img {
+  width: 100%;
+}
+#page-title {
+  font-family: "OldNewspaper";
+  font-size: 4em;
+  text-align: center;
+  margin-top: 0;
+}
 .main-feature {
   /*font-size: 150%;*/
   /*min-height: 150px;*/
@@ -24,7 +37,7 @@ html { overflow-y: scroll; }
   border-right: 1px solid #d3d3d3;
 }
 .message {
-  font-family: 'Display Italic';
+  font-family: 'PlayfairRegular';
   font-style: bold;
   color: red;
   text-align: center;
@@ -104,13 +117,12 @@ img.desaturate {
 }
 
 #print-btn {
-  /*text-align: center;*/
-  /*margin: -20px -50px; */
+  font-family: 'PlayfairRegular';
+  margin-top: 20px; 
   /*position:relative;
   top:50%; 
   left:50%;*/
   float: right;
-  margin-top: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px #888888
 }
@@ -119,7 +131,7 @@ img.desaturate {
 }
 /* FACEBOOK */
 .btn.fb {
-  width: 100%;
+  width: 100px;
   /*width: 100px;*/
   /*height: 50px;*/
   padding: 0;
@@ -128,11 +140,20 @@ img.desaturate {
 }
 img.fb {
   width: 100%;
-  max-width: 100px;
+  max-width: 75px;
 }
-#file-upload {
+div.fb {
+  float: right;
+}
+div.print {
+}
+.file-upload {
   font-family: 'PlayfairRegular';
   padding: 10px;
+  text-align: center;
+}
+.preview {
+  font-style: bold;
 }
 
 /* FONTS -----------------*/
@@ -173,10 +194,11 @@ img.fb {
   font-weight: bold;
   font-size: 5em;
 }
-.header {
+#header {
   color: black;
   font-family: 'Canterbury';
   padding: 20px;
+  padding-left: 3%;
 }
 .subline {
   font-family: 'PlayfairItalic';
