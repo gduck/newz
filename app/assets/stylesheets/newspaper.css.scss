@@ -49,7 +49,7 @@ div.article{
 #container {
 }
 .item-container {
-  padding-left: 10px;
+  /*padding-left: 10px;*/
   padding-right: 10px;
   padding-top: 10px; 
   /*border-left: 1px solid #d3d3d3;*/
@@ -69,9 +69,13 @@ div.article{
 /* IMAGES ----------*/
 .image {
   /*display: block;*/
-  width: 80%;
+  width: 75%;
   max-width: 200px;
   overflow: hidden;
+}
+.image.cost {
+  width: 70%;
+  padding: 5px;
 }
 .avatar {
   width: 100px;
@@ -130,18 +134,30 @@ img.fb {
 .date-text {
   font-style: italic;
   font-weight: bold;
-  font-family: 'Goudy Bookletter 1911 TT';
-  float: right;
+  font-family: 'Display Italic';
+  text-align: center;
+  overflow: auto;
 }
 .edition {
   font-style: italic;
   font-weight: bold;
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'Display Italic';
   float: left;
+  overflow: auto;
+}
+.price {
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'Display Italic';
+  float: right;
+  overflow: auto;
 }
 .clear {
   clear: both;
   margin-bottom: 5px;
+}
+.info {
+  border-top: 1px solid #d3d3d3;
 }
 
 .newspaper-name {
@@ -155,6 +171,12 @@ img.fb {
   font-family: 'Canterbury';
   padding: 20px;
 }
+.subline {
+  font-family: 'PlayfairItalic';
+  text-align: center;
+  font-weight: bold;
+}
+
 .header-left {
   padding-left: 0;
 }
@@ -169,18 +191,34 @@ img.fb {
 .oldseal {
   font-family: 'old seals tfb';
   font-size: 5em;
-  text-align: center;
+  /*text-align: center;*/
   position: absolute;
   color: #936008;
+  opacity: 0.4;
+  z-index: 2;
+}
+.oldseal.oldseal1 {
+  top: 300px;
+  left: 150px;
+}
+.oldseal.oldseal2 {
+  right: 15px;
+}
+.oldseal.oldseal3 {
+  right: 150px;
+  bottom: 150px;
 }
 .dropdown-menu, .dropdown-menu2 {
   font-family: 'LatinModern';
 }
 .article-text {
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'PlayfairRegular';
   padding-bottom: 10px;
   /*font-size: 1.2em;*/
   /*line-height: 1.6em;*/
+ }
+ .article-news {
+  padding-top: 10px;
  }
  .article-text.feature {
   font-size: large;
@@ -192,7 +230,7 @@ img.fb {
   text-align: right;
 }
 .article-heading {
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'PlayfairRegular';
   font-style: bold;
   text-align: center;
   /*border-top: 1px solid #d3d3d3;*/
@@ -267,12 +305,17 @@ div h3 {
   box-shadow: 0px 0px 10px #333;
   height: auto;
 }
+
 .newspaper-header {
   border-bottom: 1px solid #d3d3d3;
   margin-bottom: 10px;
 }
 .newspaper-body {
   padding-left: 20px;
+}
+#newspaper-container {
+  padding: 5px;
+  border: 1px solid #d3d3d3;
 }
 .wrapper {
   /*width: 100%;*/

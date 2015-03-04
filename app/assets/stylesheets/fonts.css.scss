@@ -1,4 +1,14 @@
 @font-face {
+  font-family: "PlayfairRegular";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/PlayfairDisplay-Regular.otf") format("opentype")
+}
+
+@font-face {
+  font-family: "PlayfairItalic";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/PlayfairDisplay-Italic.otf") format("opentype")
+}
+
+@font-face {
   font-family: "LatinModern";
   src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/lmmono10-regular.otf") format("opentype")
 }

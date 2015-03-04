@@ -53,123 +53,136 @@
     <div class="col-xs-9">
       <div class="wrapper">
         <div id="newspaper">
-          <div class="newspaper-header">
-            <h1 class="newspaper-name">The {{feature.name}} Times</h1>
-            <h5><span class="edition">Edition #{{card.edition}}</span>
-            <span class="date-text">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</span></h5>
-            <div class="clear"></div>
-          </div>
+          <div id="newspaper-container">
+            <div class="oldseal oldseal2">V</div>
+            <div class="oldseal oldseal1">z</div>
+            <div class="oldseal oldseal3">d</div>
 
-          <div id="container" class="newspaper-body">
-
-            <div class="item grid-sizer">
-              <div class="item-container">
-                <div class="article-heading">
-                <img ng-src="<%= asset_path('movie.png') %>" class="image" images-loaded="imgLoadedEvents">
-                  <h3>{{card.movie}} Wins Best Picture {{card.date | amDateFormat:'YYYY'}}</h3>
-                </div>
-                <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
-                <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
-                </div>
+            <div class="newspaper-header">
+              <h1 class="newspaper-name">The {{feature.name}} Times</h1>
+              <div class="subline">
+                <h4>Powered by future technology</h4>
               </div>
-              <div class="item-container padded-top">
-                <div class="birth-announcement">
-                  BIRTH ANNOUNCEMENT
-                </div>
-                <div class="article-text">
-                  <p>{{feature.name || "A very important person"}} was born today.</p>
-                  <p>On {{today | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
-                </div>
+              <div class="info">
+                <h5>
+                  <span class="edition col-xs-2">Edition #{{card.edition}}</span>
+                  <span class="date-text col-xs-8">{{card.date | amDateFormat:'dddd, MMMM Do YYYY'}}</span>
+                  <span class="price col-xs-2">Hong Kong</span>
+                </h5>
+                <div class="clear"></div>
               </div>
             </div>
+            <div id="container" class="newspaper-body">
 
-            <div class="item-container item w2">
-              <div class="article-heading news">
-                <h3>Headline News</h3>
-              </div>
-              <div class="article-text article">
-                <!-- <ul> -->
-                  <p ng-repeat='article in card.news'>{{article}}</p>
-                <!-- </ul> -->
-              </div>
-            </div>  
-
-            <div class="item">
-              <div class="item-container">
-                <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
-                <div class="article-heading"><h3>US Top 5!</h3></div>
-                <div class="article-text">
-                  <ol class="songs">
-                    <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
-                  </ol>
+              <div class="item grid-sizer">
+                <div class="item-container">
+                  <div class="article-heading">
+                  <img ng-src="<%= asset_path('movie.png') %>" class="image" images-loaded="imgLoadedEvents">
+                    <h3>{{card.movie}} Wins Best Picture</h3>
+                  </div>
+                  <div class="article-text"><p>{{card.movie}} <span ng-if="card.producersExist">({{card.producers}}) </span>has won the Best Picture award for {{card.date | amDateFormat:'YYYY'}}, beating out {{card.nominees}}.</p>
+                  <p>{{card.bestActor}} won Best Actor for {{card.bestActorMovie}} and {{card.bestActress}} took out the Best Actress award for {{card.bestActressMovie}}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="item-container">
-                <img ng-src="<%= asset_path('money.gif') %>" class="image" images-loaded="imgLoadedEvents">
-                <div class="article-heading">
-                  <h3>Cost of Living</h3>
-                </div>
-                <table class="article-text table">
-                  <tr class="facts">
-                    <td>Gold:</td><td>${{card.gold}} (oz)</td>
-                  </tr><tr>
-                    <td>Dowjones</td><td>{{card.dowjones}}</td>
-                  </tr><tr>
-                    <td>Av. Home</td><td>${{card.homeprice}}</td>
-                  </tr><tr>
-                    <td>Av. Car</td><td>${{card.newcar}}</td>
-                  </tr><tr>
-                    <td>Bread Loaf</td><td>${{card.bread}}</td>
-                  </tr><tr>
-                    <td>Gas</td><td>${{card.gas}} (gallon)</td>
-                  </tr>
-                </table>
-                <div class="article-heading">
-                  <h3 class="">World Population:</h3>
-                  <h4 class="">{{card.population}}</h4>
+                <div class="item-container padded-top">
+                  <div class="birth-announcement">
+                    BIRTH ANNOUNCEMENT
+                  </div>
+                  <div class="article-text">
+                    <p>{{feature.name || "A very important person"}} was born today.</p>
+                    <p>On {{today | amDateFormat:'MMMM Do YYYY'}} they will be {{daysOld}} days old!</p>
+                  </div>
                 </div>
               </div>
 
-            </div>
+              <div class="item-container item w2">
+                <div class="article-heading news">
+                  <h3>Headline News {{card.date | amDateFormat:'YYYY'}}</h3>
+                </div>
+                <div class="article-text article article-news">
+                  <!-- <ul> -->
+                    <p ng-repeat='article in card.news'>{{article}}</p>
+                  <!-- </ul> -->
+                </div>
+              </div>  
 
-            <!-- ********************************** -->
-            <!-- MAIN ARTICLE -->
-            <div id="main-feature-article" class="item-container item w2 main-feature">
-              <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
-              <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
-              <div class="article-text feature">
-                <img ng-src="{{card.image_bw}}" class="image main" images-loaded="imgLoadedEvents">
-                {{feature.article_text || "Your birthday message"}}
-              </div>
-            </div>    
-            <!-- ********************************** -->
+              <div class="item">
+                <div class="item-container">
+                  <img ng-src="<%= asset_path('music.jpeg') %>" class="image margin-left" images-loaded="imgLoadedEvents">
+                  <div class="article-heading"><h3>US Top 5!</h3></div>
+                  <div class="article-text">
+                    <ol class="songs">
+                      <li ng-repeat='song in card.songlist track by $index'>{{song}}</li>
+                    </ol>
+                  </div>
+                </div>
+                <div class="item-container">
+                  <div class="article-heading">
+                    <img ng-src="<%= asset_path('money.gif') %>" class="image cost" images-loaded="imgLoadedEvents">
+                  </div>
+                  <div class="article-heading">
+                    <h3>Today's Stats</h3>
+                  </div>
+                  <table class="article-text table">
+                    <tr class="facts">
+                      <td>Gold:</td><td>${{card.gold}} (oz)</td>
+                    </tr><tr>
+                      <td>Dow Jones</td><td>{{card.dowjones}}</td>
+                    </tr><tr>
+                      <td>Av. Home</td><td>${{card.homeprice}}</td>
+                    </tr><tr>
+                      <td>Av. Car</td><td>${{card.newcar}}</td>
+                    </tr><tr>
+                      <td>Bread Loaf</td><td>${{card.bread}}</td>
+                    </tr><tr>
+                      <td>Gas</td><td>${{card.gas}} (gallon)</td>
+                    </tr>
+                  </table>
+                  <div class="article-heading">
+                    <h3 class="">World Population:</h3>
+                    <h4 class="">{{card.population}}</h4>
+                  </div>
+                </div>
 
-            <div class="item-container item w2">
-              <div class="article-heading horoscope">
-                <h3>Horoscope for {{card.date | amDateFormat:'dddd, MMMM Do'}}</h3>
               </div>
-              <div class="article-text col-xs-6 padded-top">
-                <span class="horoscope-name">{{card.zodiacName}}</span>
-                <span id="zodiac_img_container">
-                  <img id="zodiac_name" ng-src="{{zodiac_img_src || '//:0' }}" class="image zodiac" images-loaded="imgLoadedEvents">
-                </span>
-                <p class="article-text">{{card.zodiac}} </p>
-              </div>
-              <div class="article-text col-xs-6 padded-top">
-                <span class="horoscope-name">{{card.animalName}}</span>
-                <span id="animal_img_container">
-                  <img id="animal_name" class="image animal" images-loaded="imgLoadedEvents" ng-src="{{animal_img_src || '//:0' }}"> 
-                </span> 
-                <p class="article-text">{{card.chinese_horoscope}}</p>   
-              </div>
-            </div>        
-            
-            <div class="barcode-stamp">
-              <span>©</span><span class="barcode padded">DALEFOO.COM</span>
-            </div>
 
-            <div class="bordertest">
-              <div class="oldseal">C</div>
+              <!-- ********************************** -->
+              <!-- MAIN ARTICLE -->
+              <div id="main-feature-article" class="item-container item w2 main-feature">
+                <div class="article-heading feature"><h2>{{feature.heading || "Your Heading"}}</h2></div>
+                <div class="article-author"><h5>{{feature.author || "from someone special"}}</h5></div>
+                <div class="article-text feature">
+                  <img ng-src="{{card.image_bw}}" class="image main" images-loaded="imgLoadedEvents">
+                  {{feature.article_text || "Your birthday message"}}
+                </div>
+              </div>    
+              <!-- ********************************** -->
+
+              <div class="item-container item w2">
+                <div class="article-heading horoscope">
+                  <h3>Horoscope for {{card.date | amDateFormat:'dddd, MMMM Do'}}</h3>
+                </div>
+                <div class="article-text col-xs-6 padded-top">
+                  <span class="horoscope-name">{{card.zodiacName}}</span>
+                  <span id="zodiac_img_container">
+                    <img id="zodiac_name" ng-src="{{zodiac_img_src || '//:0' }}" class="image zodiac" images-loaded="imgLoadedEvents">
+                  </span>
+                  <p class="article-text">{{card.zodiac}} </p>
+                </div>
+                <div class="article-text col-xs-6 padded-top">
+                  <span class="horoscope-name">{{card.animalName}}</span>
+                  <span id="animal_img_container">
+                    <img id="animal_name" class="image animal" images-loaded="imgLoadedEvents" ng-src="{{animal_img_src || '//:0' }}"> 
+                  </span> 
+                  <p class="article-text">{{card.chinese_horoscope}}</p>   
+                </div>
+              </div>        
+              
+              <div class="barcode-stamp">
+                <span>©</span><span class="barcode padded">DALEFOO.COM</span>
+              </div>
+
+ 
             </div>
           </div>
         </div>
