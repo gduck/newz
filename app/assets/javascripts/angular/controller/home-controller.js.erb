@@ -2,7 +2,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.feature = {};
   $scope.card = {};
-  $scope.message = "";
+  $scope.card.loadingMessage = "";
+  $scope.card.imgChosen = false;
   // $scope.teslaShow = true;
 
   $scope.minDate = new Date("1946-01-01");
@@ -11,7 +12,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   // GET USER IMAGE AND DESATURATE
   $scope.getFile = function () {
-    $scope.message = "Please wait.....";
+    $scope.card.loadingMessage = "Please wait.....";
+    $scope.card.imgChosen = 1;
 
     fileReader.readAsDataUrl($scope.file, $scope)
     .then(function(result) {
@@ -26,7 +28,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
       if (!$scope.card.image_bw) {
         $scope.card.image_bw = $scope.card.imageSrc;
       }
-      $scope.message = "";
+      $scope.card.loadingMessage = "";
       $scope.repack();
     }
   });
@@ -154,26 +156,30 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.repack = function() {
     $scope.$container.packery();
-    console.log("Just repacked");
+    // console.log("Just repacked");
     // $scope.$container.bindResize();
+    return true;
   }
 
-  $scope.print = function() {  
-    $scope.repack();
-    html2canvas($("#newspaper"), {
-      allowTaint: true,
-      useCORS: true,
-      // taintTest: false,
-      logging: true,
-      onrendered: function (canvas) {
-        var myImage = canvas.toDataURL("image/jpg");
-        var tWindow = window.open("");
-        $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
-            tWindow.focus();
-            tWindow.print();
-        });
-      }
-    });
+  $scope.print = function() { 
+    $scope.card.loadingMessage = "Please wait..." 
+    if ($scope.repack()) {
+      html2canvas($("#newspaper"), {
+        allowTaint: true,
+        useCORS: true,
+        // taintTest: false,
+        logging: true,
+        onrendered: function (canvas) {
+          var myImage = canvas.toDataURL("image/jpg");
+          var tWindow = window.open("");
+          $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
+              tWindow.focus();
+              tWindow.print();
+          });
+        }
+      });
+    }
+    $scope.card.loadingMessage = "";
   }
 
   $scope.$container = $('#container');
@@ -198,9 +204,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    var draggie = new Draggabilly( itemElem );
+    //var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    //$scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
   
   // make new random date

@@ -26,6 +26,7 @@ html { overflow-y: scroll; }
 .message {
   font-family: 'Display Italic';
   font-style: bold;
+  color: red;
   text-align: center;
   border-bottom: 1px solid #e4e4e4;
 }
@@ -49,8 +50,8 @@ div.article{
 #container {
 }
 .item-container {
-  /*padding-left: 10px;*/
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-top: 10px; 
   /*border-left: 1px solid #d3d3d3;*/
   /*border-right: 1px solid #d3d3d3;*/
@@ -130,6 +131,7 @@ img.fb {
   max-width: 100px;
 }
 #file-upload {
+  font-family: 'PlayfairRegular';
   padding: 10px;
 }
 
@@ -149,12 +151,13 @@ img.fb {
   float: left;
   overflow: auto;
 }
-.price {
+#webaddress {
   font-style: italic;
   font-weight: bold;
   font-family: 'Display Italic';
   text-align: center;
   overflow: auto;
+  padding: 0;
 }
 .clear {
   clear: both;
@@ -210,7 +213,7 @@ img.fb {
 }
 .oldseal.oldseal3 {
   right: 350px;
-  bottom: 150px;
+  bottom: 50px;
 }
 .dropdown-menu, .dropdown-menu2 {
   font-family: 'LatinModern';
@@ -218,6 +221,7 @@ img.fb {
 .article-text {
   font-family: 'PlayfairRegular';
   padding-bottom: 10px;
+  text-align: justify;
   /*font-size: 1.2em;*/
   /*line-height: 1.6em;*/
 }
@@ -227,10 +231,14 @@ img.fb {
 .article-text.feature {
   font-size: large;
 }
+.feature > img {
+  padding: 5px;
+}
 #tesla-img {
   position: absolute;
   top: 20px;
   left: 25px;
+  z-index: 2;
 }
 #tesla-txt {
   /*float: right;*/
@@ -241,7 +249,7 @@ img.fb {
   width: 200px;
   position: absolute;
   top: 33px;
-  left: 30px;
+  left: 20px;
   font-family: 'PressStyle';
   text-align: center;
 }
