@@ -26,4 +26,6 @@
 //= require angular-images-loaded/angular-images-loaded
 //= require html2canvas/build/html2canvas
 //= require html2canvas/build/html2canvas.min
+//= require moment/min/moment.min
+//= require angular-momentjs/angular-momentjs
 //= require_tree ./angular

@@ -1,19 +1,19 @@
 app.controller("fbCtrl", ['$scope', '$upload', 'fileReader', function($scope, $upload, fileReader){
 
   var sendToFB = function(picture_link){
-    console.log("in FB send");
-    console.log(picture_link);
-
-
+    $scope.repack();
+    $scope.card.loadingMessage = "Please wait...";
+    
     FB.ui({
         method: 'feed',
         name: 'Birthday Newz',
         picture: picture_link,
         link: picture_link,
         caption: 'Birthday Newz',
-        description: 'Create a Birthday Newzpaper & tag your birthday friend (@name) to post to their timeline',
+        description: 'Create a Birthday Newzpaper & tag your birthday friend (@name) to post to their timeline. Visit birthday-newz.herokuapp.com',
         message: ''
     });
+    $scope.card.loadingMessage = "";
   };
 
   // *****************************

@@ -10,10 +10,23 @@
   bottom: 0;
   left: 20px;
 }
-
+html { overflow-y: scroll; }
 
 /* MAIN LAYOUT ----------*/
-
+#logo {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+#logo > img {
+  width: 100%;
+}
+#page-title {
+  font-family: "OldNewspaper";
+  font-size: 4em;
+  text-align: center;
+  margin-top: 0;
+}
 .main-feature {
   /*font-size: 150%;*/
   /*min-height: 150px;*/
@@ -23,7 +36,13 @@
   border-left: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
 }
-
+.message {
+  font-family: 'PlayfairRegular';
+  font-style: bold;
+  color: red;
+  text-align: center;
+  border-bottom: 1px solid #e4e4e4;
+}
 
 /* ARTICLE STUFF ------------*/
 .article {
@@ -44,8 +63,8 @@ div.article{
 #container {
 }
 .item-container {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-top: 10px; 
   /*border-left: 1px solid #d3d3d3;*/
   /*border-right: 1px solid #d3d3d3;*/
@@ -64,9 +83,13 @@ div.article{
 /* IMAGES ----------*/
 .image {
   /*display: block;*/
-  width: 80%;
+  width: 75%;
   max-width: 200px;
   overflow: hidden;
+}
+.image.cost {
+  width: 70%;
+  padding: 5px;
 }
 .avatar {
   width: 100px;
@@ -94,13 +117,12 @@ img.desaturate {
 }
 
 #print-btn {
-  /*text-align: center;*/
-  /*margin: -20px -50px; */
+  font-family: 'PlayfairRegular';
+  margin-top: 20px; 
   /*position:relative;
   top:50%; 
   left:50%;*/
   float: right;
-  margin-top: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px #888888
 }
@@ -108,35 +130,62 @@ img.desaturate {
   border-radius: 5px;
 }
 /* FACEBOOK */
-button.fb {
-  width: 50px;
+.btn.fb {
+  width: 100px;
+  /*width: 100px;*/
   /*height: 50px;*/
   padding: 0;
   border: 0;
+  background: white;
 }
 img.fb {
   width: 100%;
+  max-width: 75px;
 }
-#file-upload {
-  padding: 20px;
+div.fb {
+  float: right;
+}
+div.print {
+}
+.file-upload {
+  font-family: 'PlayfairRegular';
+  padding: 10px;
+  text-align: center;
+}
+.preview {
+  font-style: bold;
 }
 
 /* FONTS -----------------*/
 .date-text {
   font-style: italic;
   font-weight: bold;
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'Display Italic';
+  overflow: auto;
   float: right;
+  text-align: right;
 }
 .edition {
   font-style: italic;
   font-weight: bold;
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'Display Italic';
   float: left;
+  overflow: auto;
+}
+#webaddress {
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'Display Italic';
+  text-align: center;
+  overflow: auto;
+  padding: 0;
 }
 .clear {
   clear: both;
   margin-bottom: 5px;
+}
+.info {
+  border-top: 1px solid #d3d3d3;
 }
 
 .newspaper-name {
@@ -145,11 +194,18 @@ img.fb {
   font-weight: bold;
   font-size: 5em;
 }
-.header {
+#header {
   color: black;
   font-family: 'Canterbury';
   padding: 20px;
+  padding-left: 3%;
 }
+.subline {
+  font-family: 'PlayfairItalic';
+  text-align: center;
+  font-weight: bold;
+}
+
 .header-left {
   padding-left: 0;
 }
@@ -164,22 +220,61 @@ img.fb {
 .oldseal {
   font-family: 'old seals tfb';
   font-size: 5em;
-  text-align: center;
+  /*text-align: center;*/
   position: absolute;
   color: #936008;
+  opacity: 0.4;
+  z-index: 2;
+}
+.oldseal.oldseal1 {
+  top: 300px;
+  left: 150px;
+}
+.oldseal.oldseal2 {
+  right: 15px;
+}
+.oldseal.oldseal3 {
+  right: 350px;
+  bottom: 50px;
 }
 .dropdown-menu, .dropdown-menu2 {
   font-family: 'LatinModern';
 }
 .article-text {
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'PlayfairRegular';
   padding-bottom: 10px;
+  text-align: justify;
   /*font-size: 1.2em;*/
   /*line-height: 1.6em;*/
- }
- .article-text.feature {
+}
+.article-news {
+  padding-top: 10px;
+}
+.article-text.feature {
   font-size: large;
- }
+}
+.feature > img {
+  padding: 5px;
+}
+#tesla-img {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  z-index: 2;
+}
+#tesla-txt {
+  /*float: right;*/
+  font-size: 2em;
+}
+.tesla {
+  /*border: none;*/
+  width: 200px;
+  position: absolute;
+  top: 33px;
+  left: 20px;
+  font-family: 'PressStyle';
+  text-align: center;
+}
 .article-author {
   font-family: 'Goudy Bookletter 1911 TT';
   /*font-size: small;*/
@@ -187,7 +282,7 @@ img.fb {
   text-align: right;
 }
 .article-heading {
-  font-family: 'Goudy Bookletter 1911 TT';
+  font-family: 'PlayfairRegular';
   font-style: bold;
   text-align: center;
   /*border-top: 1px solid #d3d3d3;*/
@@ -227,6 +322,9 @@ img.fb {
 .padded {
   padding: 20px;
 }
+#inputs {
+  margin: 0;
+}
 .top-margin {
   margin-top: 20px;
 }
@@ -262,6 +360,7 @@ div h3 {
   box-shadow: 0px 0px 10px #333;
   height: auto;
 }
+
 .newspaper-header {
   border-bottom: 1px solid #d3d3d3;
   margin-bottom: 10px;
@@ -269,9 +368,13 @@ div h3 {
 .newspaper-body {
   padding-left: 20px;
 }
+#newspaper-container {
+  padding: 5px;
+  border: 1px solid #d3d3d3;
+}
 .wrapper {
   /*width: 100%;*/
-  width: 850px;
+  min-width: 850px;
   /* whatever width you want */
   /*display: inline-block;*/
   display: block;

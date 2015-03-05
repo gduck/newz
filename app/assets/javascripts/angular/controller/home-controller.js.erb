@@ -1,28 +1,70 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$upload', 'fileReader', function($scope, $http, $rootScope, $timeout, $upload, fileReader){
 
-  $scope.getFile = function () {
-    $scope.progress = 0;
-    fileReader.readAsDataUrl($scope.file, $scope)
-    .then(function(result) {
-        $scope.imageSrc = result;
-    });
-  };
-  
-  $scope.$watch('imageSrc', function() {
-    console.log("WATCH TRIGGERED in $watch, homectr");
-    $scope.repack();
-  });
-
-  $scope.$on("fileProgress", function(e, progress) {
-    $scope.progress = progress.loaded / progress.total;
-  });
-
   $scope.feature = {};
   $scope.card = {};
+  $scope.card.loadingMessage = "";
+  $scope.card.imgChosen = false;
+  // $scope.teslaShow = true;
 
   $scope.minDate = new Date("1946-01-01");
   $scope.maxDate = new Date("2012-12-31");
   $scope.today = new Date();
+
+  // GET USER IMAGE AND DESATURATE
+  $scope.getFile = function () {
+    $scope.card.loadingMessage = "Please wait.....";
+    $scope.card.imgChosen = 1;
+
+    fileReader.readAsDataUrl($scope.file, $scope)
+    .then(function(result) {
+        $scope.card.imageSrc = result;
+    });
+  };
+  
+  $scope.$watch('card.imageSrc', function() {
+    console.log("WATCH TRIGGERED in $watch, homectr");
+    if ($scope.card.imageSrc) {
+      $scope.card.image_bw = desaturate($scope.card.imageSrc);
+      if (!$scope.card.image_bw) {
+        $scope.card.image_bw = $scope.card.imageSrc;
+      }
+      $scope.card.loadingMessage = "";
+      $scope.repack();
+    }
+  });
+
+  var desaturate = function(image) {
+    var imgObj = new Image();
+    imgObj.src = image;
+
+    var canvas = document.createElement('canvas');
+    var canvasContext = canvas.getContext('2d');
+    var imgW = imgObj.width;
+    var imgH = imgObj.height;
+    canvas.width = imgW;
+    canvas.height = imgH;
+
+    canvasContext.drawImage(imgObj, 0, 0);
+
+    var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
+
+    for(var y = 0; y < imgPixels.height; y++){
+         for(var x = 0; x < imgPixels.width; x++){
+              var i = (y * 4) * imgPixels.width + x * 4;
+              var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+              imgPixels.data[i] = avg;
+              imgPixels.data[i + 1] = avg;
+              imgPixels.data[i + 2] = avg;
+         }
+    }
+
+    canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+    return canvas.toDataURL();
+  }
+
+  // $scope.$on("fileProgress", function(e, progress) {
+  //   $scope.progress = progress.loaded / progress.total;
+  // });
 
   // FOR DATEPICKER
   $scope.open = function($event) {
@@ -51,6 +93,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
     var difference = moment($scope.today).diff(moment(date));
 
     $scope.daysOld = Math.floor(moment.duration(difference).asDays());
+
+    $scope.tesla = moment(new Date("2009-03-26"));
+    var difference = moment($scope.tesla).diff(date);
+    $scope.daysToGo = Math.floor(moment.duration(difference).asDays());
   }
 
   var getSongs = function(year) {
@@ -103,34 +149,37 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
       $scope.card.animalName = data.animalName;
       $scope.animal_img_src = '/assets/chinese_horoscope/' + $scope.card.animalName + '.jpg';
 
-      console.log("in getHoroscopes " + $scope.animal_img_src);
       $scope.zodiac_img_src = '/assets/zodiac/' + $scope.card.zodiacName + '.png';
-      $scope.apply;
-      
+      $scope.apply;      
     })
   }
 
   $scope.repack = function() {
     $scope.$container.packery();
-    console.log("Just repacked");
+    // console.log("Just repacked");
     // $scope.$container.bindResize();
+    return true;
   }
 
-  $scope.print = function() {  
-    html2canvas($("#newspaper"), {
-      allowTaint: true,
-      useCORS: true,
-      // taintTest: false,
-      logging: true,
-      onrendered: function (canvas) {
-        var myImage = canvas.toDataURL("image/jpg");
-        var tWindow = window.open("");
-        $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
-            tWindow.focus();
-            tWindow.print();
-        });
-      }
-    });
+  $scope.print = function() { 
+    $scope.card.loadingMessage = "Please wait..." 
+    if ($scope.repack()) {
+      html2canvas($("#newspaper"), {
+        allowTaint: true,
+        useCORS: true,
+        // taintTest: false,
+        logging: true,
+        onrendered: function (canvas) {
+          var myImage = canvas.toDataURL("image/jpg");
+          var tWindow = window.open("");
+          $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
+              tWindow.focus();
+              tWindow.print();
+          });
+        }
+      });
+    }
+    $scope.card.loadingMessage = "";
   }
 
   $scope.$container = $('#container');
@@ -155,9 +204,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$rootScope', '$timeout', '$uploa
 
   $scope.$container.find('.item').each( function( i, itemElem ) {
     // make element draggable with Draggabilly
-    var draggie = new Draggabilly( itemElem );
+    //var draggie = new Draggabilly( itemElem );
     // bind Draggabilly events to Packery
-    $scope.$container.packery( 'bindDraggabillyEvents', draggie );
+    //$scope.$container.packery( 'bindDraggabillyEvents', draggie );
   });
   
   // make new random date

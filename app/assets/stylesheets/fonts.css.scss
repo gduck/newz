@@ -1,4 +1,27 @@
 @font-face {
+  font-family: "OldNewspaper";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/Old Newspaper Font.ttf") format("truetype")
+}
+@font-face {
+  font-family: "HandShop";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/HandShop.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: "PressStyle";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/Press Style.ttf") format("truetype")
+}
+@font-face {
+  font-family: "PlayfairRegular";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/PlayfairDisplay-Regular.otf") format("opentype")
+}
+
+@font-face {
+  font-family: "PlayfairItalic";
+  src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/PlayfairDisplay-Italic.otf") format("opentype")
+}
+
+@font-face {
   font-family: "LatinModern";
   src:url("https://s3-us-west-2.amazonaws.com/newz-fonts/lmmono10-regular.otf") format("opentype")
 }
